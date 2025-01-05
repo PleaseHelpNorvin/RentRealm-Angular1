@@ -1,1 +1,30 @@
-<p>sidebar works!</p>
+<div class="sidebar">
+  <div class="sidebar-head">
+      <!-- <div class="title-container"> -->
+        <img src="assets/rentrealm_logo_for_sure.png" alt="rentrealm_logo">
+        <h3>RentRealm</h3>
+      <!-- </div> -->
+    
+  </div>
+  <div class="divider"></div>
+  <ul class="dynamic-nav">
+      <li>
+          <a 
+            [routerLink]="'/admin/dashboard'" 
+            routerLinkActive="active" 
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+              <span class="material-icons">dashboard</span> Dashboard
+          </a>
+      </li>
+      <li>
+          <a 
+            [routerLink]="'/admin/properties'" 
+            routerLinkActive="active" 
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+              <span class="material-icons">home</span> Properties
+          </a>
+      </li>
+  </ul>
+</div>

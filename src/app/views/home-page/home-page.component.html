@@ -1,1 +1,86 @@
-<p>home-page works!</p>
+<div class="wrapper">
+    <div class="row">
+        <app-custom-card [cardHeaderBgColor]="'#ADD8E6'"
+                         [cardBodyText]="'Free Space'"
+                         [cardBodyValue]="'20/50 GB'">
+            <div card-header>
+                <span class="material-icons">dashboard</span>
+            </div>
+            <div card-footer>
+                Another Footerasdasda
+            </div>
+        </app-custom-card>
+    
+        <app-custom-card [cardHeaderBgColor]="'#87CEEB'"
+                         [cardBodyText]="'Used Space'"
+                         [cardBodyValue]="'49/50 GB'">
+            <div card-header>
+                <span class="material-icons">dashboard</span>
+            </div>
+            <div card-footer>
+                Another Footer
+            </div>
+        </app-custom-card>
+        <app-custom-card [cardHeaderBgColor]="'#4682B4'"
+                         [cardBodyText]="'Used Space'"
+                         [cardBodyValue]="'49/50 GB'">
+            <div card-header>
+                <span class="material-icons">dashboard</span>
+            </div>
+            <div card-footer>
+                Another Footer
+            </div>
+        </app-custom-card>
+        <app-custom-card [cardHeaderBgColor]="'#4169E1'"
+                         [cardBodyText]="'Used Space'"
+                         [cardBodyValue]="'49/50 GB'">
+            <div card-header>
+                <span class="material-icons">dashboard</span>
+            </div>
+            <div card-footer>
+                Another Footer
+            </div>
+        </app-custom-card>
+        <app-custom-card [cardHeaderBgColor]="'#00008B'"
+                         [cardBodyText]="'Used Space'"
+                         [cardBodyValue]="'49/50 GB'">
+            <div card-header>
+                <span class="material-icons">dashboard</span>
+            </div>
+            <div card-footer>
+                Another Footer
+            </div>
+        </app-custom-card>
+    </div>
+    
+    <div class="row">
+        
+        <!-- <div class="chart-row"/> -->
+            <div class="box">
+                <h3>Payment Overview</h3>
+                <div class="chart-container">
+                  <canvas
+                    baseChart
+                    [data]="paymentChartData"
+                    [type]="paymentChartType"
+                    [options]="chartOptions">
+                  </canvas>
+                </div>
+            </div>
+            
+              <!-- Tenants Overview -->
+            <div class="box">
+                <h3>Tenants Overview</h3>
+                <div class="chart-container">
+                  <canvas
+                    baseChart
+                    [data]="tenantChartData"
+                    [type]="tenantChartType"
+                    [options]="chartOptions">
+                  </canvas>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</div>

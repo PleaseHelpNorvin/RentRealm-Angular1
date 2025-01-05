@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 import { SigninPageComponent } from './views/signin-page/signin-page.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
+import {PropertyUpdateComponent} from './views/property-page/property-update/property-update.component';
 // import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
 // import { ChatPageComponent } from './views/chat-page/chat-page.component';
 // import { PaymentPageComponent } from './views/payment-page/payment-page.component';
@@ -33,8 +34,13 @@ export const routes: Routes = [
       {
         path: 'properties',
         component: PropertyPageComponent,
-        // data: { breadcrumb: 'Dashboard' }
       },
+      { path: 'property-update/:id', 
+        component: PropertyUpdateComponent 
+      },
+
+      
+    
     //   {
     //     path: 'tenants',
     //     component: TenantsPageComponent,
