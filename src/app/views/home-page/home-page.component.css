@@ -1,44 +1,54 @@
 .wrapper {
-    /* border: 1px solid red; */
     width: 100%; /* Ensure wrapper spans full width */
     box-sizing: border-box; /* Includes padding and border in width */
-    overflow: hidden; /* Prevent child content from spilling out */
+    overflow: hidden;
+    padding-left: 10px;
 }
-.title-container{
-    border: 1px solid black;
+
+
+.appcard-box {
+    flex: 1 1 300px; /* Flexbox behavior - grow, shrink, base size */
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin: 0;
 }
+
+/* Row settings */
 .row {
+    --bs-gutter-x:0;
     padding: 16px;
-    /* border: 1px solid black; */
     display: flex;
     gap: 20px;
     justify-content: center;
     width: 100%;
-    max-width: 100%; /* Prevent the row from exceeding parent width */
-    box-sizing: border-box; /* Ensures padding is part of the row's width */
-    flex-wrap: wrap; /* Wrap content when space is insufficient */
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+.col {
+    /* border: 1px solid black; */
+    display: flex;
+    gap: 20px;
 }
 
-.card-body-p, .card-body-h3 {
-    display: flex;
-    justify-content: end;
-    margin: 0;
-    padding-right: 10px;
-    /* border: 1px solid black; */
-}
+/* Card body */
 
 .box {
-    /* border: 1px solid black; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Allows the box to grow and take available space */
-    width: 100px;  /* Ensures the box fills the available width inside the row */
-    min-height: 300px; /* Optional: Define a minimum height for the box */
-    padding: 16px; /* Add padding inside the box */
-    box-sizing: border-box; /* Ensures padding is included in the width/height */
+    flex-grow: 1;
+    min-width: 100px;  /* Ensures box has a minimum width */
+    /* max-width: ; */
+    padding: 16px;
+    box-sizing: border-box;
+    
+    /* Optional: max-height can help control how tall the box can be */
+    min-height: 300px; 
 }
 
 .chart-container {
@@ -49,30 +59,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: #f9f9f9; */
     border-radius: 8px;
     overflow: hidden;
-    box-sizing: border-box; /*Ensures padding and border are part of the box's dimensions*/
+    box-sizing: border-box;
 }
 
-
-
-/* canvas { */
-    /* width: 100% !important; */
-    /* height: auto !important; Allow height to adjust dynamically */
-    /* max-height: 100%; Prevents canvas from overflowing its parent */
-/* } */
 @media (max-width: 522px) {
-    app-custom-card{
+    /* Ensure the custom card element takes full width and adjusts height accordingly */
+    app-custom-card {
         width: 100%;
+        height: 82px;  /* Adjust height to your preferred value */
+        margin-bottom: 10px;  /* Optional: space between stacked cards */
     }
 
-    .row{
-        display: flex;
-        flex-direction: column;
+    /* Ensure appcard-box stays within expected limits */
+    .appcard-box {
+        flex: none; 
+        width: 100%;  /* Full width on smaller screens */
+        min-height: 82px;  /* Avoid shrinking too small */
+
     }
-    
-    .box{
-        width: 100%;
+
+    .row {
+        flex-direction: column;  /* Stack the items in a column */
+        gap: 20px;  /* Optional: adjust the gap between stacked elements */
+    }
+
+    /* Adjust box size on smaller screens */
+    .box {
+        width: 100%;  /* Ensure box takes full width on smaller screens */
+        min-height: 150px;  /* Optional: control box height when stacking */
     }
 }

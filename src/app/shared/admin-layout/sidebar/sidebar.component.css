@@ -19,9 +19,12 @@
 }
     .sidebar-head{
         display: flex;
-        justify-content: start;
+        /* border-right: 1px solid #444; */
+        height: 80px;
+        justify-content: center;
         align-items: center;
-        padding-left: 10px;
+        padding: 10px;
+        /* padding-left: 10px; */
     }
     .sidebar-head  img{
         height: 40px;
@@ -49,12 +52,21 @@
   
   /* Sidebar Links Styling */
   .dynamic-nav {
+    
     list-style: none;
     padding: 0;
+    padding-top: 10px;
+    gap: 10px;
   }
   
   .dynamic-nav li {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column; 
+    /* justify-content: center; */
+    /* align-items: center; */
+   width: 100%;
   }
 
   .dynamic-nav li a.active {
@@ -63,11 +75,13 @@
   }
   
   .dynamic-nav a {
-    display: block;
+    display: flex;
     color: black;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
+    /* border: 1px solid green; */
+    
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
