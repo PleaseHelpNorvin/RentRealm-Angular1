@@ -7,10 +7,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './room-page.component.css'
 })
 export class RoomPageComponent {
-constructor(private route: ActivatedRoute) {
-  this.route.params.subscribe(params => {
-    const property_id = params['property_id'];
-    console.log('Property ID:', property_id);
-  });
-}
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      const property_id = params['property_id'];
+      console.log('Property ID:', property_id);
+    });
+  }
+
+  ngOnInit(): void{
+    
+  }
+
+  loadRooms(): void {
+    
+  }
 }
