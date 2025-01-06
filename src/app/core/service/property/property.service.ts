@@ -29,6 +29,34 @@ export class PropertyService {
     );
   }
 
+  addProperty(property: Property): Observable<PropertyResponse> {
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',  // Tell the server we're sending JSON
+      'Accept': 'application/json'  // The server should respond with JSON as well
+    };
+  
+    // Send the property object in the body of the request
+    return this.http.post<PropertyResponse>(`${this.apiUrl}/store`, property, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getPropertyById(id: number): Observable<Property> {
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    };
+    return this.http.get<Property>(`${this.apiUrl}/show/${id}`, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
+
   /**
    * Delete a property by ID
    * @param id - The ID of the property to delete
@@ -60,7 +88,7 @@ export class PropertyService {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
-    return this.http.put<Property>(`${this.apiUrl}/${property.id}`, property, { headers }).pipe(
+    return this.http.post<Property>(`${this.apiUrl}/update/${property.id}`, property, { headers }).pipe(
       catchError(this.handleError)
     );
   }

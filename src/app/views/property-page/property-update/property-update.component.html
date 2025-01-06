@@ -1,3 +1,90 @@
 <div class="row">
-    <p>property-update works!</p>
-</div>
+    <h3>Edit A Property</h3>
+    <form (ngSubmit)="onSubmit()">
+       <div class="row">
+           <div class="col-md-6">
+               <div class="mb-3">
+                 <label for="property-name" class="form-label">Property Name</label>
+                 <input type="text" class="form-control" name="property-name"  id="property-name" placeholder="Enter property-name" [(ngModel)]="property.name" required>
+               </div>
+
+            </div>
+             
+         <!-- Address Line 1 -->
+         <div class="col-md-6">
+           <div class="mb-3">
+             <label for="address1" class="form-label">Address Line 1</label>
+             <input type="text" class="form-control" name="address1" id="address1" placeholder="Enter Address Line 1" [(ngModel)]="property.line_1" required>
+           </div>
+         </div>
+   
+       </div>
+   
+       <div class="row">
+   
+         <!-- Province -->
+         <div class="col-md-6">
+           <div class="mb-3">
+             <label for="province" class="form-label">Province</label>
+             <input type="text" class="form-control" name="province" id="province" placeholder="Enter Province" [(ngModel)]="property.province" required>
+           </div>
+         </div>
+   
+         <!-- Address Line 2 -->
+         <div class="col-md-6">
+           <div class="mb-3">
+             <label for="address2" class="form-label">Address Line 2</label>
+             <input type="text" class="form-control" name="address2" id="address2" placeholder="Enter Address Line 2" [(ngModel)]="property.line_2">
+           </div>
+         </div>
+       </div>
+   
+       <div class="row">
+         
+           <div class="col-md-6">
+               <div class="mb-3">
+                   <label for="country" class="form-label">Country</label>
+                   <input type="text" class="form-control" name="country" id="country" placeholder="Enter Country" [(ngModel)]="property.country" required>
+               </div>
+           </div>
+         
+         <!-- Postal Code -->
+         <div class="col-md-6">
+           <div class="mb-3">
+             <label for="postalCode" class="form-label">Postal Code</label>
+             <input type="text" class="form-control" name="postalCode" id="postalCode" placeholder="Enter Postal Code" [(ngModel)]="property.postal_code" required>
+           </div>
+         </div>
+       </div>
+   
+       <div class="row">
+         <!-- Status -->
+         <div class="col-md-6">
+           <div class="mb-3">
+             <label for="status" class="form-label">Status</label>
+             <select class="form-select" name="status" id="status" [(ngModel)]="property.status" required>
+               <option value="available">Available</option>
+               <option value="rented">Rented</option>
+               <option value="full">Full</option>
+             </select>
+           </div>
+         </div>
+   
+         <!-- Type -->
+         <div class="col-md-6">
+           <div class="mb-3">
+             <label for="type" class="form-label">Type</label>
+             <select class="form-select" id="type" name="type" [(ngModel)]="property.type"  required>
+               <option value="apartment">Apartment</option>
+               <option value="house">House</option>
+               <option value="boarding-house">Boarding-House</option>
+             </select>
+           </div>
+         </div>
+       </div>
+   
+       
+   
+       <button type="submit" class="btn btn-primary">Update Property</button>
+     </form>
+   </div>

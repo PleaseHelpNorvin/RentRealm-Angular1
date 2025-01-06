@@ -14,6 +14,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { NoAuthGuard } from './core/guard/noauth.guard';
 import { PropertyPageComponent } from './views/property-page/property-page.component';
 import { RoomPageComponent } from './views/room-page/room-page.component';
+import { PropertyAddComponent } from './views/property-page/property-add/property-add.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'properties',
         component: PropertyPageComponent,
+      },
+      {
+        path: 'properties/add',
+        component: PropertyAddComponent,
       },
       { path: 'properties/update/:id', 
         component: PropertyUpdateComponent 

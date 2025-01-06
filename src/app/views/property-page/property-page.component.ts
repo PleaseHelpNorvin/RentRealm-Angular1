@@ -60,6 +60,10 @@ export class PropertyPageComponent implements OnInit {
     this.router.navigate([`/admin/properties/rooms/`, property_id]);
     console.log(this.router.navigate([`/admin/properties/rooms/`, property_id]));
   }
+  goToAddPropertyPage(): void {
+    this.router.navigate([`/admin/properties/add`]);
+    console.log(this.router.navigate([`/admin/properties/add`]));
+  }
 
   ngOnInit(): void {
     this.loadProperties(); // Fetch properties when the component is initialized
