@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../core/service/property/property.service';
 import { CommonModule } from '@angular/common';
 import { Property, PropertyResponse } from '../../core/interfaces/property.interface';
-import { Router } from '@angular/router';
+import { Router, RouterModule  } from '@angular/router';
+
 @Component({
   selector: 'app-property-page',
   templateUrl: './property-page.component.html',
   styleUrls: ['./property-page.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class PropertyPageComponent implements OnInit {
   properties: Property[] = []; // Array to hold the property data
@@ -51,8 +52,13 @@ export class PropertyPageComponent implements OnInit {
   }
 
   goToUpdatePage(id: number): void {
-    this.router.navigate([`/admin/property-update/`, id]);
-    console.log(this.router.navigate([`/admin/property-update/`, id]));
+    this.router.navigate([`/admin/properties/update/`, id]);
+    console.log(this.router.navigate([`/admin/properties/update/`, id]));
+  }
+
+  goToViewRoomsPage(property_id: number): void {
+    this.router.navigate([`/admin/properties/rooms/`, property_id]);
+    console.log(this.router.navigate([`/admin/properties/rooms/`, property_id]));
   }
 
   ngOnInit(): void {

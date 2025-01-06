@@ -13,6 +13,7 @@ import {PropertyUpdateComponent} from './views/property-page/property-update/pro
 import { AuthGuard } from './core/guard/auth.guard';
 import { NoAuthGuard } from './core/guard/noauth.guard';
 import { PropertyPageComponent } from './views/property-page/property-page.component';
+import { RoomPageComponent } from './views/room-page/room-page.component';
 
 
 export const routes: Routes = [
@@ -35,10 +36,13 @@ export const routes: Routes = [
         path: 'properties',
         component: PropertyPageComponent,
       },
-      { path: 'property-update/:id', 
+      { path: 'properties/update/:id', 
         component: PropertyUpdateComponent 
       },
-
+      {
+        path: 'properties/rooms/:property_id',
+        component: RoomPageComponent
+      }
       
     
     //   {

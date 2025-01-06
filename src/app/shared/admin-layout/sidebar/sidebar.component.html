@@ -8,23 +8,22 @@
   </div>
   <div class="divider"></div>
   <ul class="dynamic-nav">
-      <li>
-          <a 
-            [routerLink]="'/admin/dashboard'" 
-            routerLinkActive="active" 
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-              <span class="material-icons">dashboard</span> Dashboard
-          </a>
-      </li>
-      <li>
-          <a 
-            [routerLink]="'/admin/properties'" 
-            routerLinkActive="active" 
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-              <span class="material-icons">home</span> Properties
-          </a>
-      </li>
+          <li>
+      <a 
+        [routerLink]="'/admin/dashboard'" 
+        routerLinkActive="active" 
+        [routerLinkActiveOptions]="{ exact: true }">
+        <span class="material-icons">dashboard</span> Dashboard
+      </a>
+    </li>
+    <li>
+      <a 
+        [routerLink]="'/admin/properties'" 
+        routerLinkActive="active">
+        <span class="material-icons">home</span> Properties
+      </a>
+    </li>
+
+
   </ul>
 </div>
