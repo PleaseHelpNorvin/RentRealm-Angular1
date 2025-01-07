@@ -1,6 +1,6 @@
 
 /* Make the container take up the full height of the viewport */
-.container {
+.container1 {
     height: 100vh;
     display: flex;
     align-items: center;

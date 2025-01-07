@@ -1,10 +1,10 @@
 <div class="row">
-    <h3>Rooms of Property xxxx</h3>
+    <h3>Rooms of Property {{property_id}}</h3>
+    <button class="btn btn-primary">Add room</button>
     <table class="table">
         <thead class="table-primary">
             <tr>
                 <th>Id</th>
-                <th>Room Picture</th>
                 <th>Room Code</th>
                 <th>Rent Price</th>
                 <th>Capacity</th>
@@ -15,16 +15,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let room of rooms">
+                <td>{{room.id}}</td>
+                <td>{{room.room_code}}</td>
+                <td>{{room.rent_price}}</td>
+                <td>{{room.capacity}}</td>
+                <td>{{room.current_occupants}}</td>
+                <td>{{room.min_lease}}</td>
+                <td>{{room.status}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="goToViewRoom(room.property_id, room.id)">View</button>
+                    <button class="btn btn-success">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>

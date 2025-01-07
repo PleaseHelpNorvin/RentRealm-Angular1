@@ -15,6 +15,7 @@ import { NoAuthGuard } from './core/guard/noauth.guard';
 import { PropertyPageComponent } from './views/property-page/property-page.component';
 import { RoomPageComponent } from './views/room-page/room-page.component';
 import { PropertyAddComponent } from './views/property-page/property-add/property-add.component';
+import { RoomViewComponent } from './views/room-page/room-view/room-view.component';
 
 
 export const routes: Routes = [
@@ -47,7 +48,11 @@ export const routes: Routes = [
       {
         path: 'properties/rooms/:property_id',
         component: RoomPageComponent
-      }
+      },
+      {
+        path: 'properties/rooms/:property_id/:id',
+        component: RoomViewComponent
+      },
       
     
     //   {

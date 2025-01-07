@@ -38,9 +38,9 @@ export class PropertyService {
     };
   
     // Send the property object in the body of the request
-    return this.http.post<PropertyResponse>(`${this.apiUrl}/store`, property, { headers }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post<PropertyResponse>(`${this.apiUrl}/store`, property, { headers });
+      // catchError(this.handleError)
+
   }
 
   getPropertyById(id: number): Observable<Property> {
@@ -72,9 +72,10 @@ export class PropertyService {
     };
     console.log(token);
     console.log(headers);
-    return this.http.delete<PropertyResponse>(`${this.apiUrl}/destroy/${id}`, { headers }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.delete<PropertyResponse>(`${this.apiUrl}/destroy/${id}`, { headers });
+    // .pipe()
+      // catchError(this.handleError)
+    // );
   }
 
   /**
