@@ -40,6 +40,18 @@ export class RoomService {
     );
   }
 
+  storeRoomData(id: number | null, formData: FormData): Observable<RoomResponse> {
+    console.log(`from storeRoomData(): ${id}`);
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      // 'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    }
+
+    return this.http.post<RoomResponse>(`${this.apiUrl}/store?property_id=${id}`, formData, {headers})
+  }
+
   private handleError(error: any): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
@@ -52,5 +64,17 @@ export class RoomService {
     console.error(errorMessage);
     return throwError(errorMessage); // Return an observable with the error message
   }
+
+
+  deleteRoomData(id: number ): Observable<RoomResponse> {
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      // 'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    }
+    return this.http.delete<RoomResponse>(`${this.apiUrl}/destroy/${id}`, {headers})
+  }
+
 
 }

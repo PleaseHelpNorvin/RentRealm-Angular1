@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../core/service/room/room.service';
 import { Room, RoomResponse } from '../../core/interfaces/room.interface';
+import { error } from 'jquery';
 @Component({
   selector: 'app-room-page',
   imports: [CommonModule],
@@ -48,7 +49,27 @@ export class RoomPageComponent {
       },
     });
   }
+  
+  onDeleteRoom(id: number): void {
+    console.log("from onDeleteRoom(): ", id);
+    if(confirm(`Are you sure you want to delete this room?`)) {
+      this.roomService.deleteRoomData(id).subscribe({
+        next: (response: RoomResponse) => {
+          console.log('Room deleted:', response);
+          // After deleting, reload the rooms for the current property
+          if (this.property_id !== null) {
+            this.loadRooms(this.property_id);  // Re-fetch rooms after deletion
+          }
+        },
+        error: (error) => {
+          this.errorMessage = 'Failed to delete room';
+          console.error(error); // Log the error for debugging
+        }
+      });
+    }
+  }
 
+  
   goToViewRoom(property_id: number, id: number): void {
     this.router.navigate([`admin/properties/rooms/${property_id}/${id}`]);
     console.log(this.router.navigate([`admin/properties/rooms/${property_id}/${id}`]));
@@ -62,7 +83,10 @@ export class RoomPageComponent {
   goToEditRoom(property_id: number, id: number): void {
     this.router.navigate([`admin/properties/${property_id}/rooms/${id}/edit`])
     console.log(this.router.navigate([`admin/properties/${property_id}/rooms/${id}/edit`]));
+  }
 
+  goToProperty(): void {
+    this.router.navigate([`admin/properties`]);
   }
 
 }

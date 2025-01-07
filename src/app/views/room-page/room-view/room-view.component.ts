@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../../../shared/components/carousel/carousel.component';
 import { RoomService } from '../../../core/service/room/room.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Room, RoomResponse } from '../../../core/interfaces/room.interface';
 import { CommonModule } from '@angular/common';
 
@@ -16,12 +16,15 @@ export class RoomViewComponent {
   room: Room | null = null;
   errorMessage: string = '';
   room_id: number |  null = null;
+  property_id: number |  null = null;
 
 
 
-  constructor(private route: ActivatedRoute, private roomService: RoomService) {
+
+  constructor(private router:Router, private route: ActivatedRoute, private roomService: RoomService) {
     this.route.params.subscribe(params => {
       this.room_id = params['id'];
+      this.property_id = params['property_id'];
       console.log(`from cosntructor room_id:${this.room_id}`);
     });
   }
@@ -57,6 +60,10 @@ export class RoomViewComponent {
       }
 
     });
+  }
+
+  goToRooms(property_id: number | null): void {
+    this.router.navigate([`admin/properties/rooms/${this.property_id}`]);
   }
 
 }

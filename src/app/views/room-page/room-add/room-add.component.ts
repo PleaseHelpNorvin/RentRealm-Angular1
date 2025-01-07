@@ -2,21 +2,40 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../core/service/room/room.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';  // <-- Import this
+import { Room, RoomResponse } from '../../../core/interfaces/room.interface';
 
 @Component({
   selector: 'app-room-add',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './room-add.component.html',
   styleUrls: ['./room-add.component.css']
 })
 export class RoomAddComponent {
   property_id: number | null = null;
   selectedImages: string[] = []; // Array to hold selected images
-  room = {
-    code: '',
-    rentPrice: '',
-    // Add other properties like capacity, status, etc.
+  room: Room = {
+    rent_price: 0,
+    capacity: 0,
+    status: 'available',
+    min_lease: 0,
+    room_picture_url: [],
+    room_code: '',
+    updated_at: '',
+    created_at: '',
+    id: 0,
+    property_id: 0,
+    current_occupants: 0
   };
+
+  // room = {
+  //   rentPrice: '',
+  //   capacity: '',
+  //   status: 'available',
+  //   minLease: '',
+  //   // images: [] as (File | string | any)[],
+  //   images: [] as string[] // To store image files
+  // };
 
   constructor(private router: Router, private route: ActivatedRoute, private roomService: RoomService) {
     this.route.params.subscribe(params => {
@@ -29,52 +48,66 @@ export class RoomAddComponent {
   onImageSelected(event: any): void {
     const files = event.target.files; // Get the selected files
     const maxImages = 7;
-    const newImages: string[] = []; // Temporary array to hold new image data
-    
-    // Check how many images are already selected
-    const currentImageCount = this.selectedImages.length;
-    const remainingSlots = maxImages - currentImageCount;
-    
-    // If the number of files selected exceeds the remaining slots, show an alert and stop the selection
-    if (files.length > remainingSlots) {
+  
+    if (this.room.room_picture_url.length + files.length > maxImages) {
       alert(`You can only select up to ${maxImages} images.`);
       return;
     }
   
-    // Temporary counter to track how many files have been processed
-    let filesProcessed = 0;
-  
-    // Loop through the selected files and create object URLs for previews
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const reader = new FileReader();
-    
-      reader.onload = () => {
-        const imageUrl = reader.result as string;
-        newImages.push(imageUrl); // Add image to the temporary array
-    
-        // Debugging: Log the image URL
-        console.log('Image URL:', imageUrl);
-        
-        // Increment the counter when a file is processed
-        filesProcessed++;
-  
-        // Once all files are processed, update the selectedImages array
-        if (filesProcessed === files.length) {
-          this.selectedImages = [...this.selectedImages, ...newImages];
-          // Debugging: Log the selected images array
-          console.log('Selected Images:', this.selectedImages);
-        }
-      };
-    
-      reader.readAsDataURL(file); // Convert the file to a DataURL
+      this.room.room_picture_url.push(file); // Store the File object
     }
-  }
-      
+  
+    // For preview, convert to base64
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedImages.push(reader.result as string); // Add to preview array
+      };
+      reader.readAsDataURL(files[i]);
+    }
+  } 
   // Handle form submission
   onSubmit(): void {
-    // Handle form submission logic here (e.g., sending data to the server)
-    console.log('Room data:', this.room);
-    console.log('Selected Images:', this.selectedImages);
+    // Validate the form data
+    if (!this.room.rent_price || !this.room.capacity || !this.room.status || !this.room.min_lease) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+  
+    // Prepare data for submission
+    const formData = new FormData();
+    formData.append('rent_price', this.room.rent_price.toString());  // Matching interface property names
+    formData.append('capacity', this.room.capacity.toString());
+    formData.append('status', this.room.status.toString());
+    formData.append('min_lease', this.room.min_lease.toString());
+  
+    // Add image files to the form data
+    for (const file of this.room.room_picture_url) {
+      console.log('Adding image:', file);
+      formData.append('room_picture_url[]', file);  // Correct field name
+    }
+  
+    console.log('FormData contents:');
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+  
+    // Call the service to submit the data
+    this.roomService.storeRoomData(this.property_id , formData).subscribe(
+      (response: RoomResponse) => {
+        console.log('Room added successfully:', response);
+        this.router.navigate([`admin/properties/rooms/${this.property_id}`]);
+      },
+      (error) => {
+        console.error('Error adding room:', error);
+      }
+    );
+  }
+  
+
+  goToRooms(property_id: number | null): void {
+    this.router.navigate([`admin/properties/rooms/${this.property_id}`]);
   }
 }

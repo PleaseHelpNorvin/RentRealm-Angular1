@@ -34,7 +34,7 @@ export class PropertyAddComponent {
   
     this.propertyService.addProperty(this.property).subscribe(
       response => {
-        console.log('Property added:', response);
+        console.log('Property added:',JSON.stringify(response));
         this.router.navigate(['/admin/properties']);
       },
       error => {
@@ -51,4 +51,7 @@ export class PropertyAddComponent {
 
   }
 
+  goToProperty(): void {
+    this.router.navigate([`admin/properties`]);
+  }
 }

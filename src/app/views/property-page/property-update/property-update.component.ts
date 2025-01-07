@@ -58,4 +58,8 @@ export class PropertyUpdateComponent implements OnInit {
       });
     }
   }
+
+  goToProperty(): void {
+    this.router.navigate([`admin/properties`]);
+  }
 }

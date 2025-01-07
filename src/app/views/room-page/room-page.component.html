@@ -1,35 +1,38 @@
-<div class="row">
+<div class="wrapper">
     <h3>Rooms of Property {{property_id}}</h3>
-    <button class="btn btn-primary" (click)="goToAddRoom(property_id)">Add Room</button>
-    <table class="table">
-        <thead class="table-primary">
-            <tr>
-                <th>Id</th>
-                <th>Room Code</th>
-                <th>Rent Price</th>
-                <th>Capacity</th>
-                <th>Current Occupants</th>
-                <th>Min Lease</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let room of rooms">
-                <td>{{room.id}}</td>
-                <td>{{room.room_code}}</td>
-                <td>{{room.rent_price}}</td>
-                <td>{{room.capacity}}</td>
-                <td>{{room.current_occupants}}</td>
-                <td>{{room.min_lease}}</td>
-                <td>{{room.status}}</td>
-                <td>
-                    <button class="btn btn-info" (click)="goToViewRoom(room.property_id, room.id)">View</button>
-                    <button class="btn btn-success" (click)="goToEditRoom(room.property_id, room.id)">Update</button>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+    <button class="btn btn-primary" (click)="goToProperty()">Back</button>
+    <div class="row">
+        <button class="btn btn-primary" (click)="goToAddRoom(property_id)">Add Room</button>
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th>Id</th>
+                    <th>Room Code</th>
+                    <th>Rent Price</th>
+                    <th>Capacity</th>
+                    <th>Current Occupants</th>
+                    <th>Min Lease</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of rooms">
+                    <td>{{room.id}}</td>
+                    <td>{{room.room_code}}</td>
+                    <td>{{room.rent_price}}</td>
+                    <td>{{room.capacity}}</td>
+                    <td>{{ room.current_occupants || 0 }}</td>
+                    <td>{{room.min_lease}}</td>
+                    <td>{{room.status}}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="goToViewRoom(room.property_id, room.id)">View</button>
+                        <button class="btn btn-success" (click)="goToEditRoom(room.property_id, room.id)">Update</button>
+                        <button class="btn btn-danger" (click)="onDeleteRoom(room.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </div>
 </div>

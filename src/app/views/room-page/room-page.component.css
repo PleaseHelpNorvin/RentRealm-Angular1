@@ -1,3 +1,9 @@
-.row{
-    /* border: 1px solid black; */
+
+
+table{
+    text-align: center;
+}
+
+.wrapper{
+    width: inherit;
 }
