@@ -1,0 +1,93 @@
+<div class="row">
+    <h3>Add A Room</h3>
+    <form enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="roomImage">Add Images</label>
+                    <input type="file" class="form-control" (change)="onImageSelected($event)" id="roomImage" multiple>
+                </div>
+            </div>
+        
+            <!-- Image preview section -->
+            <div class="col-md-6">
+                <div *ngIf="selectedImages.length > 0" class="selected-image">
+                    <div *ngFor="let img of selectedImages; let i = index" class="mb-3">
+                        <div class="selected-image">
+                            <img [src]="img" alt="Selected Image" width="100" height="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="">Rent Price</label>
+                    <input type="number" class="form-control" name="">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="">capacity</label>
+                    <input type="number" class="form-control" name="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="status" class="form-label">Status</label>
+                    <select class="form-select" name="status" id="status" >
+                      <option value="available">Available</option>
+                      <option value="rented">Rented</option>
+                      <option value="full">Full</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="">min_lease(Months)</label>
+                    <input type="number" class="form-control" name="">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label" for="status" class="form-label">Status</label>
+                  <select class="form-select" name="status" id="status" >
+                    <option value="available">Available</option>
+                    <option value="rented">Rented</option>
+                    <option value="full">Full</option>
+                  </select>
+                </div>
+              </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for=""></label>
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for=""></label>
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for=""></label>
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+        </div> -->
+
+        <button type="button" class="btn btn-primary">Add Room</button>
+    </form>
+</div>
+

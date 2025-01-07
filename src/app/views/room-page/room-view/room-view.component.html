@@ -1,20 +1,20 @@
 <div class="room-view">
-  <!-- Ensure that room data is available before displaying the carousel -->
-<div class="carousel-container">
-    <app-carousel *ngIf="roomImages && roomImages.length > 0" [images]="roomImages"></app-carousel>
-</div>
-  <!-- Only display room data once it's loaded -->
-  <div *ngIf="room" class="texts-container">
-    <p><strong>Room Code:</strong> {{ room.room_code }}</p>
-    <p><strong>Rent Price:</strong> ${{ room.rent_price }}</p>
-    <p><strong>Capacity:</strong> {{ room.capacity }}</p>
-    <p><strong>Status:</strong> {{ room.status }}</p>
-    <p><strong>Current Occupants:</strong> {{ room.current_occupants }}</p>
-    <p><strong>Minimum Lease:</strong> {{ room.min_lease }} M</p>
-  </div>
+    <!-- Ensure that room data is available before displaying the carousel -->
+    <div class="carousel-container">
+        <app-carousel *ngIf="roomImages && roomImages.length > 0" [images]="roomImages"></app-carousel>
+    </div>
+    <!-- Only display room data once it's loaded -->
+    <div *ngIf="room" class="texts-container">
+        <p><strong>Room Code:</strong> {{ room.room_code }}</p>
+        <p><strong>Rent Price:</strong> ${{ room.rent_price }}</p>
+        <p><strong>Capacity:</strong> {{ room.capacity }}</p>
+        <p><strong>Status:</strong> {{ room.status }}</p>
+        <p><strong>Current Occupants:</strong> {{ room.current_occupants }}</p>
+        <p><strong>Minimum Lease:</strong> {{ room.min_lease }} M</p>
+    </div>
 
-  <!-- If there's an error message, display it -->
-  <div *ngIf="errorMessage" class="error">
-    {{ errorMessage }}
-  </div>
+    <!-- If there's an error message, display it -->
+    <div *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+    </div>
 </div>

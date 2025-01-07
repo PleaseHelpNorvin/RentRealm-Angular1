@@ -1,6 +1,6 @@
 <div class="row">
     <h3>Rooms of Property {{property_id}}</h3>
-    <button class="btn btn-primary">Add room</button>
+    <button class="btn btn-primary" (click)="goToAddRoom(property_id)">Add Room</button>
     <table class="table">
         <thead class="table-primary">
             <tr>
@@ -24,8 +24,8 @@
                 <td>{{room.min_lease}}</td>
                 <td>{{room.status}}</td>
                 <td>
-                    <button class="btn btn-primary" (click)="goToViewRoom(room.property_id, room.id)">View</button>
-                    <button class="btn btn-success">Update</button>
+                    <button class="btn btn-info" (click)="goToViewRoom(room.property_id, room.id)">View</button>
+                    <button class="btn btn-success" (click)="goToEditRoom(room.property_id, room.id)">Update</button>
                     <button class="btn btn-danger">Delete</button>
                 </td>
             </tr>

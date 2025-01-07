@@ -18,7 +18,7 @@ export class RoomPageComponent {
   constructor(private router: Router, private route: ActivatedRoute, private roomService: RoomService) {
     this.route.params.subscribe(params => {
       this.property_id = params['property_id'];
-      console.log('Property ID:', this.property_id);
+      // console.log('Property ID:', this.property_id);
     });
   }
 
@@ -54,5 +54,15 @@ export class RoomPageComponent {
     console.log(this.router.navigate([`admin/properties/rooms/${property_id}/${id}`]));
   }
 
-  
+  goToAddRoom(property_id: number| null): void {
+    this.router.navigate([`admin/properties/${property_id}/rooms/add`]);
+    console.log(this.router.navigate([`admin/properties/${property_id}/rooms/add`]));
+  }
+
+  goToEditRoom(property_id: number, id: number): void {
+    this.router.navigate([`admin/properties/${property_id}/rooms/${id}/edit`])
+    console.log(this.router.navigate([`admin/properties/${property_id}/rooms/${id}/edit`]));
+
+  }
+
 }
