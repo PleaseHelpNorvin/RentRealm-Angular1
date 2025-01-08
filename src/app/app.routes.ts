@@ -11,6 +11,13 @@ import { PropertyAddComponent } from './views/property-page/property-add/propert
 import { RoomViewComponent } from './views/room-page/room-view/room-view.component';
 import { RoomAddComponent } from './views/room-page/room-add/room-add.component';
 import { RoomEditComponent } from './views/room-page/room-edit/room-edit.component';
+import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
+import { BillingandpaymentPageComponent } from './views/billingandpayment-page/billingandpayment-page.component';
+import { ContarctPageComponent } from './views/contarct-page/contarct-page.component';
+import { MaintenacerequestPageComponent } from './views/maintenacerequest-page/maintenacerequest-page.component';
+
+
+
 
 
 export const routes: Routes = [
@@ -58,8 +65,22 @@ export const routes: Routes = [
       },
       {
         path: 'tenant',
-        component: RoomEditComponent
+        component: TenantsPageComponent
+      },
+      {
+        path: 'billingandpayment',
+        component: BillingandpaymentPageComponent
+      },
+      {
+        path: 'contarct',
+        component: ContarctPageComponent
+      },
+      {
+        path: 'maintenacerequest',
+        component: MaintenacerequestPageComponent
       }
+      
+      
       
       
     
