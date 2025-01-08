@@ -48,8 +48,31 @@ export class RoomService {
       // 'Content-Type': 'application/json',  // Specify the content type
       'Accept': 'application/json'  
     }
-
     return this.http.post<RoomResponse>(`${this.apiUrl}/store?property_id=${id}`, formData, {headers})
+  }
+
+  updateRoomData(id: number, property_id: number, formData: FormData): Observable<RoomResponse> {
+
+    console.log(`updateRoomData(): ${id}`)
+    console.log(`updateRoomData(): ${property_id}`)
+    console.log(`updateRoomData(): ${formData}`)
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      // 'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    }
+    return this.http.post<RoomResponse>(`${this.apiUrl}/update/${id}?property_id=${property_id}`, formData, {headers})
+  }
+
+  deleteRoomData(id: number ): Observable<RoomResponse> {
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      // 'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    }
+    return this.http.delete<RoomResponse>(`${this.apiUrl}/destroy/${id}`, {headers})
   }
 
   private handleError(error: any): Observable<never> {
@@ -63,17 +86,6 @@ export class RoomService {
     }
     console.error(errorMessage);
     return throwError(errorMessage); // Return an observable with the error message
-  }
-
-
-  deleteRoomData(id: number ): Observable<RoomResponse> {
-    const token = this.authService.getToken();
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      // 'Content-Type': 'application/json',  // Specify the content type
-      'Accept': 'application/json'  
-    }
-    return this.http.delete<RoomResponse>(`${this.apiUrl}/destroy/${id}`, {headers})
   }
 
 

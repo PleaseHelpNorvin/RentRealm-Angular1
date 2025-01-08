@@ -27,7 +27,7 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: HomePageComponent,
-        // data: { breadcrumb: 'Dashboard' }
+        // data: {x breadcrumb: 'Dashboard' }
       },
       {
         path: 'properties',
