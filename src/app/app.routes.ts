@@ -55,6 +55,10 @@ export const routes: Routes = [
       {
         path: 'properties/:property_id/rooms/:id/edit',
         component: RoomEditComponent
+      },
+      {
+        path: 'tenant',
+        component: RoomEditComponent
       }
       
       
