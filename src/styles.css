@@ -3,6 +3,12 @@
     /* border: 1px solid black; */
     display: flex;
     gap: 10px;
+    justify-content: start;
+    align-items: center;
+}
+.td-buttons-container{
+    display: flex;
+    gap: 10px;
     justify-content: center;
     align-items: center;
 }
