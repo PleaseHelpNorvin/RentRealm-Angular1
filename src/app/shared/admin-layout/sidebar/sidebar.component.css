@@ -69,6 +69,23 @@
    width: 100%;
   }
 
+  dynamic-nav li a{
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+    padding: 10px 20px; /* Add padding for spacing around the text and icon */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Ensure text color is inherited */
+  }
+  .material-icons {
+    margin-right: 10px; /* Add margin to the right of the icon */
+    font-size: 24px; /* Adjust icon size */
+  }
+
+  .dynamic-nav li a:hover {
+    background-color: #007bff; /* Add a background color when hovered */
+    border-radius: 4px; /* Optional: Add border radius for smoother corners */
+  }
+
   .dynamic-nav li a.active {
     color: white;
     background-color: #007bff;
