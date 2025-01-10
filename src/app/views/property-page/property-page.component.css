@@ -1,3 +1,26 @@
 table{
     text-align: center;
 }
+
+@media (min-width: 768px) {
+    .row{
+        display: flex;
+        gap: 10px;
+    }
+}
+.card-header-primary {
+    background-color: #007bff; /* Replace with your desired color */
+    color: white;
+  }
+
+
+  
+  .card-category button {
+    display: flex;
+    align-items: center; /* Ensure the button's content is vertically centered */
+  }
+  
+  .card-category span.material-icons {
+    vertical-align: middle; /* Make sure the icon aligns properly with the text */
+  }
+  

@@ -6,30 +6,39 @@
   </div>
 
 </div>
+
 <div class="main-content">
+  <div>
+  
+   
+</div>
+
   <div class="container-fluid">
-      <div class="row">
+    <p class="card-category"> <button class="btn btn-sm btn-primary" (click)="goToAddPropertyPage()"> <span class="material-icons">add</span> Add New Property</button></p>
+
+      <!-- <div class="row"> -->
           <div class="col-md-12">
               <div class="card">
-                  <div class="card-header card-header-primary">
-                      <h4 class="card-title ">Properties </h4>
-                      <p class="card-category"> <button class="btn btn-sm btn-primary" (click)="goToAddPropertyPage()">Add Property</button></p>
-                  </div>
+                <div class="card-header card-header-primary">
+                  <h3 class="card-title">Properties</h3>
+                  <p class="card-description">View, manage, and track properties and their details.</p>
+                </div>
+                
                   <div class="card-body">
                       <div class="table-responsive">
                           <table *ngIf="properties.length > 0" class="table">
-                              <thead class=" text-primary">
+                              <thead class="text-primary">
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Address Line 1</th>
-                                <th>Address Line 2</th>
-                                <th>Province</th>
-                                <th>Postal Code</th>
-                                <th>Status</th>
-                                <th>Type</th>
+                                <th>NAME</th>
+                                <th>ADDRESS LINE 1</th>
+                                <th>ADDRESS LINE 2</th>
+                                <th>PROVINCE</th>
+                                <th>POSTAL CODE</th>
+                                <th>STATUS</th>
+                                <th>TYPE</th>
                                 <!-- <th>Created At</th>
                                 <th>Updated At</th> -->
-                                <th>Action</th>
+                                <th>ACTION</th>
                               </thead>
                               <tbody>
                                 <tr *ngFor="let property of properties">
@@ -43,9 +52,7 @@
                                   <td>{{ property.type }}</td>
                                   <!-- <td>{{ property.created_at }}</td>
                                   <td>{{ property.updated_at }}</td> -->
-                                  <td>
-                          
-                          
+                                  <td class="td-buttons-container">
                                     <button class="btn btn-sm btn-info" (click)="goToViewRoomsPage(property.id)">rooms</button>
                                     <button class="btn btn-sm btn-success" (click)="goToUpdatePage(property.id)"> Update</button>
                                     <button class="btn btn-sm btn-danger" (click)="deleteProperty(property.id)">Delete</button>
@@ -59,5 +66,6 @@
           </div>
           
       </div>
-  </div>
+  <!-- </div> -->
 </div>
+

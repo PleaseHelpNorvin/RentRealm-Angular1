@@ -1,107 +1,94 @@
-<!-- <div class="container"> -->
-    <!-- <div class="wrapper"> -->
-        <div class="row">
-            <div class="appcard-box">
-                <!-- <p>Lorem </p> -->
-                <app-custom-card [cardHeaderBgColor]="'#B0E0E6'"
-                                 [cardBodyText]="'Free Space'"
-                                 [cardBodyValue]="'20/50 GB'">
-                    <div card-header>
-                        <span class="material-icons">dashboard</span>
-                    </div>
-                </app-custom-card>
+<div class="row">
+    <div class="appcard-box">
+        <app-custom-card [cardHeaderBgColor]="'#B0E0E6'"
+                         [cardBodyText]="'Free Space'"
+                         [cardBodyValue]="'30/100 GB'">
+            <div card-header>
+                <span class="material-icons">dashboard</span>
             </div>
-            <div class="appcard-box">
-                <!-- <p>Lorem </p> -->
-                <app-custom-card [cardHeaderBgColor]="'#87CEFA'"
-                                 [cardBodyText]="'Free Space'"
-                                 [cardBodyValue]="'20/50 GB'">
-                    <div card-header>
-                        <span class="material-icons">dashboard</span>
-                    </div>
-                </app-custom-card>
+        </app-custom-card>
+    </div>
+    <div class="appcard-box">
+        <app-custom-card [cardHeaderBgColor]="'#87CEFA'"
+                         [cardBodyText]="'Occupied Units'"
+                         [cardBodyValue]="'12/20'">
+            <div card-header>
+                <span class="material-icons">home</span>
             </div>
-            <div class="appcard-box">
-                <!-- <p>Lorem </p> -->
-                <app-custom-card [cardHeaderBgColor]="'#B0C4DE'"
-                                 [cardBodyText]="'Free Space'"
-                                 [cardBodyValue]="'20/50 GB'">
-                    <div card-header>
-                        <span class="material-icons">dashboard</span>
-                    </div>
-                </app-custom-card>
+        </app-custom-card>
+    </div>
+    <div class="appcard-box">
+        <app-custom-card [cardHeaderBgColor]="'#B0C4DE'"
+                         [cardBodyText]="'Total Rent'"
+                         [cardBodyValue]="'$18,000'">
+            <div card-header>
+                <span class="material-icons">attach_money</span>
             </div>
-            
-            <div class="appcard-box">
-                <!-- <p>Lorem </p> -->
-                <app-custom-card [cardHeaderBgColor]="'#87CEEB'"
-                                 [cardBodyText]="'Free Space'"
-                                 [cardBodyValue]="'20/50 GB'">
-                    <div card-header>
-                        <span class="material-icons">dashboard</span>
-                    </div>
-            
-                </app-custom-card>
+        </app-custom-card>
+    </div>
+    
+    <div class="appcard-box">
+        <app-custom-card [cardHeaderBgColor]="'#87CEEB'"
+                         [cardBodyText]="'Pending Payments'"
+                         [cardBodyValue]="'$2,500'">
+            <div card-header>
+                <span class="material-icons">payment</span>
             </div>
-            
-            <div class="appcard-box">
-                <app-custom-card [cardHeaderBgColor]="'#4682B4'"
-                                 [cardBodyText]="'Free Space'"
-                                 [cardBodyValue]="'20/50 GB'">
-                    <div card-header>
-                        <span class="material-icons">dashboard</span>
-                    </div>
-                    <div card-footer>
-                        Another Footerasdasda
-                    </div>
-                </app-custom-card>
+        </app-custom-card>
+    </div>
+    
+    <div class="appcard-box">
+        <app-custom-card [cardHeaderBgColor]="'#4682B4'"
+                         [cardBodyText]="'Maintenance Requests'"
+                         [cardBodyValue]="'5 Pending'">
+            <div card-header>
+                <span class="material-icons">build</span>
             </div>
-            
-            <div class="appcard-box">
-                <app-custom-card [cardHeaderBgColor]="'#5F9EA0'"
-                                 [cardBodyText]="'Free Space'"
-                                 [cardBodyValue]="'20/50 GB'">
-                    <div card-header>
-                        <span class="material-icons">dashboard</span>
-                    </div>
-                    <div card-footer>
-                        Another Footerasdasda
-                    </div>
-                </app-custom-card>
+            <div card-footer>
+                View Requests
             </div>
-            
-            
-        </div>
-        
-        <div class="row">
-            
-            <div class="col">
-                <div class="box">
-                    <h3>Payment Overview</h3>
-                    <div class="chart-container">
-                      <canvas
-                        baseChart
-                        [data]="paymentChartData"
-                        [type]="paymentChartType"
-                        [options]="chartOptions">
-                      </canvas>
-                    </div>
-                </div>
-                
-                  <!-- Tenants Overview -->
-                <div class="box">
-                    <h3>Tenants Overview</h3>
-                    <div class="chart-container">
-                      <canvas
-                        baseChart
-                        [data]="tenantChartData"
-                        [type]="tenantChartType"
-                        [options]="chartOptions">
-                      </canvas>
-                    </div>
-                </div>
+        </app-custom-card>
+    </div>
+    
+    <div class="appcard-box">
+        <app-custom-card [cardHeaderBgColor]="'#5F9EA0'"
+                         [cardBodyText]="'Available Units'"
+                         [cardBodyValue]="'8/20'">
+            <div card-header>
+                <span class="material-icons">home</span>
+            </div>
+            <div card-footer>
+                View Available Units
+            </div>
+        </app-custom-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="box">
+            <h3>Payment Overview</h3>
+            <div class="chart-container">
+                <canvas
+                    baseChart
+                    [data]="paymentChartData"
+                    [type]="paymentChartType"
+                    [options]="chartOptions">
+                </canvas>
             </div>
         </div>
         
-    <!-- </div> -->
-<!-- </div> -->
+        <!-- Tenants Overview -->
+        <div class="box">
+            <h3>Tenants Overview</h3>
+            <div class="chart-container">
+                <canvas
+                    baseChart
+                    [data]="tenantChartData"
+                    [type]="tenantChartType"
+                    [options]="chartOptions">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

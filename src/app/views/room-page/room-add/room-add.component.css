@@ -1,3 +1,7 @@
+.btn-outside-container{
+    /* border: 1px solid black; */
+    padding-bottom: 10px;
+}
 .row{
     border-radius: 5px;
     background-color: white;

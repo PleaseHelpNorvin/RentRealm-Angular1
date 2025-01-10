@@ -1,1 +1,15 @@
-<p>billingandpayment-page works!</p>
+<div class="nav-tab-container">
+    <ul class="nav nav-pills justify-content-center gap-3">
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active': activeTab === 'billing'}" (click)="goToBilling()">Billing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active': activeTab === 'payment'}" (click)="goToPayment()">Payments</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="router-container">
+    <router-outlet/>
+</div>

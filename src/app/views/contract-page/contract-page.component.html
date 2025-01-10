@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <p class="card-category">   
+            <button 
+                class="btn btn-sm btn-primary me-2" 
+                [ngClass]="{'active': activeTab === 'pending'}" 
+                (click)="goToPending()">Pending</button>
+            <button 
+                class="btn btn-sm btn-success me-2" 
+                [ngClass]="{'active': activeTab === 'accepted'}" 
+                (click)="goToAccepted()">Accepted</button>
+            <button 
+                class="btn btn-sm btn-danger me-2" 
+                [ngClass]="{'active': activeTab === 'rejected'}" 
+                (click)="goToRejected()">Rejected</button>
+        </p>
+        
+
+        <div class="row g-2">
+            <!-- First Column -->
+             
+            <div class="col-md-9">
+                <!-- <div class="mb-3">
+                    <p>lorem*100</p>
+                </div> -->
+
+               
+                <!-- Test Table Card -->
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Contract Settings</h4>
+                        <p class="card-category">Manage and update contract details for tenants</p>
+                    </div>
+                    
+                    <div class="router-container">
+                        <router-outlet/>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Second Column -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h3>Contract Setting</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="property-name" class="form-label">test</label>
+                                        <input type="text" class="form-control" name="propertyName" id="property-name"
+                                          placeholder="Enter test">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+ 
+
+

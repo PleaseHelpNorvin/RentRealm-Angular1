@@ -1,0 +1,9 @@
+table{
+    text-align: center;
+}
+
+.card-header-primary {
+    background-color: #007bff; /* Replace with your desired color */
+    color: white;
+  }
+

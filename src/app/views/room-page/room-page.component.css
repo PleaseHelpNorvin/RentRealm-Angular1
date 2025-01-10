@@ -7,3 +7,8 @@ table{
 .wrapper{
     width: inherit;
 }
+.card-category{
+    /* border: 1px solid black; */
+    display: flex;
+    gap: 5px;
+}

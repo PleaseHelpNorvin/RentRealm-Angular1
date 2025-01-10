@@ -1,22 +1,36 @@
-
-<button class="btn btn-primary" (click)="goToRooms(this.property_id)">Back</button>
-<div class="room-view">
-    <!-- Ensure that room data is available before displaying the carousel -->
-    <div class="carousel-container">
-        <app-carousel *ngIf="roomImages && roomImages.length > 0" [images]="roomImages"></app-carousel>
-    </div>
-    <!-- Only display room data once it's loaded -->
-    <div *ngIf="room" class="texts-container">
-        <p><strong>Room Code:</strong> {{ room.room_code }}</p>
-        <p><strong>Rent Price:</strong> ${{ room.rent_price }}</p>
-        <p><strong>Capacity:</strong> {{ room.capacity }}</p>
-        <p><strong>Status:</strong> {{ room.status }}</p>
-        <p><strong>Current Occupants:</strong> {{ room.current_occupants }}</p>
-        <p><strong>Minimum Lease:</strong> {{ room.min_lease }} M</p>
-    </div>
-
-    <!-- If there's an error message, display it -->
-    <div *ngIf="errorMessage" class="error">
-        {{ errorMessage }}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title">test</h3>
+                        <p class="card-category"> <button class="btn btn-sm btn-primary" (click)="goToRooms(this.property_id)">Back</button> </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="room-view">
+                            <!-- Ensure that room data is available before displaying the carousel -->
+                            <div class="carousel-container">
+                                <app-carousel *ngIf="roomImages && roomImages.length > 0" [images]="roomImages"></app-carousel>
+                            </div>
+                            <!-- Only display room data once it's loaded -->
+                            <div *ngIf="room" class="texts-container">
+                                <p><strong>Room Code:</strong> {{ room.room_code }}</p>
+                                <p><strong>Rent Price:</strong> ${{ room.rent_price }}</p>
+                                <p><strong>Capacity:</strong> {{ room.capacity }}</p>
+                                <p><strong>Status:</strong> {{ room.status }}</p>
+                                <p><strong>Current Occupants:</strong> {{ room.current_occupants }}</p>
+                                <p><strong>Minimum Lease:</strong> {{ room.min_lease }} M</p>
+                            </div>
+                        
+                            <!-- If there's an error message, display it -->
+                            <div *ngIf="errorMessage" class="error">
+                                {{ errorMessage }}
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 </div>

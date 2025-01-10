@@ -13,12 +13,15 @@ import { RoomAddComponent } from './views/room-page/room-add/room-add.component'
 import { RoomEditComponent } from './views/room-page/room-edit/room-edit.component';
 import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
 import { BillingandpaymentPageComponent } from './views/billingandpayment-page/billingandpayment-page.component';
-import { ContarctPageComponent } from './views/contarct-page/contarct-page.component';
 import { MaintenacerequestPageComponent } from './views/maintenacerequest-page/maintenacerequest-page.component';
+import { ContractPageComponent } from './views/contract-page/contract-page.component';
+import { BillingPageComponent } from './views/billingandpayment-page/billing-page/billing-page.component';
+import { PaymentPageComponent } from './views/billingandpayment-page/payment-page/payment-page.component';
+import { ContractAcceptedComponent } from './views/contract-page/contract-accepted/contract-accepted.component';
+import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
+import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
 
-
-
-
+ 
 
 export const routes: Routes = [
   {
@@ -69,12 +72,40 @@ export const routes: Routes = [
       },
       {
         path: 'billingandpayment',
-        component: BillingandpaymentPageComponent
+        component: BillingandpaymentPageComponent,
+        children: [
+          {
+            path: 'billing',  
+            component: BillingPageComponent,  
+          },
+          {
+            path: 'payment',  
+            component: PaymentPageComponent, 
+          }
+        ]
       },
       {
-        path: 'contarct',
-        component: ContarctPageComponent
+        path: 'contract',
+        component: ContractPageComponent,
+        children: [
+          {
+            path: 'contract-pending',
+            component: ContractPendingComponent,
+          },
+          {
+            path: 'contract-accepted',
+            component: ContractAcceptedComponent,
+          },
+          {
+            path: 'contract-rejected',
+            component: ContractRejectedComponent,
+          },
+        ],
       },
+      
+
+
+
       {
         path: 'maintenacerequest',
         component: MaintenacerequestPageComponent

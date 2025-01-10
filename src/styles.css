@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.table-buttons-container{
+    /* border: 1px solid black; */
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    align-items: center;
+}
+.td-buttons-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+table th {
+    color: rgb(13 110 253) !important;
+}
+

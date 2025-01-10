@@ -1,0 +1,15 @@
+.router-container {
+    border: 1px solid black;
+    margin-top: 5px;
+}
+
+.nav-pills .nav-link {
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #007bff;
+    color: white;
+}

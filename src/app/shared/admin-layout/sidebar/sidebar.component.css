@@ -4,7 +4,7 @@
     top: 0; /* Below the navbar */
     left: 0;
     bottom: 0;
-    width: 250px; /* Fixed width */
+    width: 230px; /* Fixed width */
     background-color: white; /* Dark background */
     color: black; /* Ensure readability */
     z-index: 10;
@@ -69,11 +69,31 @@
    width: 100%;
   }
 
+  dynamic-nav li a{
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+    padding: 10px 20px; /* Add padding for spacing around the text and icon */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Ensure text color is inherited */
+  }
+
+  .material-icons {
+    margin-right: 10px; /* Add margin to the right of the icon */
+    font-size: 24px; /* Adjust icon size */
+  }
+
   .dynamic-nav li a.active {
     color: white;
     background-color: #007bff;
   }
   
+  /* Hover and Active States */
+  .dynamic-nav a:hover,
+  .dynamic-nav a:focus {
+    background-color: #007bff; /* Blue on hover */
+    color: white;
+  }
+
   .dynamic-nav a {
     display: flex;
     color: black;
@@ -85,14 +105,7 @@
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
-  /* Hover and Active States */
-  .dynamic-nav a:hover,
-  .dynamic-nav a:focus {
-    background-color: #007bff; /* Blue on hover */
-    color: white;
-  }
-  
+
   .sidebar-hidden .sidebar {
     transform: translateX(-100%); /* Slide out */
   }
