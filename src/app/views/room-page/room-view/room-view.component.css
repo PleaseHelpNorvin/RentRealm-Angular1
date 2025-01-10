@@ -31,3 +31,8 @@ app-carousel {
     height: 100%;
     padding: 0;
 }
+
+.card-header{
+    background-color: #0d6efd;
+    color: white;
+}

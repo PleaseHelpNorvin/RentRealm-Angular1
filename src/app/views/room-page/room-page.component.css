@@ -7,8 +7,18 @@ table{
 .wrapper{
     width: inherit;
 }
-.card-category{
-    /* border: 1px solid black; */
+.button-container {
     display: flex;
     gap: 5px;
+}
+.card-header{
+    background-color: #0d6efd;
+    color: white;
+}
+
+.table-buttons-container{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }

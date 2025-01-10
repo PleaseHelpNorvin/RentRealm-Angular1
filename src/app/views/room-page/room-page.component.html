@@ -1,28 +1,28 @@
 <div class="main-content">
     <div class="container-fluid">
-      <div class="row">
+      <!-- <div class="row"> -->
         <div class="col-md-12">
+         <div class="button-container">
+          <p class="card-category"><button class="btn btn-sm btn-primary" (click)="goToProperty()">Back</button></p>
+          <p class="card-category"><button class="btn btn-sm btn-primary" (click)="goToAddRoom(property_id)">Add Room</button></p>
+         </div>
           <div class="card">
             <div class="card-header card-header-primary">
               <h4 class="card-title">Rooms of Property {{ property_id }}</h4>
-              <p class="card-category">
-                <button class="btn btn-sm btn-primary" (click)="goToProperty()">Back</button>
-                <button class="btn btn-sm btn-primary" (click)="goToAddRoom(property_id)">Add Room</button>
-              </p>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table *ngIf="rooms.length > 0" class="table">
                   <thead class="text-primary">
                     <tr>
-                      <th>Id</th>
-                      <th>Room Code</th>
-                      <th>Rent Price</th>
-                      <th>Capacity</th>
-                      <th>Current Occupants</th>
-                      <th>Min Lease</th>
-                      <th>Status</th>
-                      <th>Actions</th>
+                      <th>ID</th>
+                      <th>ROOM CODE</th>
+                      <th>RENT PRICE</th>
+                      <th>CAPACITY</th>
+                      <th>CURRENT OCCUPANTS</th>
+                      <th>MIN LEASE</th>
+                      <th>STATUS</th>
+                      <th>ACTIONS</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
   

@@ -20,3 +20,7 @@ table,td {
 .badge-warning {
     background-color: orange;
 }
+.card-header{
+    background-color: #007bff;
+    color: white;
+}
