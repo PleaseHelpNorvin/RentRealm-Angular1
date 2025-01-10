@@ -43,9 +43,7 @@
                                   <td>{{ property.type }}</td>
                                   <!-- <td>{{ property.created_at }}</td>
                                   <td>{{ property.updated_at }}</td> -->
-                                  <td>
-                          
-                          
+                                  <td class="table-buttons-container">
                                     <button class="btn btn-sm btn-info" (click)="goToViewRoomsPage(property.id)">rooms</button>
                                     <button class="btn btn-sm btn-success" (click)="goToUpdatePage(property.id)"> Update</button>
                                     <button class="btn btn-sm btn-danger" (click)="deleteProperty(property.id)">Delete</button>

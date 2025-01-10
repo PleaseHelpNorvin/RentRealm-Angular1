@@ -1,5 +1,6 @@
-<button class="btn btn-primary" (click)="goToRooms(this.property_id)">Back</button>
- 
+<div class="btn-outside-container">
+  <button class="btn btn-primary" (click)="goToRooms(this.property_id)">Back</button>
+</div>
 <div class="row">
     <h3>Edit A Room</h3>
     <form enctype="multipart/form-data" (ngSubmit)="onSubmitEdit()" #roomForm="ngForm">

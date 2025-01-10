@@ -34,7 +34,7 @@
                       <td>{{ room.current_occupants || 0 }}</td>
                       <td>{{ room.min_lease }}</td>
                       <td>{{ room.status }}</td>
-                      <td>
+                      <td class="table-buttons-container">
                         <button class="btn btn-sm btn-info" (click)="goToViewRoom(room.property_id, room.id)">View</button>
                         <button class="btn btn-sm btn-success" (click)="goToEditRoom(room.property_id, room.id)">Update</button>
                         <button class="btn btn-sm btn-danger" (click)="onDeleteRoom(room.id)">Delete</button>

@@ -13,8 +13,8 @@ import { RoomAddComponent } from './views/room-page/room-add/room-add.component'
 import { RoomEditComponent } from './views/room-page/room-edit/room-edit.component';
 import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
 import { BillingandpaymentPageComponent } from './views/billingandpayment-page/billingandpayment-page.component';
-import { ContarctPageComponent } from './views/contarct-page/contarct-page.component';
 import { MaintenacerequestPageComponent } from './views/maintenacerequest-page/maintenacerequest-page.component';
+import { ContractPageComponent } from './views/contract-page/contract-page.component';
 
 
 
@@ -72,8 +72,8 @@ export const routes: Routes = [
         component: BillingandpaymentPageComponent
       },
       {
-        path: 'contarct',
-        component: ContarctPageComponent
+        path: 'contract',
+        component: ContractPageComponent
       },
       {
         path: 'maintenacerequest',
