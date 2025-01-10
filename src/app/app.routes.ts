@@ -15,8 +15,8 @@ import { TenantsPageComponent } from './views/tenants-page/tenants-page.componen
 import { BillingandpaymentPageComponent } from './views/billingandpayment-page/billingandpayment-page.component';
 import { MaintenacerequestPageComponent } from './views/maintenacerequest-page/maintenacerequest-page.component';
 import { ContractPageComponent } from './views/contract-page/contract-page.component';
-
-
+import { BillingPageComponent } from './views/billingandpayment-page/billing-page/billing-page.component';
+import { PaymentPageComponent } from './views/billingandpayment-page/payment-page/payment-page.component';
 
 
 
@@ -69,7 +69,17 @@ export const routes: Routes = [
       },
       {
         path: 'billingandpayment',
-        component: BillingandpaymentPageComponent
+        component: BillingandpaymentPageComponent,
+        children: [
+          {
+            path: 'billing',  
+            component: BillingPageComponent,  
+          },
+          {
+            path: 'payment',  
+            component: PaymentPageComponent, 
+          }
+        ]
       },
       {
         path: 'contract',

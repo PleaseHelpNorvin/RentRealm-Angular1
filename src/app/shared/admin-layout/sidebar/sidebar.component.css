@@ -76,14 +76,10 @@
     text-decoration: none; /* Remove underline from links */
     color: inherit; /* Ensure text color is inherited */
   }
+
   .material-icons {
     margin-right: 10px; /* Add margin to the right of the icon */
     font-size: 24px; /* Adjust icon size */
-  }
-
-  .dynamic-nav li a:hover {
-    background-color: #007bff; /* Add a background color when hovered */
-    border-radius: 4px; /* Optional: Add border radius for smoother corners */
   }
 
   .dynamic-nav li a.active {
@@ -91,6 +87,13 @@
     background-color: #007bff;
   }
   
+  /* Hover and Active States */
+  .dynamic-nav a:hover,
+  .dynamic-nav a:focus {
+    background-color: #007bff; /* Blue on hover */
+    color: white;
+  }
+
   .dynamic-nav a {
     display: flex;
     color: black;
@@ -102,14 +105,7 @@
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
-  /* Hover and Active States */
-  .dynamic-nav a:hover,
-  .dynamic-nav a:focus {
-    background-color: #007bff; /* Blue on hover */
-    color: white;
-  }
-  
+
   .sidebar-hidden .sidebar {
     transform: translateX(-100%); /* Slide out */
   }
