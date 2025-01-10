@@ -2,10 +2,9 @@ table{
     text-align: center;
 }
 
-/* .table-buttons-container{
-    border: 1px solid black;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-} */
+@media (min-width: 768px) {
+    .row{
+        display: flex;
+        gap: 10px;
+    }
+}

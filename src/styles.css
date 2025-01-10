@@ -6,3 +6,6 @@
     justify-content: center;
     align-items: center;
 }
+table th {
+    color: rgb(13 110 253) !important;
+}
