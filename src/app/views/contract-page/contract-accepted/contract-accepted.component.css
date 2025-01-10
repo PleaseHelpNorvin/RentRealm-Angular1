@@ -1,3 +1,7 @@
+table{
+  text-align: center;
+}
+
 .btn-sm {
     display: flex;
     align-items: center;
@@ -13,3 +17,6 @@
     margin: 0; /* Remove extra space around the icon */
   }
   
+  .badge-success{
+    background-color: green;
+  }

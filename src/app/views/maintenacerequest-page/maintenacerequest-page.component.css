@@ -1,4 +1,6 @@
-   
+    table{
+        text-align: center;
+    }
    
     .badge {
         padding: 5px 10px;
@@ -31,17 +33,25 @@
     }
 
     .card-header-primary {
-        background-color: #007bff; /* Replace with your desired color */
+        background-color: #007bff; 
         color: white;
-      }
-      td {
-        vertical-align: middle; /* Vertically center the content inside the table cell */
     }
     
-    .button-container {
+    td {
+        vertical-align: middle;
+    
+    }
+    .btn {
         display: flex;
-        gap: 10px; /* Adds space between the buttons */
-        justify-content: flex-start; /* Align buttons to the left */
-        align-items: center; /* Vertically center the buttons */
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        border: none; 
+        cursor: pointer; 
     }
-    
+    .button-container{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+    }

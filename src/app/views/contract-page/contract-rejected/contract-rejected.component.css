@@ -1,3 +1,7 @@
+table{
+  text-align: center;
+}
+
 .btn-sm {
     display: flex;
     align-items: center;
@@ -12,4 +16,6 @@
     font-size: 18px; /* Adjust icon size */
     margin: 0; /* Remove extra space around the icon */
   }
-  
+  .btn-danger{
+    background-color: red;
+  }
