@@ -1,86 +1,117 @@
 <div class="main-contenet">
   <div class="container-fluid">
     <div class="col-md-12">
-      <p class="card-category"> <button class="btn btn-sm btn-primary" (click)="goToProperty()">Back</button></p>
+      <p class="card-category">
+        <button class="btn btn-sm btn-primary" (click)="goToProperty()">Back</button>
+      </p>
 
       <div class="card">
         <div class="card-header card-header-primary">
           <h3 class="card-title">Edit A Property</h3>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit()">
+          <form enctype="multipart/form-data" (ngSubmit)="onSubmit()" #propertyForm="ngForm">
+            <!-- Property Name Section -->
+            <div class="section-header">
+              <h5>Property Details</h5>
+            </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="property-name" class="form-label">Property Name</label>
-                      <input type="text" class="form-control" name="property-name"  id="property-name" placeholder="Enter property-name" [(ngModel)]="property.name" required>
-                    </div>
-                 </div>
-                  
-              <!-- Address Line 1 -->
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label for="address1" class="form-label">Address Line 1</label>
-                  <input type="text" class="form-control" name="address1" id="address1" placeholder="Enter Address Line 1" [(ngModel)]="property.line_1" required>
+                  <label for="property-name" class="form-label">Property Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    name="propertyName" 
+                    [(ngModel)]="property.name" 
+                    id="property-name" 
+                    placeholder="Enter property-name"
+                    [value]="property.name" 
+                     
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <!-- File input on the right -->
+                  <div class="col-md-2">
+                    <div class="mb-3">
+                      <label for="propertyImage" class="form-label">Add Image</label>
+                      <input 
+                        type="file"
+                        class="form-control"
+                        (change)="onImageSelected($event)"
+                        accept="image/*"
+                      >
+                    </div>
+                  </div>
+                  <!-- Image preview on the left -->
+                  <div class="col-md-4">
+                    <div *ngIf="selectedImages.length > 0" class="image-preview">
+                      <img [src]="selectedImages[0]" alt="Selected Image" class="img-thumbnail" style="max-width: 100%; max-height: 100px; border: 1px solid black;">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-        
+
+            <!-- Address Section -->
+            <div class="section-header">
+              <h5>Address</h5>
+            </div>
             <div class="row">
-        
-              <!-- Province -->
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label for="province" class="form-label">Province</label>
-                  <input type="text" class="form-control" name="province" id="province" placeholder="Enter Province" [(ngModel)]="property.province" required>
+                  <label for="line_1" class="form-label">Address Line 1</label>
+                  <input type="text" class="form-control" name="line_1" [(ngModel)]="property.address.line_1" id="address1" placeholder="Enter Address Line 1" [value]="property.address.line_1" >
                 </div>
               </div>
-        
-              <!-- Address Line 2 -->
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="address2" class="form-label">Address Line 2</label>
-                  <input type="text" class="form-control" name="address2" id="address2" placeholder="Enter Address Line 2" [(ngModel)]="property.line_2">
+                  <input type="text" class="form-control" name="address2" [(ngModel)]="property.address.line_2" id="address2" placeholder="Enter Address Line 2" [value]="property.address.line_2" >
                 </div>
               </div>
-            </div>
-        
-            <div class="row">
-              
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="country" class="form-label">Country</label>
-                        <input type="text" class="form-control" name="country" id="country" placeholder="Enter Country" [(ngModel)]="property.country" required>
-                    </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="province" class="form-label">Province</label>
+                  <input type="text" class="form-control" name="province" [(ngModel)]="property.address.province" id="province" placeholder="Enter Province" [value]="property.address.province" >
                 </div>
-              
-              <!-- Postal Code -->
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="country" class="form-label">Country</label>
+                  <input type="text" class="form-control" name="country" [(ngModel)]="property.address.country" id="country" placeholder="Enter Country" [value]="property.address.country" >
+                </div>
+              </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="postalCode" class="form-label">Postal Code</label>
-                  <input type="text" class="form-control" name="postalCode" id="postalCode" placeholder="Enter Postal Code" [(ngModel)]="property.postal_code" required>
+                  <input type="text" class="form-control" name="postalCode" [(ngModel)]="property.address.postal_code" id="postalCode" placeholder="Enter Postal Code" [value]="property.address.postal_code" >
                 </div>
               </div>
             </div>
-        
+
+            <!-- Status and Type Section -->
+            <div class="section-header">
+              <h5>Status & Type</h5>
+            </div>
             <div class="row">
-              <!-- Status -->
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="status" class="form-label">Status</label>
-                  <select class="form-select" name="status" id="status" [(ngModel)]="property.status" required>
+                  <select class="form-select" name="status" [(ngModel)]="property.status" id="status" [value]="property.status" >
                     <option value="available">Available</option>
                     <option value="rented">Rented</option>
                     <option value="full">Full</option>
                   </select>
                 </div>
               </div>
-        
-              <!-- Type -->
+
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="type" class="form-label">Type</label>
-                  <select class="form-select" id="type" name="type" [(ngModel)]="property.type"  required>
+                  <select class="form-select" name="type" [(ngModel)]="property.type" id="type" [value]="property.type" >
                     <option value="apartment">Apartment</option>
                     <option value="house">House</option>
                     <option value="boarding-house">Boarding-House</option>
@@ -88,8 +119,33 @@
                 </div>
               </div>
             </div>
-  
-            <button type="submit" class="btn btn-primary">Update Property</button>
+
+            <div class="section-header">
+              <h5>Allows and Don'ts</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="gender_allowed" class="form-label">Gender Allowed</label>
+                  <select class="form-select" id="gender_allowed" name="gender_allowed" [(ngModel)]="property.gender_allowed" [value]="property.gender_allowed" >
+                    <option value="boys-only">Boys Only</option>
+                    <option value="girls-only">Girls Only</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="pets_allowed" class="form-label">Allow Pets?</label> 
+                  <select class="form-select" name="pets_allowed" [(ngModel)]="property.pets_allowed" id="pets_allowed" [value]="property.pets_allowed" >
+                    <option [value]="1">Yes</option>
+                    <option [value]="0">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Edit Property</button>
           </form>
         </div>
       </div>

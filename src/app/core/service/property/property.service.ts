@@ -29,16 +29,17 @@ export class PropertyService {
     );
   }
 
-  addProperty(property: Property): Observable<PropertyResponse> {
+  addProperty(formData: FormData): Observable<PropertyResponse> {
     const token = this.authService.getToken();
     const headers = {
+
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',  // Tell the server we're sending JSON
+      // 'Content-Type': 'application/json',  // Tell the server we're sending JSON
       'Accept': 'application/json'  // The server should respond with JSON as well
     };
   
     // Send the property object in the body of the request
-    return this.http.post<PropertyResponse>(`${this.apiUrl}/store`, property, { headers });
+    return this.http.post<PropertyResponse>(`${this.apiUrl}/store`, formData, { headers });
       // catchError(this.handleError)
 
   }
@@ -82,14 +83,14 @@ export class PropertyService {
    * Update property
    * @param property - The property object containing updated values
    */
-  updateProperty(property: Property): Observable<Property> {
+  updateProperty(property_id: number,formData: FormData): Observable<Property> {
     const token = this.authService.getToken();
     const headers = {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
-    return this.http.post<Property>(`${this.apiUrl}/update/${property.id}`, property, { headers }).pipe(
+    return this.http.post<Property>(`${this.apiUrl}/update/${property_id}`, formData, { headers }).pipe(
       catchError(this.handleError)
     );
   }

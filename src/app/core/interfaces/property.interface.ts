@@ -1,16 +1,16 @@
-export interface Property {
+import { Address } from './address.interface';
+
+  export interface Property {
     id: number;
     name: string;
-    line_1: string;
-    line_2: string;
-    province: string;
-    country: string;
-    postal_code: string;
+    property_picture_url: any[];
+    gender_allowed: string;
+    pets_allowed: boolean;
     type: string;
     status: string;
     updated_at: string;
     created_at: string;
-    // Add other properties as necessary
+    address: Address;
   }
   
   export interface PropertyResponse {

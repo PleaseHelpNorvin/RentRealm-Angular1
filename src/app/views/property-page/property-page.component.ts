@@ -15,14 +15,25 @@ export class PropertyPageComponent implements OnInit {
   errorMessage: string = ''; // To handle errors
 
   constructor(private router: Router, private propertyService: PropertyService) {}
-
   // Method to fetch property data from the backend
   loadProperties(): void {
     this.propertyService.getProperties().subscribe({
       next: (response: PropertyResponse) => {
-        // Access properties inside the 'data' object of the response
+        console.log(response);
         if (response && response.data && Array.isArray(response.data.properties)) {
-          this.properties = response.data.properties; // Assign the properties array
+          // Parse the property_picture_url into an array
+          this.properties = response.data.properties.map(property => {
+            // Check if property_picture_url is a string and parse it
+            if (typeof property.property_picture_url === 'string') {
+              try {
+                property.property_picture_url = JSON.parse(property.property_picture_url);
+              } catch (error) {
+                console.error('Error parsing property_picture_url', error);
+                property.property_picture_url = []; // fallback to an empty array if parsing fails
+              }
+            }
+            return property;
+          });
         } else {
           this.errorMessage = 'Invalid data structure received';
         }

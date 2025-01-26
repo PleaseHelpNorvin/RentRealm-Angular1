@@ -5,14 +5,26 @@
     gap: 10px;
     justify-content: start;
     align-items: center;
+    height: 100px;
 }
 .td-buttons-container{
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 table th {
     color: rgb(13 110 253) !important;
 }
 
+table th {
+    color: rgb(13, 110, 253) !important;
+    text-align: center; /* Center the text */
+}
+
+/* Center text in table data cells */
+table td {
+    text-align: center; /* Center the text */
+    /* align-items:center; */
+}
