@@ -125,42 +125,49 @@ export class PropertyUpdateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Handle the form submission, e.g., update the property
     const formData = new FormData();
+  
+    // Append property details
     formData.append('name', this.property.name);
     formData.append('status', this.property.status);
     formData.append('type', this.property.type);
     formData.append('gender_allowed', this.property.gender_allowed);
-    formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
-    
+    formData.append('pets_allowed', this.property.pets_allowed ? '0' : '1');
+  
     // Append address details
     formData.append('line_1', this.property.address.line_1);
     formData.append('line_2', this.property.address.line_2);
     formData.append('province', this.property.address.province);
     formData.append('country', this.property.address.country);
     formData.append('postal_code', this.property.address.postal_code);
-
-    for (let i = 0; i < this.property.property_picture_url.length; i++) {
-      formData.append('property_picture_url[]', this.property.property_picture_url[i], this.property.property_picture_url[i].name);
+  
+    // Only append images if new files are selected
+    if (this.property.property_picture_url.length > 0) {
+      for (let i = 0; i < this.property.property_picture_url.length; i++) {
+        const file = this.property.property_picture_url[i];
+        if (file instanceof File) { // Ensure it's a new file
+          formData.append('property_picture_url[]', file, file.name);
+        }
+      }
     }
-
+  
+    // Debug log for FormData contents
     formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
+      console.log(`${key}:`, value);
     });
-
-    this.propertyService.updateProperty(this.property_id,formData).subscribe(
+  
+    // Make the update request
+    this.propertyService.updateProperty(this.property_id, formData).subscribe(
       response => {
-        console.log(`onSubmit(): ${response}`);
+        console.log('Property updated:', response);
         this.router.navigate(['/admin/properties']);
-      });
-    // if (this.property) {
-    //   this.propertyService.updateProperty(this.property).subscribe(response => {
-    //     console.log('Property updated:', response);
-    //     this.router.navigate(['/admin/properties']);
-    //     // Optionally, navigate or show a success message
-    //   });
-    // }
+      },
+      error => {
+        console.error('Error updating property:', error);
+      }
+    );
   }
+  
 
   goToProperty(): void {
     this.router.navigate([`admin/properties`]);

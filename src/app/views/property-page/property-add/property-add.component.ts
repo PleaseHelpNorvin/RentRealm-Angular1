@@ -72,7 +72,7 @@ export class PropertyAddComponent {
     formData.append('status', this.property.status);
     formData.append('type', this.property.type);
     formData.append('gender_allowed', this.property.gender_allowed);
-    formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
+    formData.append('pets_allowed', this.property.pets_allowed ? '0' : '1');
     
     // Append address details
     formData.append('line_1', this.property.address.line_1);
@@ -97,13 +97,13 @@ export class PropertyAddComponent {
     });
   
     // Call the API to update the property
-    this.propertyService.updateProperty(this.property.id, formData).subscribe(
+    this.propertyService.addProperty(formData).subscribe(
       response => {
-        console.log(`Property updated successfully: ${response}`);
+        console.log(`Property Added successfully: ${response}`);
         this.router.navigate(['/admin/properties']);
       },
       error => {
-        console.error('Error updating property:', error);
+        console.error('Error Add property:', error);
       }
     );
   }
