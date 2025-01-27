@@ -24,7 +24,7 @@ export class RoomEditComponent implements OnInit{
     property_id: 0,
     description: '',
     room_details: '',
-    catergory: '',
+    category: '',
     rent_price: 0,
     capacity: 0,
     current_occupants: 0,

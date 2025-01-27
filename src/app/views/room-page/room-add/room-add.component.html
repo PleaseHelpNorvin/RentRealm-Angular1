@@ -43,7 +43,7 @@
                   <textarea
                     class="form-control"
                     id="description"
-                    
+                    [(ngModel)]="room.description"
                     name="description"
                     rows="3"
                     required
@@ -57,6 +57,7 @@
                   <textarea 
                     class="form-control"
                     id="room_details"
+                    [(ngModel)]="room.room_details"
                     name="room_details"
                     rows="2"
                     required
@@ -73,11 +74,27 @@
                   type="text"
                   class="form-control"
                   id="category"
+                  [(ngModel)]="room.category"
                   name="category"
                   required
                 />          
                 </div>
               </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="size" class="form-label">Size</label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  id="size"
+                  [(ngModel)]="room.size"
+                  name="size"
+                  required
+                />          
+                </div>
+              </div>
+
             </div>
         
             <div class="row">
@@ -148,6 +165,7 @@
                   <select
                     class="form-select"
                     id="unit_type"
+                    [(ngModel)]="room.unit_type"
                     name="unit_type"
                     required 
                   >
@@ -156,7 +174,7 @@
                     <option value="alcove">Alcove</option>
                     <option value="loft_unit">Loft Unit</option>
                     <option value="shared_unit">Shared Unit</option>
-                    <option value="micro-unit">Micro Unit</option>
+                    <option value="micro_unit">Micro Unit</option>
                   </select>
                 </div>
               </div>

@@ -18,7 +18,7 @@ export class RoomAddComponent {
     property_id: 0,
     description: '',
     room_details: '',
-    catergory: '',
+    category: '',
     rent_price: 0,
     capacity: 0,
     current_occupants: 0,
@@ -76,18 +76,24 @@ export class RoomAddComponent {
   // Handle form submission
   onSubmit(): void {
     // Validate the form data
-    if (!this.room.rent_price || !this.room.capacity || !this.room.status || !this.room.min_lease) {
+    if (!this.room.description || !this.room.room_details || !this.room.category || !this.room.rent_price || !this.room.capacity || !this.room.size || !this.room.status || !this.room.min_lease || !this.room.unit_type) {
       alert('Please fill out all required fields.');
       return;
     }
   
     // Prepare data for submission
     const formData = new FormData();
+    formData.append('description', this.room.description.toString());
+    formData.append('room_details', this.room.room_details.toString());
+    formData.append('category', this.room.category.toString());
     formData.append('rent_price', this.room.rent_price.toString());  // Matching interface property names
     formData.append('capacity', this.room.capacity.toString());
+    formData.append('size', this.room.size.toString());
     formData.append('status', this.room.status.toString());
     formData.append('min_lease', this.room.min_lease.toString());
-  
+    formData.append('unit_type', this.room.unit_type.toString());
+
+
     // Add image files to the form data
     for (const file of this.room.room_picture_url) {
       console.log('Adding image:', file);

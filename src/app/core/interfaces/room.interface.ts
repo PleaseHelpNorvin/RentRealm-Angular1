@@ -2,7 +2,7 @@ export interface Room {
     property_id: number;
     description: string;
     room_details: string;
-    catergory: string;
+    category: string;
     rent_price: number;
     capacity: number;
     current_occupants: number;

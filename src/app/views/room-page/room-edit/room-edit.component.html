@@ -39,7 +39,7 @@
                     <textarea
                       class="form-control"
                       id="description"
-                      
+                      [(ngModel)]="room.description"
                       name="description"
                       rows="3"
                       required
@@ -53,10 +53,27 @@
                     <textarea 
                       class="form-control"
                       id="room_details"
+                      [(ngModel)]="room.room_details"
                       name="room_details"
                       rows="2"
                       required
                     ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="category" class="form-label">category</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="room.category"
+                    id="category"
+                    name="category"
+                    required
+                  />          
                   </div>
                 </div>
               </div>
@@ -104,8 +121,9 @@
                     <label for="unit_type" class="form-label">Unit Type</label>
                     <select
                       class="form-select"
-                      id="unit_type"
                       name="unit_type"
+                      [(ngModel)]="room.unit_type"
+                      id="unit_type"
                       required 
                     >
                       <option value="studio_unit">Studio Unit</option>
