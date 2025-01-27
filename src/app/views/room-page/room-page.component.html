@@ -22,6 +22,7 @@
                       <th>CURRENT OCCUPANTS</th>
                       <th>MIN LEASE</th>
                       <th>STATUS</th>
+                      <th>Unit Type</th>
                       <th>ACTIONS</th>
                     </tr>
                   </thead>
@@ -33,7 +34,10 @@
                       <td>{{ room.capacity }}</td>
                       <td>{{ room.current_occupants || 0 }}</td>
                       <td>{{ room.min_lease }}</td>
-                      <td>{{ room.status }}</td>
+                      <td [style.color]="room.status === 'available' ?'green' : room.status === 'rented' ? 'orange' : room.status === 'under_maintenance' ? 'violet' : 'red' ">
+                        {{ room.status }}
+                      </td>
+                      <td>{{ room.unit_type }}</td>
                       <td class="table-buttons-container">
                         <button class="btn btn-sm btn-info" (click)="goToViewRoom(room.property_id, room.id)">View</button>
                         <button class="btn btn-sm btn-success" (click)="goToEditRoom(room.property_id, room.id)">Update</button>
