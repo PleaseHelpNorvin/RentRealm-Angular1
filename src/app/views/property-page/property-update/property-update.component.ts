@@ -54,20 +54,23 @@ export class PropertyUpdateComponent implements OnInit {
     this.fetchProperty(this.property_id)
   }
 
-  fetchProperty(property_id: number | number = 0): void {
+  fetchProperty(property_id: number = 0): void {
     console.log(`from fetchProperty(): ${property_id}`);
     this.propertyService.getPropertyById(property_id).subscribe((response: any) => {
-      console.log('Full response:', response);  // Log the full response for debugging
+      console.log('Full response:', response); // Log the full response for debugging
       if (response && response.data) {
-        this.property = response.data;
-        console.log('this is this.property', this.property);
+        // Transform API response before assigning it to this.property
+        this.property = {
+          ...response.data,
+          pets_allowed: response.data.pets_allowed === '1', // Convert string to boolean
+        };
+  
+        console.log('this.property after transformation:', this.property);
   
         const imageUrls: string = response.data.property_picture_url;
-        
-        // Check if property_picture_url is a string and try to parse it
         if (imageUrls) {
           try {
-            const parsedUrls = JSON.parse(imageUrls);  // Parse the stringified JSON array
+            const parsedUrls = JSON.parse(imageUrls); // Parse the stringified JSON array
             if (Array.isArray(parsedUrls)) {
               parsedUrls.forEach((imageUrl: string) => {
                 this.selectedImages.push(imageUrl);
@@ -86,7 +89,7 @@ export class PropertyUpdateComponent implements OnInit {
         console.error('Invalid response data');
       }
     });
-  } 
+  }
   
   onImageSelected(event: any): void {
     const files = event.target.files;
@@ -132,7 +135,7 @@ export class PropertyUpdateComponent implements OnInit {
     formData.append('status', this.property.status);
     formData.append('type', this.property.type);
     formData.append('gender_allowed', this.property.gender_allowed);
-    formData.append('pets_allowed', this.property.pets_allowed ? '0' : '1');
+    formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
   
     // Append address details
     formData.append('line_1', this.property.address.line_1);
