@@ -72,8 +72,9 @@ export class PropertyAddComponent {
     formData.append('status', this.property.status);
     formData.append('type', this.property.type);
     formData.append('gender_allowed', this.property.gender_allowed);
-    formData.append('pets_allowed', this.property.pets_allowed ? '0' : '1');
-    
+    // formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
+    formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
+
     // Append address details
     formData.append('line_1', this.property.address.line_1);
     formData.append('line_2', this.property.address.line_2);

@@ -129,8 +129,8 @@
                 <div class="mb-3">
                   <label for="pets_allowed" class="form-label">Allow Pets?</label> 
                   <select class="form-select" name="pets_allowed" [(ngModel)]="property.pets_allowed" id="pets_allowed">
-                    <option [value]="1">Yes</option>
-                    <option [value]="0">No</option>
+                    <option [value]="true">Yes</option>
+                    <option [value]="false">No</option>
                   </select>
                 </div>
               </div>
