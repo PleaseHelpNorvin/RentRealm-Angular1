@@ -21,17 +21,22 @@ export class RoomEditComponent implements OnInit{
 
   selectedImages: string[] = [];   // Array to hold selected images
   room: Room = {
+    property_id: 0,
+    description: '',
+    room_details: '',
+    catergory: '',
     rent_price: 0,
     capacity: 0,
-    status: 'available',
+    current_occupants: 0,
     min_lease: 0,
-    room_picture_url: [] ,
+    size: '',
+    status: 'available',
+    unit_type: 'studio unit',
+    room_picture_url: [],
     room_code: '',
     updated_at: '',
     created_at: '',
     id: 0,
-    property_id: 0,
-    current_occupants: 0
   };
 
   constructor(private http : HttpClient, private router: Router, private route: ActivatedRoute, private roomService: RoomService, private authService: AuthService) {
