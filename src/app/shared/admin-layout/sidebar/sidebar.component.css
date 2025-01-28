@@ -4,7 +4,7 @@
     top: 0; /* Below the navbar */
     left: 0;
     bottom: 0;
-    width: 230px; /* Fixed width */
+    width: 250px; /* Fixed width */
     background-color: white; /* Dark background */
     color: black; /* Ensure readability */
     z-index: 10;
@@ -164,7 +164,7 @@
     }
   
     .sidebar-shown .main-content {
-      margin-left: 250px;
+      margin-left: 0;
     }
   }
   
@@ -184,7 +184,7 @@
         
     }
     .sidebar-shown .main-content {
-      margin-left: 400px;
+      margin-left: 131px;
     }
   }
   

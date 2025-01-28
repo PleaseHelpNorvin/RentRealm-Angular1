@@ -17,11 +17,17 @@
                             <!-- Only display room data once it's loaded -->
                             <div *ngIf="room" class="texts-container">
                                 <p><strong>Room Code:</strong> {{ room.room_code }}</p>
+                                <p><strong>Description</strong> {{room.description}}</p>
+                                <p><strong>Room Details</strong> {{room.room_details}}</p>
+                                <p><strong>Category</strong> {{room.category}}</p>
+
                                 <p><strong>Rent Price:</strong> ${{ room.rent_price }}</p>
                                 <p><strong>Capacity:</strong> {{ room.capacity }}</p>
                                 <p><strong>Status:</strong> {{ room.status }}</p>
                                 <p><strong>Current Occupants:</strong> {{ room.current_occupants }}</p>
-                                <p><strong>Minimum Lease:</strong> {{ room.min_lease }} M</p>
+                                <p><strong>Minimum Lease:</strong> {{ room.min_lease }} </p>
+                                <p><strong>Size:</strong> {{ room.size }} </p>
+                                <p><strong>Unit Type</strong> {{ room.unit_type }} </p>
                             </div>
                         
                             <!-- If there's an error message, display it -->

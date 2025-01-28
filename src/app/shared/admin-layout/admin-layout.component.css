@@ -104,6 +104,9 @@ app-sidebar {
     transform: translateX(0);
     /* Sidebar slides in */
 }
+.sidebar {
+    width: 100%;
+}
 
 /* Media Queries */
 
@@ -213,7 +216,7 @@ app-sidebar {
     }
 
     .sidebar-shown .main-content {
-        margin-left: 250px;
+        /* margin-left: 250px; */
     }
 }
 
