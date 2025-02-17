@@ -5,6 +5,8 @@ export interface Address {
     province: string;
     country: string;
     postal_code: string;
+    latitude: number;
+    longitude: number;
     addressable_type: string;
     addressable_id: number;
     created_at: string;

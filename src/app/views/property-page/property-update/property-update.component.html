@@ -1,4 +1,4 @@
-<div class="main-contenet">
+<div class="main-content">
   <div class="container-fluid">
     <div class="col-md-12">
       <p class="card-category">
@@ -25,10 +25,7 @@
                     name="propertyName" 
                     [(ngModel)]="property.name" 
                     id="property-name" 
-                    placeholder="Enter property-name"
-                    [value]="property.name" 
-                     
-                  >
+                    placeholder="Enter property-name">
                 </div>
               </div>
               <div class="col-md-6">
@@ -63,31 +60,32 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="line_1" class="form-label">Address Line 1</label>
-                  <input type="text" class="form-control" name="line_1" [(ngModel)]="property.address.line_1" id="address1" placeholder="Enter Address Line 1" [value]="property.address.line_1" >
+                  <input type="text" class="form-control" name="line_1" [(ngModel)]="property.address.line_1" id="address1" placeholder="Enter Address Line 1">
                 </div>
               </div>
+              
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="address2" class="form-label">Address Line 2</label>
-                  <input type="text" class="form-control" name="address2" [(ngModel)]="property.address.line_2" id="address2" placeholder="Enter Address Line 2" [value]="property.address.line_2" >
+                  <input type="text" class="form-control" name="address2" [(ngModel)]="property.address.line_2" id="address2" placeholder="Enter Address Line 2">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="province" class="form-label">Province</label>
-                  <input type="text" class="form-control" name="province" [(ngModel)]="property.address.province" id="province" placeholder="Enter Province" [value]="property.address.province" >
+                  <input type="text" class="form-control" name="province" [(ngModel)]="property.address.province" id="province" placeholder="Enter Province">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="country" class="form-label">Country</label>
-                  <input type="text" class="form-control" name="country" [(ngModel)]="property.address.country" id="country" placeholder="Enter Country" [value]="property.address.country" >
+                  <input type="text" class="form-control" name="country" [(ngModel)]="property.address.country" id="country" placeholder="Enter Country">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="postalCode" class="form-label">Postal Code</label>
-                  <input type="text" class="form-control" name="postalCode" [(ngModel)]="property.address.postal_code" id="postalCode" placeholder="Enter Postal Code" [value]="property.address.postal_code" >
+                  <input type="text" class="form-control" name="postalCode" [(ngModel)]="property.address.postal_code" id="postalCode" placeholder="Enter Postal Code">
                 </div>
               </div>
             </div>
@@ -100,7 +98,7 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="status" class="form-label">Status</label>
-                  <select class="form-select" name="status" [(ngModel)]="property.status" id="status" [value]="property.status" >
+                  <select class="form-select" name="status" [(ngModel)]="property.status" id="status">
                     <option value="available">Available</option>
                     <option value="rented">Rented</option>
                     <option value="full">Full</option>
@@ -111,7 +109,7 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="type" class="form-label">Type</label>
-                  <select class="form-select" name="type" [(ngModel)]="property.type" id="type" [value]="property.type" >
+                  <select class="form-select" name="type" [(ngModel)]="property.type" id="type">
                     <option value="apartment">Apartment</option>
                     <option value="house">House</option>
                     <option value="boarding-house">Boarding-House</option>
@@ -127,7 +125,7 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="gender_allowed" class="form-label">Gender Allowed</label>
-                  <select class="form-select" id="gender_allowed" name="gender_allowed" [(ngModel)]="property.gender_allowed" [value]="property.gender_allowed" >
+                  <select class="form-select" id="gender_allowed" name="gender_allowed" [(ngModel)]="property.gender_allowed">
                     <option value="boys-only">Boys Only</option>
                     <option value="girls-only">Girls Only</option>
                   </select>
@@ -137,7 +135,7 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="pets_allowed" class="form-label">Allow Pets?</label> 
-                  <select class="form-select" id="pets_allowed" name="pets_allowed" [(ngModel)]="property.pets_allowed" [value]="property.pets_allowed">
+                  <select class="form-select" id="pets_allowed" name="pets_allowed" [(ngModel)]="property.pets_allowed">
                     <option [value]="true">Yes</option>
                     <option [value]="false">No</option>
                   </select>

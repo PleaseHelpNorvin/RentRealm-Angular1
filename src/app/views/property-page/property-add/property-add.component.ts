@@ -30,6 +30,8 @@ export class PropertyAddComponent {
       province: '',
       country: '',
       postal_code: '',
+      longitude: 0,
+      latitude: 0,
       addressable_type: '',
       addressable_id: 0,
       created_at: '',

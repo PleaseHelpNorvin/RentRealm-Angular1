@@ -1,6 +1,14 @@
 import { Address } from './address.interface';
 
-  export interface Property {
+export interface PropertyResponse {
+  success: boolean;
+  message: string;
+  data: {
+    properties: Property[]; // Array of Property objects
+  };
+}
+
+export interface Property {
     id: number;
     name: string;
     property_picture_url: any[];
@@ -11,12 +19,5 @@ import { Address } from './address.interface';
     updated_at: string;
     created_at: string;
     address: Address;
-  }
+}
   
-  export interface PropertyResponse {
-    success: boolean;
-    message: string;
-    data: {
-      properties: Property[]; // Array of Property objects
-    };
-  }

@@ -41,7 +41,6 @@ export class PropertyService {
     // Send the property object in the body of the request
     return this.http.post<PropertyResponse>(`${this.apiUrl}/store`, formData, { headers });
       // catchError(this.handleError)
-
   }
 
   getPropertyById(id: number): Observable<Property> {
@@ -52,8 +51,9 @@ export class PropertyService {
       'Accept': 'application/json'  
     };
     return this.http.get<Property>(`${this.apiUrl}/show/${id}`, { headers }).pipe(
+      // /landlord/property/show/1
       catchError(this.handleError)
-    );
+    ); 
   }
 
 
@@ -83,17 +83,17 @@ export class PropertyService {
    * Update property
    * @param property - The property object containing updated values
    */
-  updateProperty(property_id: number,formData: FormData): Observable<Property> {
-    const token = this.authService.getToken();
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      // 'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-    return this.http.post<Property>(`${this.apiUrl}/update/${property_id}`, formData, { headers }).pipe(
-      catchError(this.handleError)
-    );
-  }
+    updateProperty(property_id: number,formData: FormData): Observable<Property> {
+      const token = this.authService.getToken();
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        // 'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      };
+      return this.http.post<Property>(`${this.apiUrl}/update/${property_id}`, formData, { headers }).pipe(
+        catchError(this.handleError)
+      );
+    }
 
   /**
    * Handle errors from API requests
