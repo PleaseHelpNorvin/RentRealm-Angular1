@@ -21,7 +21,7 @@ import { ContractAcceptedComponent } from './views/contract-page/contract-accept
 import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
 import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
 
- 
+import { MapPageComponent } from './views/map-page/map-page.component';
 
 export const routes: Routes = [
   {
@@ -103,13 +103,16 @@ export const routes: Routes = [
         ],
       },
       
-
-
-
       {
         path: 'maintenacerequest',
         component: MaintenacerequestPageComponent
+      },
+      
+      {
+        path: 'map',
+        component: MapPageComponent
       }
+      
       
       
       

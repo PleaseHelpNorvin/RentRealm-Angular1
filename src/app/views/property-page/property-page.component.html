@@ -1,90 +1,90 @@
-<div class="row">
-  <!-- <div class="container"> -->
-  <!-- property-page.component.html -->
-  <div *ngIf="errorMessage" class="error">
-    <p>{{ errorMessage }}</p>
-  </div>
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title">Properties</h3>
+          <p class="card-description">View, manage, and track properties and their details.</p>
+        </div> -->
 
-</div>
 
-<div class="main-content">
-  <div>
-  
-   
-</div>
 
-  <div class="container-fluid">
-    <p class="card-category"> <button class="btn btn-sm btn-primary" (click)="goToAddPropertyPage()"> <span class="material-icons">add</span> Add New Property</button></p>
 
-      <!-- <div class="row"> -->
-          <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h3 class="card-title">Properties</h3>
-                  <p class="card-description">View, manage, and track properties and their details.</p>
-                </div>
-                
-                  <div class="card-body">
-                      <div class="table-responsive">
-                        <table *ngIf="properties.length > 0" class="table">
-                          <thead class="text-primary">
-                            <tr>
-                              <th>ID</th>
-                              <th>IMAGES</th>
-                              <th>NAME</th>
-                              <th>ADDRESS</th>
-                              <th>GENDER</th>
-                              <th>PETS?</th>
-                              <th>STATUS</th>
-                              <th>TYPE</th>
-                              <th>ACTION</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let property of properties">
-                              <td>{{ property.id }}</td>
-                              <td>
-                                <img *ngIf="property.property_picture_url.length > 0; else noImage" 
-                                     [src]="property.property_picture_url[0]" 
-                                     alt="Property Image" 
-                                     style="height: 100px; width: 100px; object-fit: cover;">
-                                <ng-template #noImage>
-                                  <span>No Image Available</span>
-                                </ng-template>
-                              </td>
-                              <td>{{ property.name }}</td>
-                              <td>
-                                {{property.address.line_1}}
-                                {{property.address.line_2}}
-                                {{property.address.province}}
-                                {{property.address.postal_code}}
-                              </td>
-                              <td [style.color]="property.gender_allowed === 'boys-only' ? 'blue' : 'pink'">
-                                {{ property.gender_allowed }}
-                              </td>
-                              <td [style.color]="property.pets_allowed ? 'green' : 'red'">
-                                {{ property.pets_allowed ? 'Allowed' : 'N-A' }}
-                              </td>
-                              <td [style.color]="property.status === 'available' ? 'green' : property.status === 'rented' ? 'orange' : 'red'">
-                                {{ property.status }}
-                              </td>
-                              <td>{{ property.type }}</td>
-                              <td>
-                                <div class="td-buttons-container">
-                                  <button class="btn btn-sm btn-info" (click)="goToViewRoomsPage(property.id)">rooms</button>
-                                <button class="btn btn-sm btn-success" (click)="goToUpdatePage(property.id)"> Update</button>
-                                <button class="btn btn-sm btn-danger" (click)="deleteProperty(property.id)">Delete</button>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+        <div class="apartment-card">
+          <h3>Apartment A</h3>
+          <p><strong>Address:</strong> 123 Main St, City</p>
+          <p><strong>Total Units:</strong> 10</p>
+          <p><strong>Vacant Units:</strong> 2</p>
+          <p><strong>Occupied Units:</strong> 8</p>
+          <button class="manage-btn">Manage</button>
+        </div>
+        
+
+
+
+
+
+
+
+        <div class="card-body">
+          <button class="btn btn-sm btn-primary mb-3" (click)="goToAddPropertyPage()">
+            <span class="material-icons">add</span> Add New Property
+          </button>
+
+          <div class="row">
+            <div *ngIf="properties.length === 0" class="col-12 text-center text-muted">
+              <p>No properties available.</p>
+            </div>
+
+            <div *ngFor="let property of properties" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card shadow">
+                <img *ngIf="property.property_picture_url.length > 0; else noImage" 
+                     [src]="property.property_picture_url[0]" 
+                     class="card-img-top" 
+                     alt="Property Image" 
+                     style="height: 200px; object-fit: cover;">
+
+                <ng-template #noImage>
+                  <div class="card-img-top d-flex align-items-center justify-content-center bg-light" 
+                       style="height: 200px;">
+                    <span class="text-muted">No Image Available</span>
                   </div>
-              </div>
-          </div>
-          
-      </div>
-  <!-- </div> -->
-</div>
+                </ng-template>
 
+                <div class="card-body">
+                  <h5 class="card-title">{{ property.name }}</h5>
+                  <p class="card-text">
+                    <strong>Address:</strong> {{ property.address.line_1 }}, {{ property.address.line_2 }}<br>
+                    {{ property.address.province }} - {{ property.address.postal_code }}<br>
+                    <strong>Type:</strong> {{ property.type }}<br>
+                    <strong>Gender Allowed:</strong> 
+                    <span [style.color]="property.gender_allowed === 'boys-only' ? 'blue' : 'pink'">
+                      {{ property.gender_allowed }}
+                    </span><br>
+                    <strong>Pets:</strong> 
+                    <span [style.color]="property.pets_allowed ? 'green' : 'red'">
+                      {{ property.pets_allowed ? 'Allowed' : 'N-A' }}
+                    </span><br>
+                    <strong>Status:</strong> 
+                    <span [style.color]="property.status === 'available' ? 'green' : property.status === 'rented' ? 'orange' : 'red'">
+                      {{ property.status }}
+                    </span>
+                  </p>
+                </div>
+
+                <div class="card-footer text-center">
+                  <!-- <button class="btn btn-sm btn-info" (click)="goToViewRoomsPage(property.id)">Rooms</button>
+                  <button class="btn btn-sm btn-success" (click)="goToUpdatePage(property.id)">Update</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteProperty(property.id)">Delete</button> -->
+
+                  <button class="btn btn-sm btn-success">Manage</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- </div>   End of Card Body
+      </div>   End of Main Card
+    </div>   End of Column
+  </div>   End of Row
+</div>   End of Container -->

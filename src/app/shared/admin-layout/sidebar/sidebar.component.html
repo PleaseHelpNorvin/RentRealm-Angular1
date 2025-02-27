@@ -2,7 +2,7 @@
   <div class="sidebar-head">
       <!-- <div class="title-container"> -->
         <img src="assets/rentrealm_logo_for_sure.png" alt="rentrealm_logo">
-        <h3>RentRealm</h3>
+        <!-- <h3>RentRealm</h3> -->
       <!-- </div> -->
     
   </div>
@@ -44,7 +44,8 @@
       <a 
         [routerLink]="'/admin/contract'" 
         routerLinkActive="active">
-        <span class="material-icons">home</span> Contract
+        <span class="material-icons">assignment</span> Contract
+
       </a>
     </li>
 
@@ -52,9 +53,33 @@
       <a 
         [routerLink]="'/admin/maintenacerequest'" 
         routerLinkActive="active">
-        <span class="material-icons">engineering</span> Maintenacerequest
+        <span class="material-icons">engineering</span> Maintenance 
       </a>
     </li>
+
+
+    <li>
+      <a 
+        [routerLink]="'/admin/Reports'" 
+        routerLinkActive="active">
+        <span class="material-icons">assessment</span> Reports  
+      </a>
+    </li>
+    <li>
+      <a 
+        [routerLink]="'/admin/map'" 
+        routerLinkActive="active">
+        <span class="material-icons">map</span> Map
+      </a>
+    </li>
+    <li>
+      <a 
+        [routerLink]="'/admin/Settings'" 
+        routerLinkActive="active">
+        <span class="material-icons">settings</span> Settings  
+      </a>
+    </li>
+    
 
   </ul>
 </div>
