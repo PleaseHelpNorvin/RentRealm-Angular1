@@ -30,27 +30,34 @@
         <span class="material-icons">assignment</span> Contract 
       </a>
       <ul class="collapse list-unstyled ms-4" id="contractDropdown">
-        <li><a [routerLink]="'/admin/contract/active'" routerLinkActive="active"> Active Contracts</a></li>
-        <li><a [routerLink]="'/admin/contract/expiring'" routerLinkActive="active"> Expiring Contracts</a></li>
-        <li><a [routerLink]="'/admin/contract/terminated'" routerLinkActive="active"> Terminated Contracts</a></li>
-        <li><a [routerLink]="'/admin/contract/new'" routerLinkActive="active"> New Contract</a></li>
+        <li><a [routerLink]="'/admin/contract/active'" routerLinkActive="active"><span class="material-icons">check_circle</span> Active Contracts</a></li>
+        <li><a [routerLink]="'/admin/contract/expiring'" routerLinkActive="active"><span class="material-icons">hourglass_empty</span> Expiring Contracts</a></li>
+        <li><a [routerLink]="'/admin/contract/terminated'" routerLinkActive="active"><span class="material-icons">cancel</span> Terminated Contracts</a></li>
+        <li><a [routerLink]="'/admin/contract/new'" routerLinkActive="active"><span class="material-icons">note_add</span> New Contract</a></li>
       </ul>
     </li>
     <li>
-      <a [routerLink]="'/admin/maintenacerequest'" routerLinkActive="active">
+      <a data-bs-toggle="collapse" href="#maintenanceDropdown" role="button" aria-expanded="false" aria-controls="maintenanceDropdown">
         <span class="material-icons">engineering</span> Maintenance 
       </a>
+      <ul class="collapse list-unstyled ms-4" id="maintenanceDropdown">
+        <li><a [routerLink]="'/admin/maintenance/all'" routerLinkActive="active"><span class="material-icons">list</span> All Requests</a></li>
+        <li><a [routerLink]="'/admin/maintenance/pending'" routerLinkActive="active"><span class="material-icons">hourglass_top</span> Pending Requests</a></li>
+        <li><a [routerLink]="'/admin/maintenance/inprogress'" routerLinkActive="active"><span class="material-icons">build_circle</span> In Progress</a></li>
+        <li><a [routerLink]="'/admin/maintenance/completed'" routerLinkActive="active"><span class="material-icons">task_alt</span> Completed Requests</a></li>
+        <li><a [routerLink]="'/admin/maintenance/handyman'" routerLinkActive="active"><span class="material-icons">handyman</span> Handyman List</a></li>
+      </ul>
     </li>
     <li>
       <a data-bs-toggle="collapse" href="#reportDropdown" role="button" aria-expanded="false" aria-controls="reportDropdown">
         <span class="material-icons">assessment</span> Reports  
       </a>
       <ul class="collapse list-unstyled ms-4" id="reportDropdown">
-        <li><a [routerLink]="'/admin/reports/tenant'" routerLinkActive="active"> Tenant Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/rent'" routerLinkActive="active"> Rent Collection Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/occupancy'" routerLinkActive="active"> Occupancy Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/maintenance'" routerLinkActive="active"> Maintenance Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/audit'" routerLinkActive="active"> Audit Logs</a></li>
+        <li><a [routerLink]="'/admin/reports/tenant'" routerLinkActive="active"><span class="material-icons">people</span> Tenant Reports</a></li>
+        <li><a [routerLink]="'/admin/reports/rent'" routerLinkActive="active"><span class="material-icons">payments</span> Rent Collection Reports</a></li>
+        <li><a [routerLink]="'/admin/reports/occupancy'" routerLinkActive="active"><span class="material-icons">apartment</span> Occupancy Reports</a></li>
+        <li><a [routerLink]="'/admin/reports/maintenance'" routerLinkActive="active"><span class="material-icons">build</span> Maintenance Reports</a></li>
+        <li><a [routerLink]="'/admin/reports/audit'" routerLinkActive="active"><span class="material-icons">fact_check</span> Audit Logs</a></li>
       </ul>
     </li>
     <li>
@@ -65,5 +72,5 @@
     </li>
   </ul>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
