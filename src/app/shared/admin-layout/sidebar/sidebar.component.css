@@ -27,7 +27,8 @@
         /* padding-left: 10px; */
     }
     .sidebar-head  img{
-        height: 90px;
+        height: 30px;
+        margin-bottom: 10px;
         /* width: 40px; */
     }
     .inner-burger-icon {
@@ -44,6 +45,7 @@
     .divider{
         border: 1px solid gray;
         margin: 0 10px;
+        
     }
     .inner-divider{
       width: 100%;
