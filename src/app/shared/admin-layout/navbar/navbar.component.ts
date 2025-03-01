@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatIcon ,CommonModule,MatToolbarModule],
+  imports: [CommonModule,MatToolbarModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })

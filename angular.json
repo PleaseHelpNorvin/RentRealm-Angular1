@@ -16,43 +16,48 @@
             "outputPath": "dist/reant-realm-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            "assets": [{ "glob": "**/*", "input": "public" }],
             "styles": [
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/slick-carousel/slick/slick.css",
-              "node_modules/slick-carousel/slick/slick-theme.css"
+              "node_modules/slick-carousel/slick/slick-theme.css",
+              "src/assets/AdminLTE/plugins/fontawesome-free/css/all.min.css",
+              "src/assets/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+              "src/assets/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+              "src/assets/AdminLTE/plugins/jqvmap/jqvmap.min.css",
+              "src/assets/AdminLTE/dist/css/adminlte.min.css",
+              "src/assets/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "src/assets/AdminLTE/plugins/daterangepicker/daterangepicker.css",
+              "src/assets/AdminLTE/plugins/summernote/summernote-bs4.min.css"
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/slick-carousel/slick/slick.min.js"
+              "node_modules/slick-carousel/slick/slick.min.js",
+              "src/assets/AdminLTE/plugins/jquery-ui/jquery-ui.min.js",
+              "src/assets/AdminLTE/plugins/chart.js/Chart.min.js",
+              "src/assets/AdminLTE/plugins/sparklines/sparkline.js",
+              "src/assets/AdminLTE/plugins/jqvmap/jquery.vmap.min.js",
+              "src/assets/AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js",
+              "src/assets/AdminLTE/plugins/jquery-knob/jquery.knob.min.js",
+              "src/assets/AdminLTE/plugins/moment/moment.min.js",
+              "src/assets/AdminLTE/plugins/daterangepicker/daterangepicker.js",
+              "src/assets/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js",
+              "src/assets/AdminLTE/plugins/summernote/summernote-bs4.min.js",
+              "src/assets/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+              "src/assets/AdminLTE/dist/js/adminlte.js"
             ]
           },
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
+                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
               "outputHashing": "all"
             },
@@ -67,12 +72,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "ReantRealm-Angular:build:production"
-            },
-            "development": {
-              "buildTarget": "ReantRealm-Angular:build:development"
-            }
+            "production": { "buildTarget": "ReantRealm-Angular:build:production" },
+            "development": { "buildTarget": "ReantRealm-Angular:build:development" }
           },
           "defaultConfiguration": "development"
         },
@@ -82,24 +83,36 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            "assets": [{ "glob": "**/*", "input": "public" }],
             "styles": [
               "src/styles.css",
-              "node_modules/leaflet/dist/leaflet.css"
-          
+              "node_modules/leaflet/dist/leaflet.css",
+              "src/assets/AdminLTE/plugins/fontawesome-free/css/all.min.css",
+              "src/assets/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+              "src/assets/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+              "src/assets/AdminLTE/plugins/jqvmap/jqvmap.min.css",
+              "src/assets/AdminLTE/dist/css/adminlte.min.css",
+              "src/assets/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "src/assets/AdminLTE/plugins/daterangepicker/daterangepicker.css",
+              "src/assets/AdminLTE/plugins/summernote/summernote-bs4.min.css"
             ],
             "scripts": [
-            
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/AdminLTE/plugins/jquery-ui/jquery-ui.min.js",
+              "src/assets/AdminLTE/plugins/chart.js/Chart.min.js",
+              "src/assets/AdminLTE/plugins/sparklines/sparkline.js",
+              "src/assets/AdminLTE/plugins/jqvmap/jquery.vmap.min.js",
+              "src/assets/AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js",
+              "src/assets/AdminLTE/plugins/jquery-knob/jquery.knob.min.js",
+              "src/assets/AdminLTE/plugins/moment/moment.min.js",
+              "src/assets/AdminLTE/plugins/daterangepicker/daterangepicker.js",
+              "src/assets/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js",
+              "src/assets/AdminLTE/plugins/summernote/summernote-bs4.min.js",
+              "src/assets/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+              "src/assets/AdminLTE/dist/js/adminlte.js"
             ]
           }
         }

@@ -1,76 +1,83 @@
-<div class="sidebar">
-  <div class="sidebar-head">
-      <img src="assets/rentrealm_logo_for_sure.png" alt="rentrealm_logo">
-      <h3>RentRealm</h3>
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a [routerLink]="'/admin/dashboard'" class="brand-link">
+  <img src="assets/rentrealm_logo_for_sure.png" alt="AdminLTE Logo" class="brand-logo">
+ <span class="brand-text font-weight-light">RENTREALM</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
+        <li class="nav-item">
+          <a [routerLink]="'/admin/dashboard'" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Dashboard <span class="right badge badge-danger">New</span></p>
+          </a>
+        </li>
+          
+        <li class="nav-item">
+          <a [routerLink]="'/admin/properties'" class="nav-link">
+            <i class="nav-icon fas fa-building"></i>
+            <p>Properties</p>
+          </a>
+        </li>
+              
+        <li class="nav-item">
+          <a [routerLink]="'/admin/tenant'" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>Tenants</p>
+          </a>
+        </li>
+              
+        <li class="nav-item">
+          <a [routerLink]="'/admin/billingandpayment'" class="nav-link">
+            <i class="nav-icon fas fa-receipt"></i>
+            <p>Billing & Payment</p>
+          </a>
+        </li>
+              
+        <li class="nav-item">
+          <a [routerLink]="'/admin/contract'" class="nav-link">
+            <i class="nav-icon fas fa-file-contract"></i>
+            <p>Contract</p>
+          </a>
+        </li>
+              
+        <li class="nav-item">
+          <a [routerLink]="'/admin/maintenacerequest'" class="nav-link">
+            <i class="nav-icon fas fa-tools"></i>
+            <p>Maintenance</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="'/admin/reports'" class="nav-link">
+            <i class="nav-icon fas fa-chart-bar"></i>
+            <p>Reports</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="'/admin/map'" class="nav-link">
+            <i class="nav-icon fas fa-map-marked-alt"></i>
+            <p>Map</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a [routerLink]="'/admin/settings'" class="nav-link">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>Settings</p>
+          </a>
+        </li>
+      
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
   </div>
-  <div class="divider"></div>
-  <ul class="dynamic-nav">
-    <li>
-      <a [routerLink]="'/admin/dashboard'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <span class="material-icons">dashboard</span> Dashboard
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="'/admin/properties'" routerLinkActive="active">
-        <span class="material-icons">home</span> Properties
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="'/admin/tenant'" routerLinkActive="active">
-        <span class="material-icons">group</span> Tenants
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="'/admin/billingandpayment'" routerLinkActive="active">
-        <span class="material-icons">receipt_long</span> Billing & Payment
-      </a>
-    </li>
-    <li>
-      <a data-bs-toggle="collapse" href="#contractDropdown" role="button" aria-expanded="false" aria-controls="contractDropdown">
-        <span class="material-icons">assignment</span> Contract 
-      </a>
-      <ul class="collapse list-unstyled ms-4" id="contractDropdown">
-        <li><a [routerLink]="'/admin/contract/active'" routerLinkActive="active"><span class="material-icons">check_circle</span> Active Contracts</a></li>
-        <li><a [routerLink]="'/admin/contract/expiring'" routerLinkActive="active"><span class="material-icons">hourglass_empty</span> Expiring Contracts</a></li>
-        <li><a [routerLink]="'/admin/contract/terminated'" routerLinkActive="active"><span class="material-icons">cancel</span> Terminated Contracts</a></li>
-        <li><a [routerLink]="'/admin/contract/new'" routerLinkActive="active"><span class="material-icons">note_add</span> New Contract</a></li>
-      </ul>
-    </li>
-    <li>
-      <a data-bs-toggle="collapse" href="#maintenanceDropdown" role="button" aria-expanded="false" aria-controls="maintenanceDropdown">
-        <span class="material-icons">engineering</span> Maintenance 
-      </a>
-      <ul class="collapse list-unstyled ms-4" id="maintenanceDropdown">
-        <li><a [routerLink]="'/admin/maintenance/all'" routerLinkActive="active"><span class="material-icons">list</span> All Requests</a></li>
-        <li><a [routerLink]="'/admin/maintenance/pending'" routerLinkActive="active"><span class="material-icons">hourglass_top</span> Pending Requests</a></li>
-        <li><a [routerLink]="'/admin/maintenance/inprogress'" routerLinkActive="active"><span class="material-icons">build_circle</span> In Progress</a></li>
-        <li><a [routerLink]="'/admin/maintenance/completed'" routerLinkActive="active"><span class="material-icons">task_alt</span> Completed Requests</a></li>
-        <li><a [routerLink]="'/admin/maintenance/handyman'" routerLinkActive="active"><span class="material-icons">handyman</span> Handyman List</a></li>
-      </ul>
-    </li>
-    <li>
-      <a data-bs-toggle="collapse" href="#reportDropdown" role="button" aria-expanded="false" aria-controls="reportDropdown">
-        <span class="material-icons">assessment</span> Reports  
-      </a>
-      <ul class="collapse list-unstyled ms-4" id="reportDropdown">
-        <li><a [routerLink]="'/admin/reports/tenant'" routerLinkActive="active"><span class="material-icons">people</span> Tenant Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/rent'" routerLinkActive="active"><span class="material-icons">payments</span> Rent Collection Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/occupancy'" routerLinkActive="active"><span class="material-icons">apartment</span> Occupancy Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/maintenance'" routerLinkActive="active"><span class="material-icons">build</span> Maintenance Reports</a></li>
-        <li><a [routerLink]="'/admin/reports/audit'" routerLinkActive="active"><span class="material-icons">fact_check</span> Audit Logs</a></li>
-      </ul>
-    </li>
-    <li>
-      <a [routerLink]="'/admin/map'" routerLinkActive="active">
-        <span class="material-icons">map</span> Map
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="'/admin/Settings'" routerLinkActive="active">
-        <span class="material-icons">settings</span> Settings  
-      </a>
-    </li>
-  </ul>
-</div>
-<!-- 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+  <!-- /.sidebar -->
+</aside>
