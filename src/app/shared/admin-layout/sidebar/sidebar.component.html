@@ -2,7 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a [routerLink]="'/admin/dashboard'" class="brand-link">
-  <img src="assets/rentrealm_logo_for_sure.png" alt="AdminLTE Logo" class="brand-logo">
+    <img src="/assets/rentrealm_logo_for_sure.png" alt="RENTREALM Logo" class="brand-logo">
+
  <span class="brand-text font-weight-light">RENTREALM</span>
   </a>
 
@@ -40,25 +41,143 @@
           </a>
         </li>
               
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a [routerLink]="'/admin/contract'" class="nav-link">
             <i class="nav-icon fas fa-file-contract"></i>
             <p>Contract</p>
           </a>
-        </li>
-              
+        </li> -->
         <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-contract"></i>
+            <p>
+              Contracts
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="'/admin/contract'" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Active Contracts</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Expiring Contracts</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Terminated Contracts</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>New Contract</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+              
+        <!-- <li class="nav-item">
           <a [routerLink]="'/admin/maintenacerequest'" class="nav-link">
             <i class="nav-icon fas fa-tools"></i>
             <p>Maintenance</p>
           </a>
+        </li> -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tools"></i>
+            <p>
+              Maintenance
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="'/admin/maintenacerequest'" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Requests</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Pending Requests</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>In Progress</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Completed Requests</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Handyman List</p>
+              </a>
+            </li>
+          </ul>
         </li>
+        
 
         <li class="nav-item">
-          <a [routerLink]="'/admin/reports'" class="nav-link">
-            <i class="nav-icon fas fa-chart-bar"></i>
-            <p>Reports</p>
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+            <p>
+              Reports
+              <i class="fas fa-angle-left right"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+           
+            <li class="nav-item">
+              <a href="pages/UI/ribbons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tenant Reports
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/UI/ribbons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Rent Collection Reports</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/UI/ribbons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Occupancy Reports
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/UI/ribbons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Maintenance Reports</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/UI/ribbons.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Audit Logs
+                </p>
+              </a>
+            </li>
+
+          </ul>
         </li>
 
         <li class="nav-item">
@@ -74,7 +193,9 @@
             <p>Settings</p>
           </a>
         </li>
-      
+
+
+       
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

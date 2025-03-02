@@ -5,7 +5,7 @@
   <title>RENTREALMANGULAR</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -14,5 +14,25 @@
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
+  <script src="assets/AdminLTE/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <!-- <script src="assets/AdminLTE/dist/js/adminlte.min.js"></script> -->
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="assets/AdminLTE/dist/js/demo.js"></script> -->
+  <script>
+    $(document).ready(function() {
+      $('.product-image-thumb').on('click', function () {
+        var $image_element = $(this).find('img')
+        $('.product-image').prop('src', $image_element.attr('src'))
+        $('.product-image-thumb.active').removeClass('active')
+        $(this).addClass('active')
+      })
+    })
+  </script>
 </body>
 </html>
+
+
+
