@@ -137,10 +137,10 @@
                     name="status"
                     required
                   >
-                    <option value="available">Available</option>
-                    <option value="rented">Rented</option>
-                    <option value="under_maintenance">Under Maintenance</option>
-                    <option value="full">Full</option>
+                    <option value="vacant">Vacant</option>
+                    <option value="occupied">Occupied</option>
+                    <option value="reserved">Reserved</option>
+                    <!-- <option value="full">Full</option> -->
                   </select>
                 </div>
               </div>
@@ -177,6 +177,12 @@
                     <option value="shared_unit">Shared Unit</option>
                     <option value="micro_unit">Micro Unit</option>
                   </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="reservation_pay">Reservation Payment</label>
+                  <input type="number" class="form-control" id="reservationFee" name="reservationFee" [(ngModel)]="room.reservation_fee" required>
                 </div>
               </div>
             </div>

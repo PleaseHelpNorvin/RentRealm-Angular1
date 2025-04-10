@@ -32,6 +32,7 @@ export class RoomEditComponent implements OnInit{
     size: '',
     status: 'available',
     unit_type: 'studio unit',
+    reservation_fee: 0,
     room_picture_url: [],
     room_code: '',
     updated_at: '',

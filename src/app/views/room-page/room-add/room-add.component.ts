@@ -26,6 +26,7 @@ export class RoomAddComponent {
     size: '',
     status: 'available',
     unit_type: 'studio unit',
+    reservation_fee: 0,
     room_picture_url: [],
     room_code: '',
     updated_at: '',
@@ -92,6 +93,7 @@ export class RoomAddComponent {
     formData.append('status', this.room.status.toString());
     formData.append('min_lease', this.room.min_lease.toString());
     formData.append('unit_type', this.room.unit_type.toString());
+    formData.append('reservation_fee', this.room.reservation_fee.toString());
 
 
     // Add image files to the form data

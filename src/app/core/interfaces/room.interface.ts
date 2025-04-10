@@ -10,6 +10,7 @@ export interface Room {
     size: string;
     status: string;
     unit_type: string;
+    reservation_fee: number;
     room_picture_url: any[]; // Change to array of strings to handle multiple image URLs
     room_code: string;
     updated_at: string;
