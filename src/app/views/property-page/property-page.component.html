@@ -40,23 +40,21 @@
           {{ property.address.line_1 }}, {{ property.address.province }} - {{ property.address.postal_code }}
         </p>
         <p class="mb-2">
-          <strong>Total Units:</strong> 5 | Available: 3 | Rented: 2 <br>
+          <strong>Total Units:</strong> 5 | Vacant: 3 | Occupied: 2 <br>
    
         </p>
         
-    
         <p class="mb-2">
-          <strong>Pets:</strong> 
-          <span [style.color]="property.pets_allowed ? 'green' : 'red'">
-            {{ property.pets_allowed ? 'Allowed' : 'N-A' }}
+          <strong>Gender Allowed:</strong> 
+          <span [style.color]="property.gender_allowed === 'boys-only' ? 'blue' : 'pink'">
+            {{ property.gender_allowed }}
           </span>
         </p>
-
-        <p class="mb-2">
+        <!-- <p class="mb-2">
           <strong>Price:</strong> 
           <span class="text-muted text-decoration-line-through">₱ 100</span>
           <span class="fw-bold text-primary">₱ 100 </span> / month
-        </p>
+        </p> -->
       </div>
 
       <!-- Card Footer with Buttons -->
