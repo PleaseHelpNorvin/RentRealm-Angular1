@@ -24,6 +24,7 @@ export class PropertyPageComponent implements OnInit {
           // Parse the property_picture_url into an array
           this.properties = response.data.properties.map(property => {
             // Check if property_picture_url is a string and parse it
+            // console.log("Before Parsing:", property.property_picture_url);
             if (typeof property.property_picture_url === 'string') {
               try {
                 property.property_picture_url = JSON.parse(property.property_picture_url);

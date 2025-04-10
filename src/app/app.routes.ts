@@ -20,6 +20,7 @@ import { PaymentPageComponent } from './views/billingandpayment-page/payment-pag
 import { ContractAcceptedComponent } from './views/contract-page/contract-accepted/contract-accepted.component';
 import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
 import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
+import { TenantShowComponent } from './views/tenants-page/tenant-show/tenant-show.component';
 
 import { MapPageComponent } from './views/map-page/map-page.component';
 
@@ -70,6 +71,14 @@ export const routes: Routes = [
         path: 'tenant',
         component: TenantsPageComponent
       },
+      {
+        path: 'tenant/show/:id',
+        component: TenantShowComponent 
+        
+      },
+      
+
+
       {
         path: 'billingandpayment',
         component: BillingandpaymentPageComponent,
