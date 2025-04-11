@@ -22,11 +22,11 @@ export class TenantsPageComponent implements OnInit {
 
   // Method to fetch users from the backend
   loadUsers(): void {
-    this.userService.getUsers().subscribe({
+    this.userService.getUsersWithProfile().subscribe({
       next: (response) => {
         console.log('Response from backend:', response);
-        if (response && response.data && Array.isArray(response.data.users)) {
-          this.users = response.data.users;
+        if (response && response.data && Array.isArray(response.data.user)) {
+          this.users = response.data.user;
         } else {
           this.errorMessage = 'Invalid user data received';
         }

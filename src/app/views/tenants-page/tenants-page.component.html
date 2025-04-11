@@ -28,8 +28,11 @@
                     <td>{{ user.role}}</td>     <!-- Changed from tenant.status to user.status -->
                     <td>{{ user.created_at }}</td> <!-- Assuming user.created_at exists -->
                     <td>
-                      <button class="btn btn-sm btn-primary" (click)="viewUser(user.id)">  <!-- Changed from tenant to user -->
-                        <span class="material-icons">visibility</span>
+                      <button 
+                        class="btn btn-sm btn-primary" 
+                        *ngIf="user.user_profile[0]?.id" 
+                        (click)="viewUser(user.user_profile[0].id)">
+                          <span class="material-icons">visibility</span>
                       </button>
                     </td>
                  

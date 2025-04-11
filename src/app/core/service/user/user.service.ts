@@ -9,11 +9,11 @@ import { UserResponse } from '../../interfaces/users.interface'; // Assuming thi
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://127.0.0.1:8000/api/tenant/user';  // API URL for user management
+  private apiUrl = 'http://127.0.0.1:8000/api/landlord/user';  // API URL for user management
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getUsers(): Observable<UserResponse> {
+  getUsersWithProfile(): Observable<UserResponse> {
     const token = this.authService.getToken(); // Get token from AuthService
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -21,16 +21,13 @@ export class UserService {
       'Accept': 'application/json'
     };
 
-    return this.http.get<UserResponse>(`${this.apiUrl}/index`, { headers }).pipe(
-      map(response => {
-        // Filter users with 'tenant' role
-        const tenants = response.data.users.filter(user => user.role === 'tenant');
-        return { ...response, data: { users: tenants } }; // Return filtered users
-      }),
+    return this.http.get<UserResponse>(`${this.apiUrl}/users-lists-with-relations`, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
+
+  
   /**
    * Get a single user by ID
    */
@@ -43,7 +40,7 @@ export class UserService {
     };
 
     return this.http.get<any>(`${this.apiUrl}/show/${id}`, { headers }).pipe(
-      catchError(this.handleError)
+    
     );
   }
 
