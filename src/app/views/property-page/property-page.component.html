@@ -40,7 +40,7 @@
           {{ property.address.line_1 }}, {{ property.address.province }} - {{ property.address.postal_code }}
         </p>
         <p class="mb-2">
-          <strong>Total Units:</strong> 5 | Vacant: 3 | Occupied: 2 <br>
+          <strong>Total Units:</strong> {{property.roomCount}} | Vacant: {{property.vacantRoomCount}} | Full: {{property.fullRoomCount}} <br>
    
         </p>
         
@@ -50,11 +50,10 @@
             {{ property.gender_allowed }}
           </span>
         </p>
-        <!-- <p class="mb-2">
-          <strong>Price:</strong> 
-          <span class="text-muted text-decoration-line-through">₱ 100</span>
-          <span class="fw-bold text-primary">₱ 100 </span> / month
-        </p> -->
+        <p class="mb-2">
+          <strong>Created At:</strong> 
+          <span class="fw-bold text-primary"> {{ property.created_at }}</span>
+        </p>
       </div>
 
       <!-- Card Footer with Buttons -->

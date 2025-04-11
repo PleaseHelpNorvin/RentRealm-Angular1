@@ -1,0 +1,57 @@
+<div *ngIf="!loading">
+
+    <section class="content">
+        <div class="card card-solid" *ngIf="!noTenantFound; else noTenantTemplate">
+            <div class="card-body">
+                <div class="row">
+
+                    <!-- Image Side -->
+                    <div class="col-12 col-sm-6 text-center">
+                        <img [src]="selectedTenant?.user_profile?.profile_picture_url || 'assets/default-profile.png'"
+                            class="img-fluid img-thumbnail " alt="Profile Picture"
+                            style="width: 900px; height: 500px; object-fit: cover;">
+                    </div>
+
+                    <!-- Details Side -->
+                    <div class="col-12 col-sm-6">
+                        <h3>{{ selectedTenant?.user_profile?.full_name }}</h3>
+                        <p class="text-muted mb-1"><strong>Status:</strong>
+                            <span
+                                [ngClass]="{'badge bg-success': selectedTenant?.status === 'active', 'badge bg-secondary': selectedTenant?.status !== 'active'}">
+                                {{ selectedTenant?.status | titlecase }}
+                            </span>
+                        </p>
+
+                        <hr>
+
+                        <p><strong>Agreement Code:</strong> {{ selectedTenant?.rental_agreement?.agreement_code }}</p>
+                        <p><strong>Person Count:</strong> {{ selectedTenant?.rental_agreement?.person_count }}</p>
+                        <p><strong>Total Amount:</strong> ₱{{ selectedTenant?.rental_agreement?.total_amount }}</p>
+                        <p><strong>Rent Start Date:</strong> {{ selectedTenant?.rental_agreement?.rent_start_date |
+                            date:'longDate' }}</p>
+                        <button class="btn btn-info" (click)="goToViewRoomsPage()">Back
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Template shown if no tenant is found -->
+        <ng-template #noTenantTemplate>
+            <div class="alert alert-warning"><button class="btn btn-close" (click)="goToViewRoomsPage()">
+                </button>
+                <strong>No tenant found for this room.</strong>
+            </div>
+        </ng-template>
+    </section>
+</div>
+
+<!-- <div *ngIf="loading">
+    <p>Loading tenant data...</p>
+</div> -->
+<div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+    <p>Loading...</p>
+</div>

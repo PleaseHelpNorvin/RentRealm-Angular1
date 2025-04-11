@@ -62,148 +62,183 @@
 
     </div>
   </div> -->
-  
-    
-  <!-- Main content -->
-  <section class="content">
 
-    <!-- Default box -->
-    <div class="card card-solid">
-      <div class="card-body">
-        <div class="row">
-         
 
-          <div class="col-12 col-sm-6">
-            <div class="col-12">
-              <img [src]="mainImage" class="product-image" alt="Product Image">
-            </div>
-            <div class="col-12 product-image-thumbs">
-              <div 
-                *ngFor="let image of thumbnails" 
-                class="product-image-thumb" 
-                [class.active]="image === mainImage"
-                (click)="swapImage(image)">
-                <img [src]="image" alt="Product Image">
-              </div>
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="card card-solid">
+    <div class="card-body">
+      <div class="row">
+
+
+        <!-- Display Main Image -->
+        <div class="col-12 col-sm-6">
+          <div class="col-12">
+            <img [src]="mainImage" class="product-image" alt="Product Image" *ngIf="mainImage">
+          </div>
+
+          <div class="col-12 product-image-thumbs">
+            <div *ngFor="let image of selectedRoomImages" class="product-image-thumb"
+              [class.active]="image === mainImage" (click)="swapImage(image)">
+              <img [src]="image" alt="Product Image" class="fixed-size-image">
             </div>
           </div>
-          
-          <div class="col-12 col-sm-6">
-           
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Unit No.</th>
-                        <th>Description</th>
-                     
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>101</td>
-                        <td>John Doe</td>
-                   
-                        <td>Occupied</td>
-                        <td>
-                          <button class="btn btn-primary btn-sm" title="View Tenant">
-                            <i class="fas fa-eye"></i>
-                          </button>
-                          <button class="btn btn-warning btn-sm" title="Edit">
-                            <i class="fas fa-edit"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm" title="Delete">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>102</td>
-                        <td>Available</td>
-                   
-                        <td>Vacant</td>
-                        <td>
-                          <button class="btn btn-success btn-sm" title="Assign Tenant">
-                            <i class="fas fa-user-plus"></i>
-                          </button>
-                          <button class="btn btn-warning btn-sm" title="Edit">
-                            <i class="fas fa-edit"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm" title="Delete">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>103</td>
-                        <td>-</td>
-                  
-                        <td>Under Maintenance</td>
-                        <td>
-                          <button class="btn btn-secondary btn-sm" title="Manage">
-                            <i class="fas fa-cogs"></i>
-                          </button>
-                          <button class="btn btn-warning btn-sm" title="Edit">
-                            <i class="fas fa-edit"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm" title="Delete">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>104</td>
-                        <td>Jane Smith</td>
-                 
-                        <td>Occupied</td>
-                        <td>
-                          <button class="btn btn-primary btn-sm " title="View Tenant">
-                            <i class="fas fa-eye"></i>
-                          </button>
-                          <button class="btn btn-warning btn-sm" title="Edit">
-                            <i class="fas fa-edit"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm" title="Delete">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </td>
-                        
-                    </tr>
-                </tbody>
-                
-            </table>
-            <div class="col-md-12">
-              <div class="button-container">
-               <p class="card-category"><button class="btn btn-sm btn-primary" (click)="goToProperty()">Back</button></p>
-               <p class="card-category"><button class="btn btn-sm btn-primary" (click)="goToAddRoom(property_id)">Add Room</button></p>
-              </div>
-            </div>
-          </div>
-          
         </div>
-        <div class="row mt-4">
-          <nav class="w-100">
-            <div class="nav nav-tabs" id="product-tab" role="tablist">
-              <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
-              <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Comments</a>
-              <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rules</a>
-            </div>
-          </nav>
-          <div class="tab-content p-3" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae condimentum erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed posuere, purus at efficitur hendrerit, augue elit lacinia arcu, a eleifend sem elit et nunc. Sed rutrum vestibulum est, sit amet cursus dolor fermentum vel. Suspendisse mi nibh, congue et ante et, commodo mattis lacus. Duis varius finibus purus sed venenatis. Vivamus varius metus quam, id dapibus velit mattis eu. Praesent et semper risus. Vestibulum erat erat, condimentum at elit at, bibendum placerat orci. Nullam gravida velit mauris, in pellentesque urna pellentesque viverra. Nullam non pellentesque justo, et ultricies neque. Praesent vel metus rutrum, tempus erat a, rutrum ante. Quisque interdum efficitur nunc vitae consectetur. Suspendisse venenatis, tortor non convallis interdum, urna mi molestie eros, vel tempor justo lacus ac justo. Fusce id enim a erat fringilla sollicitudin ultrices vel metus. </div>
-            <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> Vivamus rhoncus nisl sed venenatis luctus. Sed condimentum risus ut tortor feugiat laoreet. Suspendisse potenti. Donec et finibus sem, ut commodo lectus. Cras eget neque dignissim, placerat orci interdum, venenatis odio. Nulla turpis elit, consequat eu eros ac, consectetur fringilla urna. Duis gravida ex pulvinar mauris ornare, eget porttitor enim vulputate. Mauris hendrerit, massa nec aliquam cursus, ex elit euismod lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a sapien eget, ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel id dui. Curabitur a ex ullamcorper, ornare velit vel, tincidunt ipsum. </div>
-            <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
+
+        <div class="col-12 col-sm-6">
+
+          <table class="table table-striped table-bordered" *ngIf="rooms.length > 0">
+            <thead class="table-dark">
+              <tr>
+                <th>Unit No.</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Correctly placed *ngFor directive to iterate over the rooms array -->
+              <tr *ngFor="let room of rooms" (click)="onRoomClick(room)" class="table-row">
+                <td>{{ room.room_code }}</td> <!-- Display room unit number -->
+                <td>{{ room.description }}</td> <!-- Display room description -->
+                <td>{{ room.status }}</td> <!-- Display room status -->
+                <td>
+                  <button class="btn btn-primary btn-sm" title="View Room Tenant" (click)="goToRoomTenant(room.id, room.property_id)">
+                    <i class="fas fa-user"></i>
+                  </button>
+                  <button class="btn btn-success btn-sm" title="View Room Detail" (click)="onViewRoomDetail(room.id)">
+                    <i class="fas fa-door-open"></i>
+                  </button>
+                  <button class="btn btn-warning btn-sm" title="Edit" (click)="goToEditRoom(room.property_id, room.id)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm" title="Delete" (click)="onDeleteRoom(room.id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="rooms.length === 0">
+            <p>No rooms available for this property.</p>
           </div>
+          <div class="col-md-12">
+            <div class="button-container">
+              <p class="card-category"><button class="btn btn-sm btn-primary" (click)="goToProperty()">Back</button></p>
+              <p class="card-category"><button class="btn btn-sm btn-primary" (click)="goToAddRoom(property_id)">Add
+                  Room</button></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-4">
+        <nav class="w-100">
+          <div class="nav nav-tabs" id="product-tab" role="tablist">
+            <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab"
+              aria-controls="product-desc" aria-selected="true">Description</a>
+            <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab"
+              aria-controls="product-comments" aria-selected="false">Comments</a>
+            <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab"
+              aria-controls="product-rating" aria-selected="false">Rules</a>
+          </div>
+        </nav>
+        <div class="tab-content p-3" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae condimentum erat. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed posuere, purus at efficitur hendrerit,
+            augue elit lacinia arcu, a eleifend sem elit et nunc. Sed rutrum vestibulum est, sit amet cursus dolor
+            fermentum vel. Suspendisse mi nibh, congue et ante et, commodo mattis lacus. Duis varius finibus purus sed
+            venenatis. Vivamus varius metus quam, id dapibus velit mattis eu. Praesent et semper risus. Vestibulum erat
+            erat, condimentum at elit at, bibendum placerat orci. Nullam gravida velit mauris, in pellentesque urna
+            pellentesque viverra. Nullam non pellentesque justo, et ultricies neque. Praesent vel metus rutrum, tempus
+            erat a, rutrum ante. Quisque interdum efficitur nunc vitae consectetur. Suspendisse venenatis, tortor non
+            convallis interdum, urna mi molestie eros, vel tempor justo lacus ac justo. Fusce id enim a erat fringilla
+            sollicitudin ultrices vel metus. </div>
+          <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
+            Vivamus rhoncus nisl sed venenatis luctus. Sed condimentum risus ut tortor feugiat laoreet. Suspendisse
+            potenti. Donec et finibus sem, ut commodo lectus. Cras eget neque dignissim, placerat orci interdum,
+            venenatis odio. Nulla turpis elit, consequat eu eros ac, consectetur fringilla urna. Duis gravida ex
+            pulvinar mauris ornare, eget porttitor enim vulputate. Mauris hendrerit, massa nec aliquam cursus, ex elit
+            euismod lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a sapien eget,
+            ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel id dui. Curabitur a ex
+            ullamcorper, ornare velit vel, tincidunt ipsum. </div>
+          <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut
+            ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue,
+            id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut
+            molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat.
+            Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac
+            molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo.
+            Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien
+            justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper.
+            Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
         </div>
       </div>
-      <!-- /.card-body -->
     </div>
-    <!-- /.card -->
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
 
-  </section>
-  <!-- /.content -->
-  
+</section>
+<!-- /.content -->
+
+
+<!-- Room View Modal (HTML) -->
+<!-- Room View Modal -->
+<div #roomViewModal class="modal fade" id="roomViewModal" tabindex="-1" aria-labelledby="roomViewModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="roomViewModalLabel">Room Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="text-center mb-3">
+          <h3 class="fw-bold mb-0">{{ room?.room_code }}</h3>
+          <small class="text-muted">{{ room?.description }}</small>
+        </div>
+
+        <hr>
+
+        <div class="mb-2">
+          <strong>Category:</strong> <span>{{ room?.category }}</span>
+        </div>
+
+        <div class="mb-2">
+          <strong>Unit Type:</strong> <span>{{ room?.unit_type }}</span>
+        </div>
+
+        <div class="mb-2">
+          <strong>Size:</strong> <span>{{ room?.size }} sqm</span>
+        </div>
+
+        <div class="mb-2">
+          <strong>Status:</strong>
+          <span [ngClass]="{
+              'badge bg-success': room?.status === 'vacant',
+              'badge bg-secondary': room?.status === 'occupied',
+              'badge bg-info': room?.status === 'reserved'
+            }">
+            {{ room?.status | titlecase }}
+          </span>
+        </div>
+
+        <div class="mb-2">
+          <strong>Room Details:</strong>
+          <p class="mb-0">{{ room?.room_details }}</p>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -21,7 +21,7 @@ export interface Users {
     contact_number: string;
     gender: string;
     birthdate: string;
-    image_url?: string;
+    profile_picture_url?: string;
     created_at: string;
     updated_at: string;
   }

@@ -18,7 +18,7 @@ export class PropertyAddComponent {
     name: '',
     property_picture_url: [],  // Ensure this is an array
     gender_allowed: '',
-    pets_allowed: false,
+    // pets_allowed: false,
     type: 'apartment',
     status: 'available',
     updated_at: '',
@@ -75,7 +75,7 @@ export class PropertyAddComponent {
     formData.append('type', this.property.type);
     formData.append('gender_allowed', this.property.gender_allowed);
     // formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
-    formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
+    // formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
 
     // Append address details
     formData.append('line_1', this.property.address.line_1);

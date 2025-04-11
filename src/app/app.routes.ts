@@ -8,7 +8,7 @@ import { NoAuthGuard } from './core/guard/noauth.guard';
 import { PropertyPageComponent } from './views/property-page/property-page.component';
 import { RoomPageComponent } from './views/room-page/room-page.component';
 import { PropertyAddComponent } from './views/property-page/property-add/property-add.component';
-import { RoomViewComponent } from './views/room-page/room-view/room-view.component';
+// import { RoomViewComponent } from './views/room-page/room-view/room-view.component';
 import { RoomAddComponent } from './views/room-page/room-add/room-add.component';
 import { RoomEditComponent } from './views/room-page/room-edit/room-edit.component';
 import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
@@ -23,6 +23,7 @@ import { ContractPendingComponent } from './views/contract-page/contract-pending
 import { TenantShowComponent } from './views/tenants-page/tenant-show/tenant-show.component';
 
 import { MapPageComponent } from './views/map-page/map-page.component';
+import { RoomTenantComponent } from './views/room-page/room-tenant/room-tenant.component';
 
 export const routes: Routes = [
   {
@@ -56,8 +57,8 @@ export const routes: Routes = [
         component: RoomPageComponent
       },
       {
-        path: 'properties/rooms/:property_id/:id',
-        component: RoomViewComponent
+        path: 'properties/rooms/:property_id/:room_id/tenants',
+        component: RoomTenantComponent
       },
       {
         path: 'properties/:property_id/rooms/add',

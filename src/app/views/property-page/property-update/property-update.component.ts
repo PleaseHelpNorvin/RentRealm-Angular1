@@ -25,7 +25,7 @@ export class PropertyUpdateComponent implements OnInit {
     name: '',
     property_picture_url: [],
     gender_allowed: '',
-    pets_allowed: false,
+    // pets_allowed: false,
     type: 'apartment',
     status: 'available',
     created_at: '',
@@ -109,7 +109,7 @@ export class PropertyUpdateComponent implements OnInit {
     formData.append('status', this.property.status);
     formData.append('type', this.property.type);
     formData.append('gender_allowed', this.property.gender_allowed);
-    formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
+    // formData.append('pets_allowed', this.property.pets_allowed ? '1' : '0');
     formData.append('line_1', this.property.address.line_1);
     formData.append('line_2', this.property.address.line_2);
     formData.append('province', this.property.address.province);

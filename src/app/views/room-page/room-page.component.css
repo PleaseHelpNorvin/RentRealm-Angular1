@@ -22,3 +22,23 @@ table{
     justify-content: center;
     align-items: center;
 }
+
+
+.product-image {
+    width: 900px;
+    height: 600px;
+    object-fit: cover; /* Optional: crop the image to fill the area */
+  }
+
+
+  .table.table-striped .table-row,
+  .table.table-bordered .table-row {
+    cursor: pointer;
+  }
+
+  
+  .table.table-striped .table-row:hover,
+  .table.table-bordered .table-row:hover {
+    background-color: #4f5358; /* Light Gray */
+    transition: background-color 0.2s ease-in-out;
+  }

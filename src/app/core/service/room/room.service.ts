@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Room, RoomResponse } from '../../interfaces/room.interface';
+import { TenantResponse } from '../../interfaces/tenant.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class RoomService {
   getRoomData(id: number): Observable<RoomResponse> {
     console.log("from getRoomData():", id);
     const token = this.authService.getToken();
+    if (!token) {
+      console.error('No token found');
+      return throwError('No token found');
+    }
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',  // Specify the content type
@@ -38,6 +43,22 @@ export class RoomService {
     return this.http.get<RoomResponse>(`${this.apiUrl}/show/${id}`, {headers}).pipe(
       catchError(this.handleError)
     );
+  }
+
+  getRoomTenant(room_id: number): Observable<TenantResponse> {
+    console.log("from getRoomTenant():", room_id);
+
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    }
+    return this.http.get<TenantResponse>(`${this.apiUrl}/room-tenant/${room_id}`, {headers}).pipe(
+
+      catchError(this.handleError)
+    );
+
   }
 
   storeRoomData(id: number | null, formData: FormData): Observable<RoomResponse> {

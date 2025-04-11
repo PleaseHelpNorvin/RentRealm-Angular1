@@ -4,8 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from '../../../core/service/room/room.service';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { map, take } from 'rxjs';
 import { AuthService } from '../../../core/service/auth/auth.service';
 
 @Component({
@@ -40,7 +38,7 @@ export class RoomEditComponent implements OnInit{
     id: 0,
   };
 
-  constructor(private http : HttpClient, private router: Router, private route: ActivatedRoute, private roomService: RoomService, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private roomService: RoomService, private authService: AuthService) {
     this.route.params.subscribe(params => {
       this.property_id = params['property_id'];
       this.room_id = params['id'];
@@ -112,9 +110,15 @@ export class RoomEditComponent implements OnInit{
     // Prepare data for submission
     const formData = new FormData();
     formData.append('rent_price', this.room.rent_price.toString());  // Matching interface property names
+    formData.append('description', this.room.description.toString());
+    formData.append('category', this.room.category.toString());
+    formData.append('room_details', this.room.room_details.toString());
+    formData.append('size', this.room.size.toString());
     formData.append('capacity', this.room.capacity.toString());
     formData.append('status', this.room.status.toString());
     formData.append('min_lease', this.room.min_lease.toString());
+    formData.append('unit_type', this.room.unit_type.toString());
+
   
     // Only append room_picture_url if there are new images selected
     if (this.room.room_picture_url && this.room.room_picture_url.length > 0 && this.room.room_picture_url[0] instanceof File) {

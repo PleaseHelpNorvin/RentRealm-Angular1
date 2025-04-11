@@ -100,10 +100,9 @@
                   <div class="mb-3">
                     <label class="form-label" for="status">Status</label>
                     <select class="form-select" id="status" [(ngModel)]="room.status" name="status" required>
-                      <option value="available">Available</option>
-                      <option value="rented">Rented</option>
-                      <option value="under_maintenance">Under Maintenance</option>
-                      <option value="full">Full</option>
+                      <option value="vacant">Vacant</option>
+                      <option value="occupied">Occupied</option>
+                      <option value="reserved">Reserved</option>
                     </select>
                   </div>
                 </div>
@@ -138,7 +137,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">Add Room</button>
+              <button type="submit" class="btn btn-primary">Update Room</button>
             </form>
           </div>
         </div>
