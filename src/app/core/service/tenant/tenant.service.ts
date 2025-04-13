@@ -5,14 +5,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import { TenantResponse } from '../../interfaces/tenant.interface'; // Import the response interface
+import { Tenant, TenantResponse } from '../../interfaces/tenant.interface'; // Import the response interface
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantService {
     private apiUrl = 'http://127.0.0.1:8000/api/tenant/tenant';
-
+    private adminApiUrl = 'http://127.0.0.1:8000/api/landlord/user';
 
 
 
@@ -31,6 +31,18 @@ export class TenantService {
 
     return this.http.get<TenantResponse>(`${this.apiUrl}/index`, { headers }).pipe(
       catchError(this.handleError) // Handle any errors during the API request
+    );
+  }
+  getTenantProfileByProfileId(profile_id: number): Observable<TenantResponse> {
+    const token = this.authService.getToken(); // Get the token from AuthService
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',  // Specify the content type
+      'Accept': 'application/json'  
+    };
+
+    return this.http.get<TenantResponse>(`${this.adminApiUrl}/admin-show-tenant-by-profile-id/${profile_id}`, {headers}).pipe(
+      catchError(this.handleError)
     );
   }
 

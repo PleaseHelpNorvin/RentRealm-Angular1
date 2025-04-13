@@ -8,7 +8,6 @@ import { NoAuthGuard } from './core/guard/noauth.guard';
 import { PropertyPageComponent } from './views/property-page/property-page.component';
 import { RoomPageComponent } from './views/room-page/room-page.component';
 import { PropertyAddComponent } from './views/property-page/property-add/property-add.component';
-// import { RoomViewComponent } from './views/room-page/room-view/room-view.component';
 import { RoomAddComponent } from './views/room-page/room-add/room-add.component';
 import { RoomEditComponent } from './views/room-page/room-edit/room-edit.component';
 import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
@@ -73,9 +72,8 @@ export const routes: Routes = [
         component: TenantsPageComponent
       },
       {
-        path: 'tenant/show/:id',
+        path: 'tenant/show/:profile_id',
         component: TenantShowComponent 
-        
       },
       
 

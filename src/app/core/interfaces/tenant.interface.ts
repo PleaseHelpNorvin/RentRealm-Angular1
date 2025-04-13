@@ -2,6 +2,9 @@
 
 import { RentalAgreement } from "./rental_agreement.interface";
 import { UserProfile } from "./users.interface";
+import { Billing, LatestBilling, NextBilingMonth } from "./billing.interface";
+// import { PaymentHistory } from "./payment.interface";
+import { Notification } from "./notification.interface";
 
 // Interface to represent the Tenant data
 export interface Tenant {
@@ -23,8 +26,13 @@ export interface Tenant {
     success: boolean;  // should be boolean not number
     message: string;
     data: {
-      tenant?: Tenant[];  // Optional tenants array
+      tenant?: Tenant | Tenant[]; // Optional tenants array
       tenants?: Tenant[]; // Optional tenants array
+      // latest_billing?: LatestBilling;
+      // next_billing_month?: string;
+      rental_agreements? : RentalAgreement[];
+      payment_history?: Billing[];
+      notifications?: Notification[];
     };
   }
   

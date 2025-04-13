@@ -39,9 +39,9 @@ export class TenantsPageComponent implements OnInit {
   }
 
   // Method to navigate to a specific user's detail page
-  viewUser(id: number): void {
-    this.router.navigate([`/admin/tenant/show`, id]);
-    console.log(`Navigating to user ID ${id}`);
+  viewUser(profile_id: number): void {
+    this.router.navigate([`/admin/tenant/show`, profile_id]);
+    console.log(` Navigating to profile_id ${profile_id}`);
   }
 
   ngOnInit(): void {

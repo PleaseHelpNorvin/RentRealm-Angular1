@@ -1,3 +1,4 @@
+import { LatestBilling } from './billing.interface';
 import { Reservation } from './reservation.interface';
 export interface RentalAgreement {
     id: number;
@@ -14,6 +15,8 @@ export interface RentalAgreement {
     created_at: string;
     updated_at: string;
     reservation: Reservation;
+    next_billing_month?: string;
+    latest_billing?: LatestBilling;
   }
   
   

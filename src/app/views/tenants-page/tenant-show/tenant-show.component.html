@@ -24,23 +24,40 @@
                    alt="Tenant profile picture">
             </div>
 
-            <h3 class="profile-username text-center">Nina Mcintire</h3>
+            <h3 class="profile-username text-center">{{ tenant?.user_profile?.user ?.name}}</h3>
 
             <p class="text-muted text-center">Tenant</p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Current Apartment</b> <a class="float-right">Apartment 101</a>
+                <b>Active Rental Agreements</b>
+                <!-- Loop through rental_agreements and display each one -->
+                <ul class="list-unstyled mt-2">
+                  <li *ngFor="let rental of rentalAgreements">
+                    <span>{{ rental.agreement_code }} - {{rental.status}} - {{ rental.rent_start_date | date: 'longDate' }}</span>
+                  </li>
+                </ul>
               </li>
               <li class="list-group-item">
-                <b>Rental Status</b> <a class="float-right">Active</a>
+                <b>Room Rented</b> 
+                <ul class="list-unstyled mt-2">
+                  <li *ngFor="let rental of rentalAgreements">
+                    <span> {{rental.reservation.room.property?.name}} - {{rental.reservation.room.room_code}}</span>
+                  </li>
+                </ul>
               </li>
               <li class="list-group-item">
-                <b>Due Payment</b> <a class="float-right">$850</a>
+                <b>Due Dates</b> 
+                <!-- <a class="float-right">$850</a> -->
+                <ul class="list-unstyled mt-2">
+                  <li *ngFor="let rental of rentalAgreements">
+                    <span>{{rental.agreement_code}} - {{rental.next_billing_month | date: 'longDate'}}</span>
+                  </li>
+                </ul>
               </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>Pay Rent</b></a>
+            <a href="#" class="btn btn-primary btn-block"><b>Manual Pay Rent</b></a>
           </div>
           <!-- /.card-body -->
         </div>
@@ -53,29 +70,36 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <strong><i class="fas fa-user mr-1"></i> Full Name</strong>
+            <strong><i class="fas fa-user mr-1"></i> {{tenant?.user_profile?.user?.name}}</strong>
 
             <p class="text-muted">
-              Nina Mcintire
+              {{tenant?.user_profile?.occupation}}
             </p>
 
             <hr>
 
             <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-            <p class="text-muted">Apartment 101, RentRealm Tower</p>
-
-            <hr>
-
-            <strong><i class="fas fa-calendar-alt mr-1"></i> Lease Term</strong>
-
-            <p class="text-muted">12 months (Until Dec 2025)</p>
+            <p class="text-muted">{{tenant?.user_profile?.address?.line_1}} {{tenant?.user_profile?.address?.line_2}} {{tenant?.user_profile?.address?.province}} {{tenant?.user_profile?.address?.postal_code}}</p>
 
             <hr>
 
             <strong><i class="fas fa-phone mr-1"></i> Contact</strong>
 
-            <p class="text-muted">(555) 123-4567</p>
+            <p class="text-muted">{{tenant?.user_profile?.phone_number}}</p>
+
+            <hr>
+
+            
+            <!-- <li class="list-group-item"> -->
+              <strong><i class="fas fa-id-card mr-1"></i> Identification Numbers</strong>
+            
+              <p class="text-muted mb-0">Driver's License: {{ tenant?.user_profile?.driver_license_number || 'not provided' }}</p>
+              <p class="text-muted mb-0">National ID: {{ tenant?.user_profile?.national_id || 'not provided' }}</p>
+              <p class="text-muted mb-0">Passport Number: {{ tenant?.user_profile?.passport_number || 'not provided' }}</p>
+              <p class="text-muted mb-0">SSS Number: {{ tenant?.user_profile?.social_security_number || 'not provided' }}</p>
+            <!-- </li> -->
+      
           </div>
           <!-- /.card-body -->
         </div>
@@ -96,59 +120,45 @@
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
                 <!-- Recent Activity -->
-                <div class="post">
+                <div class="post" *ngFor="let note of notifications">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="assets/rentrealm_logo_for_sure.png" alt="Tenant Image">
+                    <img class="img-circle img-bordered-sm" src="assets/rentrealm_logo_for_sure.png" alt="Tenant Image" />
                     <span class="username">
-                      <a href="#">Nina Mcintire</a>
+                      <a href="#">{{ tenant?.user_profile?.user?.name }}</a>
                     </span>
-                    <span class="description">Updated rental status - 7:30 PM today</span>
+                    <span class="description">{{ note.created_at | date:'short' }}</span>
                   </div>
-                  <!-- /.user-block -->
-                  <p>
-                    Nina Mcintire has successfully paid the rent for the month of April. The transaction has been confirmed.
-                  </p>
-
-                  <p>
+                  <h5>{{note.title}}</h5>
+                  <p>{{ note.message }}</p>
+                  <!-- <p>
                     <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
                     <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
                     <span class="float-right">
                       <a href="#" class="link-black text-sm">
-                        <i class="far fa-comments mr-1"></i> Comments (3)
+                        <i class="far fa-comments mr-1"></i> Comments (0)
                       </a>
                     </span>
-                  </p>
-
-                  <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                  </p> -->
+                  <!-- <input class="form-control form-control-sm" type="text" placeholder="Type a comment" /> -->
                 </div>
                 <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
 
               <div class="tab-pane" id="payments">
-                <!-- Payment History -->
-                <div class="timeline timeline-inverse">
+                <div class="timeline timeline-inverse" *ngFor="let payments of paymentHistory">
                   <div class="time-label">
-                    <span class="bg-success">March 2025</span>
+                    <span class="bg-success">{{payments.billing_month}}</span>
                   </div>
                   <div>
                     <i class="fas fa-money-bill-alt bg-primary"></i>
                     <div class="timeline-item">
-                      <h3 class="timeline-header"><a href="#">Payment for March 2025</a></h3>
+                      <h3 class="timeline-header"><a href="#">{{payments.billing_title}}</a></h3>
                       <div class="timeline-body">
-                        Paid $850 for Rent of Apartment 101.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="time-label">
-                    <span class="bg-success">February 2025</span>
-                  </div>
-                  <div>
-                    <i class="fas fa-money-bill-alt bg-primary"></i>
-                    <div class="timeline-item">
-                      <h3 class="timeline-header"><a href="#">Payment for February 2025</a></h3>
-                      <div class="timeline-body">
-                        Paid $850 for Rent of Apartment 101.
+                        <!-- {payments.billing_title} for ${billingMonthFormatted} amounting to ₱${billing.total_amount} was successfully paid via ${billing.payments[0].payment_method} on ${paymentDateFormatted}."` -->
+                        {{payments.billing_title}} for  {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
+
+                        <!-- Paid $850 for Rent of Apartment 101. -->
                       </div>
                     </div>
                   </div>
@@ -161,19 +171,19 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Full Name" value="Nina Mcintire">
+                      <input type="text" class="form-control" id="inputName" [(ngModel)]="tenantName" name="name" placeholder="Full Name" value="Nina Mcintire">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="nina@example.com">
+                      <input type="email" class="form-control" id="inputEmail" [(ngModel)]="tenantEmail" name="email" placeholder="Email" value="nina@example.com">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPhone" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputPhone" placeholder="Phone" value="(555) 123-4567">
+                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantPhone" name="phone_number" placeholder="Phone" value="(555) 123-4567">
                     </div>
                   </div>
                   <div class="form-group row">

@@ -1,4 +1,7 @@
+import { Property } from "./property.interface";
+
 export interface Room {
+    id: number;
     property_id: number;
     room_picture_url: any[]; // Change to array of strings to handle multiple image URLs
     room_code: string;
@@ -15,7 +18,7 @@ export interface Room {
     unit_type: string;
     updated_at: string;
     created_at: string;
-    id: number;
+    property?: Property;
 }
 
 export interface RoomResponse {
