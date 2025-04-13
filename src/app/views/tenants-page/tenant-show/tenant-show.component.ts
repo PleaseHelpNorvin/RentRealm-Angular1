@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TenantService } from '../../../core/service/tenant/tenant.service';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,8 @@ import { Tenant } from '../../../core/interfaces/tenant.interface';
 import { Notification } from '../../../core/interfaces/notification.interface';
 import { RentalAgreement } from '../../../core/interfaces/rental_agreement.interface';
 import { FormsModule } from '@angular/forms';
+import { Modal } from 'bootstrap';
+
 @Component({
   selector: 'app-tenant-show',
   imports: [CommonModule, FormsModule],
@@ -15,6 +17,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class TenantShowComponent {
   profile_id: number | null = null;
+  manualPayRentModalInstance!: Modal;
+  @ViewChild('manualPayRentModal') manualPayRentModalElement!: ElementRef;
+
 
   tenant?: Tenant;
   rentalAgreements?: RentalAgreement[] = [];
@@ -34,6 +39,12 @@ export class TenantShowComponent {
   ngOnInit(): void {
     console.log(`profile_id received ${this.profile_id}`);
     this.LoadTenantByProfileId();
+  }
+
+  ngAfterViewInit() {
+    if (this.manualPayRentModalElement) {
+      this.manualPayRentModalInstance = new Modal(this.manualPayRentModalElement.nativeElement);
+    }
   }
 
   LoadTenantByProfileId(): void {
@@ -68,5 +79,14 @@ export class TenantShowComponent {
       this.tenant.user_profile.user.email = this.tenantEmail;
       this.tenant.user_profile.phone_number = this.tenantPhone;
     }
+  }
+
+  manualPaymentRentModal(): void {
+    if (this.manualPayRentModalInstance) {
+      this.manualPayRentModalInstance.show();
+    }
+
+    
+
   }
 }

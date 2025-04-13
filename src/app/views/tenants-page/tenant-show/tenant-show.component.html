@@ -30,7 +30,7 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Active Rental Agreements</b>
+                <b>Active Rental Agreements</b> 
                 <!-- Loop through rental_agreements and display each one -->
                 <ul class="list-unstyled mt-2">
                   <li *ngFor="let rental of rentalAgreements">
@@ -56,8 +56,10 @@
                 </ul>
               </li>
             </ul>
-
-            <a href="#" class="btn btn-primary btn-block"><b>Manual Pay Rent</b></a>
+            <button class="btn btn-primary btn-block" (click)="manualPaymentRentModal()">
+              <b>Manual Pay Rent</b>
+            </button>
+            <!-- <a class="btn btn-primary btn-block"><b>Manual Pay Rent</b></a> -->
           </div>
           <!-- /.card-body -->
         </div>
@@ -148,15 +150,14 @@
               <div class="tab-pane" id="payments">
                 <div class="timeline timeline-inverse" *ngFor="let payments of paymentHistory">
                   <div class="time-label">
-                    <span class="bg-success">{{payments.billing_month}}</span>
+                    <span class="bg-success">{{payments.billing_month | date: 'MMMM YYYY'}}</span>
                   </div>
                   <div>
                     <i class="fas fa-money-bill-alt bg-primary"></i>
                     <div class="timeline-item">
                       <h3 class="timeline-header"><a href="#">{{payments.billing_title}}</a></h3>
                       <div class="timeline-body">
-                        <!-- {payments.billing_title} for ${billingMonthFormatted} amounting to ₱${billing.total_amount} was successfully paid via ${billing.payments[0].payment_method} on ${paymentDateFormatted}."` -->
-                        {{payments.billing_title}} for  {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
+                        {{payments.billing_title}} for {{payments.rental_agreement?.agreement_code}} on {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
 
                         <!-- Paid $850 for Rent of Apartment 101. -->
                       </div>
@@ -206,3 +207,24 @@
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+<div #manualPayRentModal class="modal fade" id="manualPayRentModal" tabindex="-1" aria-labelledby="manualPayRentModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="manualPayRentModalLabel">Manual Pay Rent</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+      
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
