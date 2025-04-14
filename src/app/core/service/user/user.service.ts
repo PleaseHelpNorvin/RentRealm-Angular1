@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators'; // ✅ Import map here
 import { AuthService } from '../auth/auth.service';
-import { UserResponse } from '../../interfaces/users.interface'; // Assuming this is the response interface for users
+import { UserProfileResponse, UserResponse } from '../../interfaces/users.interface'; // Assuming this is the response interface for users
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +63,7 @@ export class UserService {
   /**
    * Update an existing user's details
    */
-  updateUser(id: number, userData: any): Observable<UserResponse> {
+  updateTenantProfile(id: number, tenantUpdatePayload: any): Observable<UserProfileResponse> {
     const token = this.authService.getToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -71,11 +71,22 @@ export class UserService {
       'Accept': 'application/json'
     };
 
-    return this.http.put<UserResponse>(`${this.apiUrl}/update/${id}`, userData, { headers }).pipe(
+    return this.http.put<UserProfileResponse>(`${this.apiUrl}/update/${id}`, tenantUpdatePayload, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
+  updateUserData(id: number, userUpdatePayload: any): Observable<UserResponse> {
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', // Content type for sending data
+      'Accept': 'application/json'
+    };
+    return this.http.put<UserResponse>(`${this.apiUrl}/users/${id}`, userUpdatePayload, {headers}).pipe(
+      catchError(this.handleError)
+    );
+  }
   /**
    * Delete a user
    */

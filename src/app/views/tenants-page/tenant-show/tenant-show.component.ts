@@ -8,6 +8,7 @@ import { Notification } from '../../../core/interfaces/notification.interface';
 import { RentalAgreement } from '../../../core/interfaces/rental_agreement.interface';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { UserService } from '../../../core/service/user/user.service';
 
 @Component({
   selector: 'app-tenant-show',
@@ -17,8 +18,8 @@ import { Modal } from 'bootstrap';
 })
 export class TenantShowComponent {
   profile_id: number | null = null;
-  manualPayRentModalInstance!: Modal;
-  @ViewChild('manualPayRentModal') manualPayRentModalElement!: ElementRef;
+  sendWarningModalInstance!: Modal;
+  @ViewChild('sendModalChild') sendWarningModalElement!: ElementRef;
 
 
   tenant?: Tenant;
@@ -28,9 +29,26 @@ export class TenantShowComponent {
 
   tenantName: string = '';
   tenantEmail: string = '';
-  tenantPhone: string = '';
+  tenantPassword: String = '';
 
-  constructor(private router: Router,private route: ActivatedRoute, private tenantService: TenantService) {
+  tenantPhone: string = '';
+  tenantSocialMedia: string = '';
+  tenantOccupation: string = '';
+  
+  tenantDriverLicenseNumber: string = '';
+  tenantNationalId: string = '';
+  tenantPassportNumber: string = '';
+  tenantSSSnumber: string = '';
+
+  tenantAddressLine1: string = '';
+  tenantAddressLine2: string = '';
+  tenantAddressProvince: string = '';
+  tenantAddressCountry: string = '';
+  tenantAddressPostalCode: string = '';
+
+  
+
+  constructor(private router: Router,private route: ActivatedRoute, private tenantService: TenantService, private userService: UserService) {
     this.route.params.subscribe(params => {
       this.profile_id = params['profile_id'];
     });
@@ -42,8 +60,8 @@ export class TenantShowComponent {
   }
 
   ngAfterViewInit() {
-    if (this.manualPayRentModalElement) {
-      this.manualPayRentModalInstance = new Modal(this.manualPayRentModalElement.nativeElement);
+    if (this.sendWarningModalElement) {
+      this.sendWarningModalInstance = new Modal(this.sendWarningModalElement.nativeElement);
     }
   }
 
@@ -62,9 +80,25 @@ export class TenantShowComponent {
           console.log('Payment History:', this.paymentHistory);
           console.log('Notifications:', this.notifications);
 
+          // for display user data to update
           this.tenantName = this.tenant?.user_profile?.user?.name || '';
           this.tenantEmail = this.tenant?.user_profile?.user?.email || '';
+
+          // for display to update userProfile side
           this.tenantPhone = this.tenant?.user_profile?.phone_number || '';
+          this.tenantSocialMedia = this.tenant.user_profile?.social_media_links || '';
+          this.tenantOccupation = this.tenant.user_profile?.occupation || '';
+          this.tenantDriverLicenseNumber = this.tenant.user_profile?.driver_license_number || '';
+          this.tenantNationalId = this.tenant.user_profile?.national_id || '';
+          this.tenantPassportNumber = this.tenant.user_profile?.passport_number || '';
+          this.tenantSSSnumber = this.tenant.user_profile?.social_security_number || '';
+
+          // for display to update user address
+          this.tenantAddressLine1 = this.tenant.user_profile?.address.line_1 || '';
+          this.tenantAddressLine2 = this.tenant.user_profile?.address.line_2 || '';
+          this.tenantAddressProvince = this.tenant.user_profile?.address.province || '';
+          this.tenantAddressCountry = this.tenant.user_profile?.address.country || '';
+          this.tenantAddressPostalCode = this.tenant.user_profile?.address.postal_code || '';
         },
         error: (err) => {
           console.error('Error fetching tenant:', err);
@@ -75,15 +109,61 @@ export class TenantShowComponent {
 
   updateTenantProfile(): void {
     if (this.tenant && this.tenant.user_profile && this.tenant.user_profile.user) {
-      this.tenant.user_profile.user.name = this.tenantName;
-      this.tenant.user_profile.user.email = this.tenantEmail;
-      this.tenant.user_profile.phone_number = this.tenantPhone;
+      // 1. Prepare data for userService
+      const userUpdatePayload: any = {
+        name: this.tenantName,
+        email: this.tenantEmail,
+      };
+  
+      if (this.tenantPassword && this.tenantPassword.trim() !== '') {
+        userUpdatePayload.password = this.tenantPassword;
+      }
+  
+      // 2. Prepare data for tenantService
+      const tenantUpdatePayload = {
+        phone_number: this.tenantPhone,
+        social_media_links: this.tenantSocialMedia,
+        occupation: this.tenantOccupation,
+        driver_license_number: this.tenantDriverLicenseNumber,
+        national_id: this.tenantNationalId,
+        passport_number: this.tenantPassportNumber,
+        social_security_number: this.tenantSSSnumber,
+        address: {
+          line_1: this.tenantAddressLine1,
+          line_2: this.tenantAddressLine2,
+          province: this.tenantAddressProvince,
+          country: this.tenantAddressCountry,
+          postal_code: this.tenantAddressPostalCode,
+        }
+      };
+  
+      // 3. Call userService.updateUser updateUserData
+      this.userService.updateUserData(this.profile_id!, userUpdatePayload).subscribe({
+        next: (response) => {
+          console.log('User part updated:', response);
+          this.tenantPassword = ''; // clear password after use
+        },
+        error: (userErr) => {
+          console.error('Error updating user data:', userErr);
+        }
+      });
+
+      // 4. After user update, call tenantService.tenantUpdate
+      this.userService.updateTenantProfile(this.profile_id!, tenantUpdatePayload).subscribe({
+        next: (tenantResponse) => {
+          console.log('Tenant part updated:', tenantResponse);
+        },
+        error: (tenantErr) => {
+          console.error('Error updating tenant data:', tenantErr);
+        }
+      });
     }
   }
+  
 
-  manualPaymentRentModal(): void {
-    if (this.manualPayRentModalInstance) {
-      this.manualPayRentModalInstance.show();
+  sendWarningModal(): void {
+    if (this.sendWarningModalInstance) {
+      this.sendWarningModalInstance.show();
     }
 
     

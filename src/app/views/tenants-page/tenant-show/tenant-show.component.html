@@ -1,4 +1,4 @@
-<section class="content-header">
+<!-- <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
@@ -6,8 +6,8 @@
       </div>
       
     </div>
-  </div><!-- /.container-fluid -->
-</section>
+  </div>
+</section> -->
 
 <!-- Main content -->
 <section class="content">
@@ -56,8 +56,8 @@
                 </ul>
               </li>
             </ul>
-            <button class="btn btn-primary btn-block" (click)="manualPaymentRentModal()">
-              <b>Manual Pay Rent</b>
+            <button class="btn btn-primary btn-block" (click)="sendWarningModal()">
+              <b>Send Warning For Billing</b>
             </button>
             <!-- <a class="btn btn-primary btn-block"><b>Manual Pay Rent</b></a> -->
           </div>
@@ -172,19 +172,94 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" [(ngModel)]="tenantName" name="name" placeholder="Full Name" value="Nina Mcintire">
+                      <input type="text" class="form-control" id="inputName" [(ngModel)]="tenantName" name="name" placeholder="Input Full Name" value="Nina Mcintire">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" [(ngModel)]="tenantEmail" name="email" placeholder="Email" value="nina@example.com">
+                      <input type="email" class="form-control" id="inputEmail" [(ngModel)]="tenantEmail" name="email" placeholder="input  email" value="nina@example.com">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputPhone" class="col-sm-2 col-form-label">Phone</label>
+                    <label for="newPassword" class="col-sm-2 col-form-label">New Password</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantPhone" name="phone_number" placeholder="Phone" value="(555) 123-4567">
+                      <input type="text" class="form-control" id="input new password"  [(ngModel)]="tenantPassword"  name="newPassword" placeholder="Input New Password" value="">
+                    </div>
+                  </div>
+                  <hr><!-- =============================================================================!-->
+                  <div class="form-group row">
+                    <label for="inputPhone" class="col-sm-2 col-form-label">Phone Number</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantPhone" name="phone_number" placeholder="Phone" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantSocialMedia" class="col-sm-2 col-form-label">Social Media</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantSocialMedia" [(ngModel)]="tenantSocialMedia" name="tenantSocialMedia" placeholder="Phone" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantOccupation" class="col-sm-2 col-form-label">Occupation</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantOccupation" name="tenantOccupation" placeholder="Input Occupation" value="">
+                    </div>
+                  </div>
+                  <hr><!-- =============================================================================!-->
+                  <div class="form-group row">
+                    <label for="tenantDriverLicenseNumber" class="col-sm-2 col-form-label">Driver License Number</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantDriverLicenseNumber" [(ngModel)]="tenantDriverLicenseNumber" name="tenantDriverLicenseNumber" placeholder="Input new driver's license number" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantNationalId" class="col-sm-2 col-form-label">National Id</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantNationalId" name="tenantNationalId" placeholder="Input National Id" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantPassportNumber" class="col-sm-2 col-form-label">Passport Number</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantPassportNumber" name="tenantPassportNumber" placeholder="Input Passport Number" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantSSSnumber" class="col-sm-2 col-form-label">Social Security System Number</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantSSSnumber" [(ngModel)]="tenantSSSnumber" name="tenantSSSnumber" placeholder="Input Passport" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <hr><!-- =============================================================================!-->
+                  <div class="form-group row">
+                    <label for="tenantAdreessLine1" class="col-sm-2 col-form-label">Line 1</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantAdreessLine1" [(ngModel)]="tenantAddressLine1" name="tenantAdreessLine1" placeholder="Input Address Line 1" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantAdreessLine2" class="col-sm-2 col-form-label">Line 2</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantAdreessLine2" [(ngModel)]="tenantAddressLine2" name="tenantAdreessLine2" placeholder="Input Address Line 2" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantAddressProvince" class="col-sm-2 col-form-label">Province</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPhone" [(ngModel)]="tenantAddressProvince" name="Input Address Province" placeholder="Input Address Province" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantAddressCountry" class="col-sm-2 col-form-label">Country</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantAddressCountry" [(ngModel)]="tenantAddressCountry" name="tenantAddressCountry" placeholder="Input Address Coutnry" value="(555) 123-4567">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="tenantAddressPostalCode" class="col-sm-2 col-form-label">Postal Code</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="tenantAddressPostalCode" [(ngModel)]="tenantAddressPostalCode" name="tenantAddressPostalCode" placeholder="Input Address Postal Code" value="(555) 123-4567">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -207,13 +282,13 @@
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-<div #manualPayRentModal class="modal fade" id="manualPayRentModal" tabindex="-1" aria-labelledby="manualPayRentModalLabel"
+<div #sendModalChild class="modal fade" id="sendWarningModal" tabindex="-1" aria-labelledby="sendWarningModalLabel"
   aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="manualPayRentModalLabel">Manual Pay Rent</h5>
+        <h5 class="modal-title" id="sendWarningModalLabel">Send Warning</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

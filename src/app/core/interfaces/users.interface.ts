@@ -20,6 +20,7 @@ export interface UserProfile {
   profile_picture_url?: string;
   phone_number: string;
   occupation: string;
+  social_media_links: string;
   driver_license_number: string;
   national_id?: string;
   passport_number?: string;
@@ -39,3 +40,10 @@ export interface UserProfile {
     };
   }
   
+  export interface UserProfileResponse {
+    success: boolean;  // should be boolean not number
+    message: string;
+    data: {
+      userProfile: UserProfile[];
+    };
+  }
