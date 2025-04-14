@@ -39,7 +39,7 @@ export class RoomTenantComponent {
   loadRoomTenant(room_id: number): void {
     console.log('Fetching tenant for room_id:', room_id);
   
-    this.loading = true; // show loader
+    this.loading = true;
   
     // Manually trigger change detection to ensure loader is shown
     this.cdRef.detectChanges();
@@ -48,26 +48,30 @@ export class RoomTenantComponent {
       next: (response: TenantResponse) => {
         console.log('API Response:', response);
   
-        if (response.success && response.data.tenant && Array.isArray(response.data.tenant) && response.data.tenant.length > 0) {
-          this.tenant = response.data.tenant;
+        const tenantData = response.data.tenant;
+  
+        if (response.success && tenantData) {
+          this.tenant = Array.isArray(tenantData) ? tenantData : [tenantData];
           this.selectedTenant = this.tenant[0];
           this.noTenantFound = false;
+  
           console.log('Tenant List:', this.tenant);
         } else {
           this.tenant = [];
           this.noTenantFound = true;
         }
   
-        this.loading = false; // hide loader
-        this.cdRef.detectChanges(); // Ensure the loader hides after the response
+        this.loading = false;
+        this.cdRef.detectChanges();
       },
+  
       error: (error) => {
         console.error('API Error:', error);
         this.tenant = [];
         this.noTenantFound = true;
         this.errorMessage = 'Failed to load tenant details';
-        this.loading = false; // hide loader
-        this.cdRef.detectChanges(); // Ensure the loader hides after the error
+        this.loading = false;
+        this.cdRef.detectChanges();
       },
     });
   }

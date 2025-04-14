@@ -17,6 +17,12 @@ export interface RentalAgreement {
     reservation: Reservation;
     next_billing_month?: string;
     latest_billing?: LatestBilling;
+    pivot?: Pivot;
+  }
+
+  export interface Pivot {
+    tenant_id: number,
+    rental_agreement_id: number,
   }
   
   

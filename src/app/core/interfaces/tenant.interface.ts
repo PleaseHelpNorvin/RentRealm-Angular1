@@ -17,6 +17,7 @@ export interface Tenant {
   created_at: string;
   updated_at: string;
   rental_agreement?: RentalAgreement;
+  rental_agreements?: RentalAgreement[];
   user_profile?: UserProfile;
 }
 
@@ -30,6 +31,7 @@ export interface Tenant {
       tenants?: Tenant[]; // Optional tenants array
       // latest_billing?: LatestBilling;
       // next_billing_month?: string;
+
       rental_agreements? : RentalAgreement[];
       payment_history?: Billing[];
       notifications?: Notification[];

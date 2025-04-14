@@ -24,11 +24,12 @@
 
                         <hr>
 
-                        <p><strong>Agreement Code:</strong> {{ selectedTenant?.rental_agreement?.agreement_code }}</p>
-                        <p><strong>Person Count:</strong> {{ selectedTenant?.rental_agreement?.person_count }}</p>
-                        <p><strong>Total Amount:</strong> ₱{{ selectedTenant?.rental_agreement?.total_amount }}</p>
-                        <p><strong>Rent Start Date:</strong> {{ selectedTenant?.rental_agreement?.rent_start_date |
-                            date:'longDate' }}</p>
+                        <div *ngFor="let agreement of selectedTenant?.rental_agreements" class="agreement-container">
+                            <div><strong>Agreement Code:</strong> {{ agreement.agreement_code }}</div>
+                            <div><strong>Person Count:</strong> {{ agreement.person_count }}</div>
+                            <div><strong>Total Amount:</strong> {{ agreement.total_amount }}</div>
+                            <div><strong>Rent Start Date:</strong> {{ agreement.rent_start_date | date: 'yyyy MMMM dd' }}</div>
+                        </div>
                         <button class="btn btn-info" (click)="goToViewRoomsPage()">Back
                         </button>
 
