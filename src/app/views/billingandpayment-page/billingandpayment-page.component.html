@@ -1,4 +1,4 @@
-<div class="nav-tab-container">
+<!-- <div class="nav-tab-container">
     <ul class="nav nav-pills justify-content-center gap-3">
         <li class="nav-item">
             <a class="nav-link" [ngClass]="{'active': activeTab === 'billing'}" (click)="goToBilling()">Billing</a>
@@ -12,4 +12,78 @@
 
 <div class="router-container">
     <router-outlet/>
+</div> -->
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row g-2">
+            <!-- First Column -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Billing Information</h4>
+                        <p class="card-category">Manage and view tenant billing details</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Tenant Name</th>
+                                        <th>Property</th>
+                                        <th>Billing Cycle</th>
+                                        <th>Amount Due</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>Apartment A1</td>
+                                        <td>Monthly</td>
+                                        <td class="text-primary">$1,200</td>
+                                        <td>01/01/2024</td>
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                        <td>
+                                           <div class="button-container">
+                                                <button class="btn btn-sm btn-info">
+                                                    <span class="material-icons">visibility</span> View
+                                                </button>
+                                                <button class="btn btn-sm btn-success">
+                                                    <span class="material-icons">payment</span> Pay
+                                                </button>
+                                           </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jane Smith</td>
+                                        <td>Apartment B2</td>
+                                        <td>Monthly</td>
+                                        <td class="text-primary">$1,500</td>
+                                        <td>01/01/2024</td>
+                                        <td><span class="badge badge-success">Paid</span></td>
+                                        <td>
+                                            <div class="button-container">
+                                                <button class="btn btn-sm btn-info">
+                                                    <span class="material-icons">visibility</span> View
+                                                </button>
+                                                <button class="btn btn-sm btn-danger">
+                                                    <span class="material-icons">cancel</span> Refund
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- More billing entries can be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+

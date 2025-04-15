@@ -1,48 +1,57 @@
-<div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title">User Information</h4>  <!-- Changed from Tenant to User -->
-            <p class="card-category">Here is a list of users and their details</p>  <!-- Updated the description -->
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class="text-primary">
-                  <tr>
-                    <th>User ID</th>  <!-- Changed from Tenant ID to User ID -->
-                    <th>Name</th>     <!-- Changed label from Tenant Name to User Name -->
-                    <th>Email</th>    <!-- Added email as a common user field -->
-                    <th>Status</th>   <!-- Changed from Rent Status to User Status -->
-                    <th>Created Date</th>  <!-- Changed from Move-in Date to Created Date -->
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let user of users">  <!-- Changed from tenants to users -->
-                    <td>{{ user.id }}</td>         <!-- Changed from tenant.id to user.id -->
-                    <td>{{ user.name }}</td>       <!-- Changed tenant.move_out_date to user.name -->
-                    <td>{{ user.email }}</td>      <!-- Assuming user.email exists in the Users interface -->
-                    <td>{{ user.role}}</td>     <!-- Changed from tenant.status to user.status -->
-                    <td>{{ user.created_at }}</td> <!-- Assuming user.created_at exists -->
-                    <td>
-                      <button 
-                        class="btn btn-sm btn-primary" 
-                        *ngIf="user.user_profile[0]?.id" 
-                        (click)="viewUser(user.user_profile[0].id)">
-                          <span class="material-icons">visibility</span>
-                      </button>
-                    </td>
-                 
-                  </tr>
-                </tbody>
-              </table>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Responsive Hover Table</h3>
+
+        <div class="card-tools">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+          <thead>
+            <tr>
+              <th>User ID</th>  <!-- Changed from Tenant ID to User ID -->
+              <th>Name</th>     <!-- Changed label from Tenant Name to User Name -->
+              <th>Email</th>    <!-- Added email as a common user field -->
+              <th>Status</th>   <!-- Changed from Rent Status to User Status -->
+              <th>Created Date</th>  <!-- Changed from Move-in Date to Created Date -->
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">  <!-- Changed from tenants to users -->
+              <td>{{ user.id }}</td>         <!-- Changed from tenant.id to user.id -->
+              <td>{{ user.name }}</td>       <!-- Changed tenant.move_out_date to user.name -->
+              <td>{{ user.email }}</td>      <!-- Assuming user.email exists in the Users interface -->
+              <td>{{ user.role}}</td>     <!-- Changed from tenant.status to user.status -->
+              <td>{{ user.created_at }}</td> <!-- Assuming user.created_at exists -->
+              <td>
+                <button 
+                  class="btn btn-sm btn-primary" 
+                  *ngIf="user.user_profile[0]?.id" 
+                  (click)="viewUser(user.user_profile[0].id)">
+                    <span class="material-icons">visibility</span>
+                </button>
+              </td>
+           
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
     </div>
+    <!-- /.card -->
   </div>
 </div>

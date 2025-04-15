@@ -34,12 +34,42 @@
           </a>
         </li>
               
-        <li class="nav-item">
-          <a [routerLink]="'/admin/billingandpayment'" class="nav-link">
-            <i class="nav-icon fas fa-receipt"></i>
-            <p>Billing & Payment</p>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-money-bill"></i>
+            <p>
+              Payment
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="'/admin/billingandpayment'" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Billing List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/admin/payment-history" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Payment History</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/admin/overdue-payments" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Overdue Payments</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/admin/refunds" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Refund Requests</p>
+              </a>
+            </li>
+          </ul>
         </li>
+        
               
         <!-- <li class="nav-item">
           <a [routerLink]="'/admin/contract'" class="nav-link">
@@ -202,3 +232,8 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+
+
+
+
+
