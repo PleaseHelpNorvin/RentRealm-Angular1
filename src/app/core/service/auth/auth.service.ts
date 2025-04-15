@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api'; // Your API base URL
   private tokenKey = 'token';  // Key for storing the token in sessionStorage
-
+  private adminIdKey = 'admin_id';
   constructor(private http: HttpClient, private router: Router) {}
 
   // Check if the user is logged in (based on the token)
@@ -45,10 +45,17 @@ export class AuthService {
     sessionStorage.setItem(this.tokenKey, token);
     console.log('Token saved in sessionStorage:', sessionStorage.getItem(this.tokenKey)); // Debugging log
   }
-
+  saveAdminId(admin_id: string): void {
+    sessionStorage.setItem(this.adminIdKey, admin_id);
+    console.log('Token saved in sessionStorage:', sessionStorage.getItem(this.adminIdKey)); // Debugging log
+  }
   // Get the token
   getToken(): string | null {
     return sessionStorage.getItem(this.tokenKey);
+  }
+  getAdminId(): number | null {
+    const id = sessionStorage.getItem(this.adminIdKey);
+    return id !== null ? parseInt(id, 10) : null;
   }
 
   // Redirect after login

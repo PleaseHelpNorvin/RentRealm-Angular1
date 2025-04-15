@@ -32,7 +32,7 @@ export interface Tenant {
       tenants?: Tenant[]; // Optional tenants array
       // latest_billing?: LatestBilling;
       // next_billing_month?: str? ing;
-      latest_monthly_rent?: Billing[];
+      latest_rent_notice?: Notification[];
       rental_agreements? : RentalAgreement[];
       payment_history?: Billing[];
       notifications?: Notification[];

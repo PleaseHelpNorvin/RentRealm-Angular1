@@ -296,40 +296,51 @@ f
         <div class="form-group row">
           <label class="col-sm-2 col-form-label text-start">Agreement:</label>
           <div class="col-sm-8 ms-auto">
-            <select class="form-select form-select-sm" [(ngModel)]="selectedAgreementId">
+            <select class="form-select" [(ngModel)]="selectedAgreementId" (change)="onAgreementSelect(selectedAgreementId)">
               <option *ngFor="let agreement of rentalAgreements" [value]="agreement.id">
                 {{ agreement.agreement_code }}
               </option>
             </select>
           </div>
         </div>
-
-        <div class="bg-light bg-gradient">
-          <h5>Warning: Overdue Payment 
-          </h5>
-          <p><strong>Tenant:</strong> {{tenant?.user_profile?.user?.name}}</p>
+        
+        <div *ngIf="selectedRentNotice; else noAgreementSelected" class="bg-light bg-gradient">
+          <h5>Warning: Overdue Payment</h5>
+          <p><strong>Tenant:</strong> {{ tenant?.user_profile?.user?.name }}</p>
         
           <h6>Billing Details:</h6>
           <ul>
-            <li><strong>Billing Title:</strong> {{latest_monthly_rent?.billing_title}}</li>
-            <li><strong>Billing Month:</strong> {{latest_monthly_rent?.billing_month | date: 'longDate'}}</li>
-            <li><strong>Total Amount:</strong> {{latest_monthly_rent?.total_amount}}</li>
-            <li><strong>Amount Paid:</strong> {{latest_monthly_rent?.amount_paid}}</li>
-            <li><strong>Remaining Balance:</strong> {{latest_monthly_rent?.remaining_balance}} </li>
+            <li><strong>Billing Title:</strong> {{ selectedRentNotice.notifiable?.billing_title }}</li>
+            <li><strong>Billing Month:</strong> {{ selectedRentNotice.notifiable?.billing_month | date: 'longDate' }}</li>
+            <li><strong>Total Amount:</strong> {{ selectedRentNotice.notifiable?.total_amount }}</li>
+            <li><strong>Amount Paid:</strong> {{ selectedRentNotice.notifiable?.amount_paid }}</li>
+            <li><strong>Remaining Balance:</strong> {{ selectedRentNotice.notifiable?.remaining_balance }}</li>
           </ul>
         
           <h6>Rental Agreement:</h6>
-          <p><strong>Agreement ID:</strong> {{latest_monthly_rent?.billable?.rental_agreement?.agreement_code}}</p>
-          <p><strong>Room Code:</strong> {{latest_monthly_rent?.billable?.rental_agreement?.reservation?.room?.room_code}}</p>
-          <p><strong>Property Name:</strong> {{latest_monthly_rent?.billable?.rental_agreement?.reservation?.room?.property?.name}}</p>
+          <p><strong>Agreement ID:</strong> {{ selectedRentNotice.notifiable?.billable?.rental_agreement?.agreement_code }}</p>
+          <p><strong>Room Code:</strong> {{ selectedRentNotice.notifiable?.billable?.rental_agreement?.reservation?.room?.room_code }}</p>
+          <p><strong>Property Name:</strong> {{ selectedRentNotice.notifiable?.billable?.rental_agreement?.reservation?.room?.property?.name }}</p>
         
-          <p>Warning: Your payment for the billing due on {{latest_monthly_rent?.billing_month | date: 'longDate'}} overdue, Please Make the Payment immadiately to avoid further penalties.
+          <p>
+            Warning: Your payment for the billing due on 
+            <strong>{{ selectedRentNotice.notifiable?.billable?.rental_agreement?.created_at | date: 'longDate' }}</strong>
+            is overdue. Please make the payment immediately to avoid further penalties.
           </p>
         </div>
       </div>
 
+      <ng-template #noAgreementSelected>
+        <div class="alert alert-info mt-3">
+          <strong>No rental agreement selected.</strong> Please choose an agreement from the dropdown above to view the warning details.
+        </div>
+      </ng-template>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-block" >Send</button>
+        <button type="button" class="btn btn-block btn-primary"
+        (click)="sendWarningToTenant(selectedRentNotice?.user_id, selectedRentNotice?.id)">
+        Send
+        </button>      
       </div>
 
     </div>

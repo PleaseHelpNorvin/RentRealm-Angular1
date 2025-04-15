@@ -38,6 +38,7 @@ export class SigninPageComponent {
         if (response && response.data && response.data.token) {
           // On success, save the token and navigate
           this.authService.saveToken(response.data.token); // Access token inside data
+          this.authService.saveAdminId(response.data.user.id);
           console.log('Response:', response);
           this.authService.redirectAfterLogin();
         } else {

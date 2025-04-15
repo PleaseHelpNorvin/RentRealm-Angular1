@@ -9,6 +9,8 @@ import { RentalAgreement } from '../../../core/interfaces/rental_agreement.inter
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { UserService } from '../../../core/service/user/user.service';
+import { Users } from '../../../core/interfaces/users.interface';
+import { AuthService } from '../../../core/service/auth/auth.service';
 
 @Component({
   selector: 'app-tenant-show',
@@ -21,10 +23,10 @@ export class TenantShowComponent {
   sendWarningModalInstance!: Modal;
   @ViewChild('sendModalChild') sendWarningModalElement!: ElementRef;
 
-
+  // adminId: Users;
   tenant?: Tenant;
   rentalAgreements: RentalAgreement[] = [];
-  latest_monthly_rent?: Billing;
+  latestRentNotice?: Notification[];
   paymentHistory: Billing[] = [];
   notifications: Notification[] = [];
 
@@ -49,9 +51,11 @@ export class TenantShowComponent {
 
   // for send warning
   selectedAgreementId = '';
+  selectedRentNotice?: Notification;
+
   
 
-  constructor(private router: Router,private route: ActivatedRoute, private tenantService: TenantService, private userService: UserService) {
+  constructor(private router: Router,private route: ActivatedRoute,private authService: AuthService, private tenantService: TenantService, private userService: UserService) {
     this.route.params.subscribe(params => {
       this.profile_id = params['profile_id'];
     });
@@ -65,8 +69,16 @@ export class TenantShowComponent {
   ngAfterViewInit() {
     if (this.sendWarningModalElement) {
       this.sendWarningModalInstance = new Modal(this.sendWarningModalElement.nativeElement);
+  
+      this.sendWarningModalElement.nativeElement.addEventListener('hidden.bs.modal', () => {
+        this.selectedRentNotice = undefined;
+        this.selectedAgreementId = '';
+
+      });
     }
   }
+
+
 
   LoadTenantByProfileId(): void {
     if (this.profile_id !== null) {
@@ -78,11 +90,11 @@ export class TenantShowComponent {
           this.paymentHistory = response.data.payment_history || [];
           this.notifications = response.data.notifications || [];
           this.rentalAgreements = response.data.rental_agreements || []; 
-          this.latest_monthly_rent = response.data.latest_monthly_rent as Billing;
+          this.latestRentNotice = response.data.latest_rent_notice as Notification[];
 
           console.log('Tenant:', this.tenant);
           console.log('Rental Agreements:', this.rentalAgreements);
-          console.log('Latest Monthly Rent:', this.latest_monthly_rent);
+          console.log('Latest Monthly Rent:', this.latestRentNotice);
 
           console.log('Payment History:', this.paymentHistory);
           console.log('Notifications:', this.notifications);
@@ -115,6 +127,16 @@ export class TenantShowComponent {
       });
     }
   } 
+
+  onAgreementSelect(agreementId: string) {
+    this.selectedAgreementId = agreementId;
+  
+    const agreementIdNumber = Number(agreementId); // Explicit conversion
+  
+    this.selectedRentNotice = this.latestRentNotice?.find(
+      notice => notice.notifiable?.billable?.rental_agreement?.id === agreementIdNumber
+    );
+  }
 
   updateTenantProfile(): void {
     if (this.tenant && this.tenant.user_profile && this.tenant.user_profile.user) {
@@ -174,7 +196,21 @@ export class TenantShowComponent {
     }
   }
 
-  sendWarningToTenant(user_id: number | null): void {
-
+  sendWarningToTenant(user_id: number | null | undefined, notification_id: number | null | undefined): void {
+    const admin_id = this.authService.getAdminId();
+    console.log(`from sendWarningToTenant(): user_id: ${user_id}`);
+    console.log(`from sendWarningToTenant(): notificaiton_id: ${notification_id}`);
+    console.log(`from sendWarningToTenant(): admin_id: ${admin_id}`);
+    this.userService.sendOverdueWarningToTenant(admin_id, user_id, notification_id).subscribe({
+      next: (any) => {
+        this.sendWarningModalInstance.hide();
+        this.selectedAgreementId = '';
+        this.selectedRentNotice = undefined;
+        alert('Warning sent successfully to tenant.');
+      },
+      error: (anyErr) => {
+        console.error('error sending warning to tenant', anyErr);
+      }
+    });
   }
 }

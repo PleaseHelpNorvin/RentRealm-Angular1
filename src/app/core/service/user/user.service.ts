@@ -13,6 +13,27 @@ export class UserService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
+  sendOverdueWarningToTenant(admin_id: number | null | undefined ,user_id: number | null | undefined, notification_id: number | null | undefined): Observable<any> {
+    const token = this.authService.getToken(); // Get token from AuthService
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', // Specify content type
+      'Accept': 'application/json'
+    };
+
+    const payload = {
+      tenant_user_id: user_id, // ← use colon here
+      admin_id:admin_id,
+      notification_id:notification_id,
+    };
+
+    console.log('Payload from sendOverdueWarningToTenant():', payload);
+
+    return this.http.post<any>(`${this.apiUrl}/send-overdue-warning-to-tenant`, payload, {headers}).pipe(
+      catchError(this.handleError)
+    ); 
+  }
+
   getUsersWithProfile(): Observable<UserResponse> {
     const token = this.authService.getToken(); // Get token from AuthService
     const headers = {

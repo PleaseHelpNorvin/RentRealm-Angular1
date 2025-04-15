@@ -1,3 +1,5 @@
+import { Billing } from "./billing.interface";
+
 export interface Notification {
     id: number;
     user_id: number;
@@ -8,4 +10,5 @@ export interface Notification {
     notifiable_id?: number;
     created_at?: string;
     updated_at?: string;
+    notifiable?: Billing;
 }
