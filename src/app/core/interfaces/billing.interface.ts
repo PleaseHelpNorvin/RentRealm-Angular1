@@ -1,5 +1,6 @@
 import { Payment } from "./payment.interface";
 import { RentalAgreement } from "./rental_agreement.interface";
+import { Tenant } from "./tenant.interface";
 
 export interface LatestBilling {
     billing_month: string;
@@ -28,5 +29,8 @@ export interface Billing {
     created_at: string;
     updated_at: string; 
     payments?: Payment[];
-    rental_agreement?: RentalAgreement;
+    rental_agreement?:  RentalAgreement[];
+    // tenant?: Tenant;
+    billable?: Tenant;
 }
+

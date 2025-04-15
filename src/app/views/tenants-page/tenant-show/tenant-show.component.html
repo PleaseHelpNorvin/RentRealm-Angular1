@@ -157,8 +157,8 @@
                     <div class="timeline-item">
                       <h3 class="timeline-header"><a href="#">{{payments.billing_title}}</a></h3>
                       <div class="timeline-body">
-                        {{payments.billing_title}} for {{payments.rental_agreement?.agreement_code}} on {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
-
+                        {{payments.billing_title}} for {{payments.rental_agreement?.[0]?.agreement_code}} on {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
+f
                         <!-- Paid $850 for Rent of Apartment 101. -->
                       </div>
                     </div>
@@ -284,20 +284,52 @@
 <!-- /.content -->
 <div #sendModalChild class="modal fade" id="sendWarningModal" tabindex="-1" aria-labelledby="sendWarningModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog ">
+  <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
         <h5 class="modal-title" id="sendWarningModalLabel">Send Warning</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
+     
       <div class="modal-body">
-      
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-start">Agreement:</label>
+          <div class="col-sm-8 ms-auto">
+            <select class="form-select form-select-sm" [(ngModel)]="selectedAgreementId">
+              <option *ngFor="let agreement of rentalAgreements" [value]="agreement.id">
+                {{ agreement.agreement_code }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="bg-light bg-gradient">
+          <h5>Warning: Overdue Payment 
+          </h5>
+          <p><strong>Tenant:</strong> {{tenant?.user_profile?.user?.name}}</p>
+        
+          <h6>Billing Details:</h6>
+          <ul>
+            <li><strong>Billing Title:</strong> {{latest_monthly_rent?.billing_title}}</li>
+            <li><strong>Billing Month:</strong> {{latest_monthly_rent?.billing_month | date: 'longDate'}}</li>
+            <li><strong>Total Amount:</strong> {{latest_monthly_rent?.total_amount}}</li>
+            <li><strong>Amount Paid:</strong> {{latest_monthly_rent?.amount_paid}}</li>
+            <li><strong>Remaining Balance:</strong> {{latest_monthly_rent?.remaining_balance}} </li>
+          </ul>
+        
+          <h6>Rental Agreement:</h6>
+          <p><strong>Agreement ID:</strong> {{latest_monthly_rent?.billable?.rental_agreement?.agreement_code}}</p>
+          <p><strong>Room Code:</strong> {{latest_monthly_rent?.billable?.rental_agreement?.reservation?.room?.room_code}}</p>
+          <p><strong>Property Name:</strong> {{latest_monthly_rent?.billable?.rental_agreement?.reservation?.room?.property?.name}}</p>
+        
+          <p>Warning: Your payment for the billing due on {{latest_monthly_rent?.billing_month | date: 'longDate'}} overdue, Please Make the Payment immadiately to avoid further penalties.
+          </p>
+        </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-block" >Send</button>
       </div>
 
     </div>

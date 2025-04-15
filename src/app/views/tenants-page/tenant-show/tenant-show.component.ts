@@ -23,7 +23,8 @@ export class TenantShowComponent {
 
 
   tenant?: Tenant;
-  rentalAgreements?: RentalAgreement[] = [];
+  rentalAgreements: RentalAgreement[] = [];
+  latest_monthly_rent?: Billing;
   paymentHistory: Billing[] = [];
   notifications: Notification[] = [];
 
@@ -46,6 +47,8 @@ export class TenantShowComponent {
   tenantAddressCountry: string = '';
   tenantAddressPostalCode: string = '';
 
+  // for send warning
+  selectedAgreementId = '';
   
 
   constructor(private router: Router,private route: ActivatedRoute, private tenantService: TenantService, private userService: UserService) {
@@ -75,8 +78,12 @@ export class TenantShowComponent {
           this.paymentHistory = response.data.payment_history || [];
           this.notifications = response.data.notifications || [];
           this.rentalAgreements = response.data.rental_agreements || []; 
+          this.latest_monthly_rent = response.data.latest_monthly_rent as Billing;
+
           console.log('Tenant:', this.tenant);
           console.log('Rental Agreements:', this.rentalAgreements);
+          console.log('Latest Monthly Rent:', this.latest_monthly_rent);
+
           console.log('Payment History:', this.paymentHistory);
           console.log('Notifications:', this.notifications);
 
@@ -99,6 +106,8 @@ export class TenantShowComponent {
           this.tenantAddressProvince = this.tenant.user_profile?.address.province || '';
           this.tenantAddressCountry = this.tenant.user_profile?.address.country || '';
           this.tenantAddressPostalCode = this.tenant.user_profile?.address.postal_code || '';
+
+          
         },
         error: (err) => {
           console.error('Error fetching tenant:', err);
@@ -137,18 +146,16 @@ export class TenantShowComponent {
         }
       };
   
-      // 3. Call userService.updateUser updateUserData
       this.userService.updateUserData(this.profile_id!, userUpdatePayload).subscribe({
         next: (response) => {
           console.log('User part updated:', response);
-          this.tenantPassword = ''; // clear password after use
+          this.tenantPassword = ''; 
         },
         error: (userErr) => {
           console.error('Error updating user data:', userErr);
         }
       });
 
-      // 4. After user update, call tenantService.tenantUpdate
       this.userService.updateTenantProfile(this.profile_id!, tenantUpdatePayload).subscribe({
         next: (tenantResponse) => {
           console.log('Tenant part updated:', tenantResponse);
@@ -165,8 +172,9 @@ export class TenantShowComponent {
     if (this.sendWarningModalInstance) {
       this.sendWarningModalInstance.show();
     }
+  }
 
-    
+  sendWarningToTenant(user_id: number | null): void {
 
   }
 }

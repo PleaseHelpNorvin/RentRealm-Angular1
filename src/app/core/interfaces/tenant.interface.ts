@@ -27,11 +27,12 @@ export interface Tenant {
     success: boolean;  // should be boolean not number
     message: string;
     data: {
+      // latest_monthly_rent: Billing;
       tenant?: Tenant | Tenant[]; // Optional tenants array
       tenants?: Tenant[]; // Optional tenants array
       // latest_billing?: LatestBilling;
-      // next_billing_month?: string;
-
+      // next_billing_month?: str? ing;
+      latest_monthly_rent?: Billing[];
       rental_agreements? : RentalAgreement[];
       payment_history?: Billing[];
       notifications?: Notification[];
