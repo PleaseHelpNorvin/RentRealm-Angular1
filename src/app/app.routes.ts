@@ -20,7 +20,7 @@ import { ContractAcceptedComponent } from './views/contract-page/contract-accept
 import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
 import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
 import { TenantShowComponent } from './views/tenants-page/tenant-show/tenant-show.component';
-
+import { ReservationsComponent } from './views/reservations/reservations.component';
 import { MapPageComponent } from './views/map-page/map-page.component';
 import { RoomTenantComponent } from './views/room-page/room-tenant/room-tenant.component';
 
@@ -76,7 +76,12 @@ export const routes: Routes = [
         component: TenantShowComponent 
       },
       
-
+      {
+        path: 'Reservations',
+        component: ReservationsComponent 
+      },
+      
+ 
 
       {
         path: 'billingandpayment',
