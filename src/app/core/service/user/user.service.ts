@@ -84,7 +84,7 @@ export class UserService {
   /**
    * Update an existing user's details
    */
-  updateTenantProfile(id: number, tenantUpdatePayload: any): Observable<UserProfileResponse> {
+  updateTenantProfile(tenant_id: number, tenantUpdatePayload: any): Observable<UserProfileResponse> {
     const token = this.authService.getToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -92,22 +92,23 @@ export class UserService {
       'Accept': 'application/json'
     };
 
-    return this.http.put<UserProfileResponse>(`${this.apiUrl}/update/${id}`, tenantUpdatePayload, { headers }).pipe(
+    return this.http.put<UserProfileResponse>(`${this.apiUrl}/update-tenant-profile/${tenant_id}`, tenantUpdatePayload, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateUserData(id: number, userUpdatePayload: any): Observable<UserResponse> {
+  updateUserData(user_id: number, userUpdatePayload: any): Observable<UserResponse> {
     const token = this.authService.getToken();
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json', // Content type for sending data
       'Accept': 'application/json'
     };
-    return this.http.put<UserResponse>(`${this.apiUrl}/users/${id}`, userUpdatePayload, {headers}).pipe(
+    return this.http.put<UserResponse>(`${this.apiUrl}/update-user-data/${user_id}`, userUpdatePayload, {headers}).pipe(
       catchError(this.handleError)
     );
   }
+  
   /**
    * Delete a user
    */

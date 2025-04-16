@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { UserService } from '../../../core/service/user/user.service';
 import { AuthService } from '../../../core/service/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tenant-show',
@@ -54,7 +55,8 @@ export class TenantShowComponent {
 
   
 
-  constructor(private router: Router,private route: ActivatedRoute,private authService: AuthService, private tenantService: TenantService, private userService: UserService) {
+  constructor(private router: Router,private route: ActivatedRoute,  private snackBar: MatSnackBar,
+    private authService: AuthService, private tenantService: TenantService, private userService: UserService) {
     this.route.params.subscribe(params => {
       this.profile_id = params['profile_id'];
     });
@@ -143,7 +145,7 @@ export class TenantShowComponent {
 
   updateTenantProfile(): void {
     if (this.tenant && this.tenant.user_profile && this.tenant.user_profile.user) {
-      // 1. Prepare data for userService
+      
       const userUpdatePayload: any = {
         name: this.tenantName,
         email: this.tenantEmail,
@@ -153,7 +155,6 @@ export class TenantShowComponent {
         userUpdatePayload.password = this.tenantPassword;
       }
   
-      // 2. Prepare data for tenantService
       const tenantUpdatePayload = {
         phone_number: this.tenantPhone,
         social_media_links: this.tenantSocialMedia,
@@ -171,28 +172,38 @@ export class TenantShowComponent {
         }
       };
   
-      this.userService.updateUserData(this.profile_id!, userUpdatePayload).subscribe({
-        next: (response) => {
-          console.log('User part updated:', response);
-          this.tenantPassword = ''; 
-        },
-        error: (userErr) => {
-          console.error('Error updating user data:', userErr);
-        }
-      });
-
-      this.userService.updateTenantProfile(this.profile_id!, tenantUpdatePayload).subscribe({
-        next: (tenantResponse) => {
-          console.log('Tenant part updated:', tenantResponse);
-        },
-        error: (tenantErr) => {
-          console.error('Error updating tenant data:', tenantErr);
-        }
-      });
+      const userConfirmed = window.confirm('Are you sure you want to update the tenant profile?');
+      
+      if (userConfirmed) {
+        console.log('tenant update userUpdatePayload', userUpdatePayload);
+        console.log('tenant update payload', tenantUpdatePayload);
+        
+        this.userService.updateUserData(this.tenant.user_profile.user.id, userUpdatePayload).subscribe({
+          next: (response) => {
+            console.log('User part updated:', response);
+            this.tenantPassword = ''; 
+          },
+          error: (userErr) => {
+            console.error('Error updating user data:', userErr);
+          }
+        });
+  
+        this.userService.updateTenantProfile(this.tenant.id, tenantUpdatePayload).subscribe({
+          next: (tenantResponse) => {
+            console.log('Tenant part updated:', tenantResponse);
+            this.snackBar.open('Tenant profile successfully updated!', 'Close', {
+              duration: 3000,
+              panelClass: ['snackbar-success']
+            });
+          },
+          error: (tenantErr) => {
+            console.error('Error updating tenant data:', tenantErr);
+          }
+        });
+      }
     }
   }
-  
-
+    
   sendWarningModal(): void {
     if (this.sendWarningModalInstance) {
       this.sendWarningModalInstance.show();
