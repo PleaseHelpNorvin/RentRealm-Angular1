@@ -26,7 +26,7 @@ export class TenantShowComponent {
   // adminId: Users;
   tenant?: Tenant;
   rentalAgreements: RentalAgreement[] = [];
-  latestRentNotice?: Notification[];
+  latestRentNotice: Notification[] = [];
   paymentHistory: Billing[] = [];
   notifications: Notification[] = [];
 
@@ -50,7 +50,7 @@ export class TenantShowComponent {
   tenantAddressPostalCode: string = '';
 
   // for send warning
-  selectedAgreementId = '';
+  selectedRentNoticeId = '';
   selectedRentNotice?: Notification;
 
   
@@ -72,7 +72,7 @@ export class TenantShowComponent {
   
       this.sendWarningModalElement.nativeElement.addEventListener('hidden.bs.modal', () => {
         this.selectedRentNotice = undefined;
-        this.selectedAgreementId = '';
+        this.selectedRentNoticeId = '';
 
       });
     }
@@ -127,10 +127,14 @@ export class TenantShowComponent {
       });
     }
   } 
+  trackByAgreementId(index: number, agreement: any): number {
+    console.log(`tract by agreement id ${agreement}`);
+    return agreement?.notifiable?.billable?.rental_agreement?.id;
+  }
 
   onAgreementSelect(agreementId: string) {
-    this.selectedAgreementId = agreementId;
-  
+    this.selectedRentNoticeId = agreementId;
+    console.log(`from on agreement select agreementId ${agreementId}`);
     const agreementIdNumber = Number(agreementId); // Explicit conversion
   
     this.selectedRentNotice = this.latestRentNotice?.find(
@@ -204,7 +208,7 @@ export class TenantShowComponent {
     this.userService.sendOverdueWarningToTenant(admin_id, user_id, notification_id).subscribe({
       next: (any) => {
         this.sendWarningModalInstance.hide();
-        this.selectedAgreementId = '';
+        this.selectedRentNoticeId = '';
         this.selectedRentNotice = undefined;
         alert('Warning sent successfully to tenant.');
       },

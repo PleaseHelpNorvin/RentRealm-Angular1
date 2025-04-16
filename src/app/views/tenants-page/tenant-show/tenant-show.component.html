@@ -296,11 +296,18 @@ f
         <div class="form-group row">
           <label class="col-sm-2 col-form-label text-start">Agreement:</label>
           <div class="col-sm-8 ms-auto">
-            <select class="form-select" [(ngModel)]="selectedAgreementId" (change)="onAgreementSelect(selectedAgreementId)">
-              <option *ngFor="let agreement of rentalAgreements" [value]="agreement.id">
-                {{ agreement.agreement_code }}
-              </option>
-            </select>
+            <ng-container *ngIf="latestRentNotice.length > 0; else noNotice">
+              <select class="form-select" [(ngModel)]="selectedRentNoticeId" (change)="onAgreementSelect(selectedRentNoticeId)">
+                <option *ngFor="let agreement of latestRentNotice; trackBy: trackByAgreementId"
+                        [value]="agreement.notifiable?.billable?.rental_agreement?.id">
+                  {{ agreement.notifiable?.billable?.rental_agreement?.agreement_code }}
+                </option>
+              </select>
+            </ng-container>
+              <!-- <div *ngIf="selectedRentNotice; else noAgreementSelected" class="bg-light bg-gradient"> -->
+            <ng-template #noNotice>
+              <div class="text-muted fst-italic">No overdue rent notice found for this tenant.</div>
+            </ng-template>
           </div>
         </div>
         
