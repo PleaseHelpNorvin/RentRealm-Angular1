@@ -51,7 +51,7 @@ export class TenantsPageComponent implements OnInit {
   }
 
   // Method to navigate to a specific user's detail page
-  viewUser(profile_id: number): void {
+  viewUser(profile_id: number | undefined): void {
     this.router.navigate([`/admin/tenant/show`, profile_id]);
     console.log(` Navigating to profile_id ${profile_id}`);
   }

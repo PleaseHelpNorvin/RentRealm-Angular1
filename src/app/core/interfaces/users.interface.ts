@@ -10,7 +10,7 @@ export interface Users {
   steps: string;
   created_at: string;
   updated_at: string;
-  user_profile: UserProfile[]; // <-- ARRAY not single object
+  user_profile?: UserProfile[]; // <-- ARRAY not single object
 }
 
 

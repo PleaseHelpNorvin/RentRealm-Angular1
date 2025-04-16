@@ -43,42 +43,53 @@
         </li>
         
               
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview" [class.menu-open]="isBillingSectionActive()">
+          <a class="nav-link" [class.active]="isBillingSectionActive()">
             <i class="nav-icon fas fa-money-bill"></i>
             <p>
               Payment
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+        
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a [routerLink]="'/admin/billingandpayment'" class="nav-link">
+              <a [routerLink]="'/admin/billing'" 
+                 routerLinkActive="active" 
+                 class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Billing List</p>
               </a>
             </li>
+        
             <li class="nav-item">
-              <a routerLink="/admin/payment-history" class="nav-link">
+              <a routerLink="/admin/payments-history" 
+                 routerLinkActive="active" 
+                 class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Payment History</p>
               </a>
             </li>
+        
             <li class="nav-item">
-              <a routerLink="/admin/overdue-payments" class="nav-link">
+              <a routerLink="/admin/overdue-payments" 
+                 routerLinkActive="active" 
+                 class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Overdue Payments</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a routerLink="/admin/refunds" class="nav-link">
+        
+            <!-- <li class="nav-item">
+              <a routerLink="/admin/refunds" 
+                 routerLinkActive="active" 
+                 class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Refund Requests</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
-        
               
         <!-- <li class="nav-item">
           <a [routerLink]="'/admin/contract'" class="nav-link">

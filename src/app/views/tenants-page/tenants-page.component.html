@@ -42,15 +42,15 @@
               <!-- <td>{{ user.id }}</td>          -->
               <td>{{ user.name }}</td>      
               <td>{{ user.email }}</td>      
-              <td>{{ user.user_profile[0]?.occupation }}</td>
+              <td>{{ user.user_profile?.[0]?.occupation }}</td>
               <td>{{ user.role}}</td>  
               <td>{{ user.created_at }}</td>
               
               <td>
                 <button 
                   class="btn btn-sm btn-primary" 
-                  *ngIf="user.user_profile[0]?.id" 
-                  (click)="viewUser(user.user_profile[0].id)">
+                  *ngIf="user.user_profile?.[0]?.id" 
+                  (click)="viewUser(user.user_profile?.[0]?.id)">
                   <span class="material-icons">visibility</span>
               </button>             
              </td>

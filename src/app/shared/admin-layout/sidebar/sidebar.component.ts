@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 export class SidebarComponent {
 
   showInsideSidebar = false; // Sidebar initially hidden
+  constructor(public router: Router) {}  // 👈 Inject Router here
+
 
   toggleInsideSidebar() {
     this.showInsideSidebar = !this.showInsideSidebar; // Toggle visibility
@@ -22,9 +24,12 @@ export class SidebarComponent {
     }else{
       console.log('false')
     }
-    
-
   }
-  
+
+  isBillingSectionActive(): boolean {
+    return this.router.url.startsWith('/admin/billing') ||
+           this.router.url.startsWith('/admin/payments-history') ||
+           this.router.url.startsWith('/admin/overdue-payments');
+  }
 
 }

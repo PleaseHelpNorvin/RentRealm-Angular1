@@ -11,11 +11,11 @@ import { PropertyAddComponent } from './views/property-page/property-add/propert
 import { RoomAddComponent } from './views/room-page/room-add/room-add.component';
 import { RoomEditComponent } from './views/room-page/room-edit/room-edit.component';
 import { TenantsPageComponent } from './views/tenants-page/tenants-page.component';
-import { BillingandpaymentPageComponent } from './views/billingandpayment-page/billingandpayment-page.component';
+// import { BillingandpaymentPageComponent } from './views/billingandpayment-page/billingandpayment-page.component';
 import { MaintenacerequestPageComponent } from './views/maintenacerequest-page/maintenacerequest-page.component';
 import { ContractPageComponent } from './views/contract-page/contract-page.component';
-import { BillingPageComponent } from './views/billingandpayment-page/billing-page/billing-page.component';
-import { PaymentPageComponent } from './views/billingandpayment-page/payment-page/payment-page.component';
+// import { BillingPageComponent } from './views/billingandpayment-page/billing-page/billing-page.component';
+// import { PaymentPageComponent } from './views/billingandpayment-page/payment-page/payment-page.component';
 import { ContractAcceptedComponent } from './views/contract-page/contract-accepted/contract-accepted.component';
 import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
 import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
@@ -23,6 +23,9 @@ import { TenantShowComponent } from './views/tenants-page/tenant-show/tenant-sho
 import { ReservationsComponent } from './views/reservations/reservations.component';
 import { MapPageComponent } from './views/map-page/map-page.component';
 import { RoomTenantComponent } from './views/room-page/room-tenant/room-tenant.component';
+import { BillingPageComponent } from './views/billing-page/billing-page.component';
+import { PaymentsHistoryComponent } from './views/billing-page/payments-history/payments-history.component';
+import { OverduePaymentsComponent } from './views/billing-page/overdue-payments/overdue-payments.component';
 
 export const routes: Routes = [
   {
@@ -80,23 +83,20 @@ export const routes: Routes = [
         path: 'Reservations',
         component: ReservationsComponent 
       },
-      
- 
 
       {
-        path: 'billingandpayment',
-        component: BillingandpaymentPageComponent,
-        children: [
-          {
-            path: 'billing',  
-            component: BillingPageComponent,  
-          },
-          {
-            path: 'payment',  
-            component: PaymentPageComponent, 
-          }
-        ]
+        path: 'billing',
+        component: BillingPageComponent,
       },
+      {
+        path: 'payments-history',  
+        component: PaymentsHistoryComponent,  
+      },
+      {
+        path: 'overdue-payments',  
+        component: OverduePaymentsComponent, 
+      },
+
       {
         path: 'contract',
         component: ContractPageComponent,
