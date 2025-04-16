@@ -1,5 +1,5 @@
 import { Room } from "./room.interface";
-import { Users } from "./users.interface";
+import { UserProfile, Users } from "./users.interface";
 export interface Reservation {
     id: number;
     profile_id: number;
@@ -13,5 +13,14 @@ export interface Reservation {
     created_at: string;
     updated_at: string;
     room: Room;
+    approvedBy?: Users;
+    user_profile: UserProfile;
   }
   
+  export interface ReservationResponse{
+    success: boolean,
+    message: string,
+    data: {
+      reservations: Reservation[];
+    };
+  }

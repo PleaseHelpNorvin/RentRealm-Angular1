@@ -1,0 +1,23 @@
+#pending-tab.active {
+    color: white !important;
+}
+
+#approved-tab.active {
+    color: white !important;
+}
+
+#rejected-tab.active {
+    color: white !important;
+}
+  
+
+#pending-tab:hover {
+    color: orange;
+}
+#approved-tab:hover {
+    color: green;
+}
+#rejected-tab:hover {
+    color: red;
+}
+  

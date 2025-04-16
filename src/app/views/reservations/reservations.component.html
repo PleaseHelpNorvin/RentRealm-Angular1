@@ -1,55 +1,173 @@
-<table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th>#</th>
-        <th>Tenant Name</th>
-        <th>Apartment</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Status</th>
-        <th>Payment Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>John Doe</td>
-        <td>Apt 302</td>
-        <td>2025-05-01</td>
-        <td>2025-05-10</td>
-        <td><span class="badge bg-warning text-dark">Pending</span></td>
-        <td><span class="badge bg-success">Paid</span></td>
-        <td>
-          <button class="btn btn-sm btn-primary">View</button>
-          <button class="btn btn-sm btn-success">Approve</button>
-          <button class="btn btn-sm btn-danger">Decline</button>
-        </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jane Smith</td>
-        <td>Apt 101</td>
-        <td>2025-04-20</td>
-        <td>2025-04-25</td>
-        <td><span class="badge bg-success">Confirmed</span></td>
-        <td><span class="badge bg-success">Paid</span></td>
-        <td>
-          <button class="btn btn-sm btn-primary">View</button>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Mike Johnson</td>
-        <td>Apt 208</td>
-        <td>2025-04-28</td>
-        <td>2025-05-03</td>
-        <td><span class="badge bg-danger">Declined</span></td>
-        <td><span class="badge bg-secondary">Unpaid</span></td>
-        <td>
-          <button class="btn btn-sm btn-primary">View</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <!-- Tab Navigation -->
+          <div class="card-header p-2">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link" href="#pending" data-toggle="tab" id="pending-tab">Pending Reservations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#approved" data-toggle="tab" id="approved-tab">Approved Reservations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#rejected" data-toggle="tab" id="rejected-tab">Rejected Reservations</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Tab Content -->
+          <div class="card-body">
+            <div class="tab-content">
+
+              <!-- Pending Tab -->
+              <div class="tab-pane fade show active" id="pending">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tenant Name</th>
+                        <th>Apartment</th>
+                        <th>Reserved At</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let reservation of pendingReservations">
+                        <td>{{reservation.reservation_code}}</td>
+                        <td>{{reservation.user_profile.user?.name}}</td>
+                        <td>{{reservation.room.property?.name}} - {{reservation.room.room_code}}</td>
+                        <td>{{reservation.created_at | date: 'longDate'}}</td>
+                        <!-- <td>{{reservation.approval_date | date: 'longDate'}}</td> -->
+                        <td>
+                          <span 
+                            class="badge"
+                            [ngClass]="{
+                              'bg-success': reservation.status === 'approved',
+                              'bg-warning text-dark': reservation.status === 'pending',
+                              'bg-danger': reservation.status === 'rejected'
+                            }">
+                            {{ reservation.status }}
+                          </span>
+                        </td>
+                        <td>
+                          <button class="btn btn-sm btn-info me-1" (click)="openModal(reservation.id)">View</button>
+                          <button class="btn btn-sm btn-success me-1" (click)="approveReservation(reservation.id)">Approve</button>
+                          <button class="btn btn-sm btn-danger" (click)="rejectReservation(reservation.id)">Decline</button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="pendingReservations.length === 0">
+                        <td colspan="6" class="text-center">No Pending reservations yet.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Approved Tab -->
+              <div class="tab-pane fade" id="approved">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tenant Name</th>
+                        <th>Apartment</th>
+                        <th>Approved By</th>
+                        <th>Approved Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let reservation of approvedReservations">
+                        <td>{{reservation.reservation_code}}</td>
+                        <td>{{reservation.user_profile.user?.name}}</td>
+                        <td>{{reservation.room.property?.name}} - {{reservation.room.room_code}}</td>
+                        <td>{{reservation.approvedBy?.name}}</td>
+                        <td>{{reservation.approval_date | date: 'longDate'}}</td>
+                        <td>
+                          <span 
+                            class="badge"
+                            [ngClass]="{
+                              'bg-success': reservation.status === 'approved',
+                              'bg-warning text-dark': reservation.status === 'pending',
+                              'bg-danger': reservation.status === 'rejected'
+                            }">
+                            {{ reservation.status }}
+                          </span>
+                        </td>                <td>
+                          <button class="btn btn-info" (click)="openModal(reservation.id)">View</button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="approvedReservations.length === 0">
+                        <td colspan="6" class="text-center">No Approved reservations yet.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+              <div class="tab-pane fade" id="rejected">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tenant Name</th>
+                        <th>Apartment</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let reservation of rejectedReservations">
+                        <td>{{reservation.reservation_code}}</td>
+                        <td>{{reservation.user_profile.user?.name}}</td>
+                        <td>{{reservation.room.property?.name}} - {{reservation.room.room_code}}</td>
+                        <td>
+                          <span 
+                            class="badge"
+                            [ngClass]="{
+                              'bg-success': reservation.status === 'approved',
+                              'bg-warning text-dark': reservation.status === 'pending',
+                              'bg-danger': reservation.status === 'rejected'
+                            }">
+                            {{ reservation.status }}
+                          </span>
+                        </td>                <td>
+                          <button class="btn btn-info" (click)="openModal(reservation.id)">View</button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="rejectedReservations.length === 0">
+                        <td colspan="6" class="text-center">No Rejected reservations yet.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div #modalTrigger class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reservationModalLabel">Reservation Payment Receipt Proof</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img *ngIf="selectedReservation?.reservation_payment_proof_url" [src]="selectedReservation?.reservation_payment_proof_url" alt="Payment Proof" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>

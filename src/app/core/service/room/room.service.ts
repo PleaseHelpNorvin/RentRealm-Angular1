@@ -106,7 +106,7 @@ export class RoomService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.error(errorMessage);
-    return throwError(errorMessage); // Return an observable with the error message
+    return throwError(errorMessage);
   }
 
 

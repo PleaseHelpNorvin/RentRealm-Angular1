@@ -158,7 +158,6 @@
                       <h3 class="timeline-header"><a href="#">{{payments.billing_title}}</a></h3>
                       <div class="timeline-body">
                         {{payments.billing_title}} for {{payments.rental_agreement?.[0]?.agreement_code}} on {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
-f
                         <!-- Paid $850 for Rent of Apartment 101. -->
                       </div>
                     </div>
@@ -306,7 +305,7 @@ f
             </ng-container>
               <!-- <div *ngIf="selectedRentNotice; else noAgreementSelected" class="bg-light bg-gradient"> -->
             <ng-template #noNotice>
-              <div class="text-muted fst-italic">No overdue rent notice found for this tenant.</div>
+              <div class="text-muted fst-italic">No overdue rent notice found for this.</div>
             </ng-template>
           </div>
         </div>

@@ -9,7 +9,6 @@ import { RentalAgreement } from '../../../core/interfaces/rental_agreement.inter
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { UserService } from '../../../core/service/user/user.service';
-import { Users } from '../../../core/interfaces/users.interface';
 import { AuthService } from '../../../core/service/auth/auth.service';
 
 @Component({
