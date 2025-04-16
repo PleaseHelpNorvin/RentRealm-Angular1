@@ -182,6 +182,7 @@ export class TenantShowComponent {
           next: (response) => {
             console.log('User part updated:', response);
             this.tenantPassword = ''; 
+            this.LoadTenantByProfileId()
           },
           error: (userErr) => {
             console.error('Error updating user data:', userErr);

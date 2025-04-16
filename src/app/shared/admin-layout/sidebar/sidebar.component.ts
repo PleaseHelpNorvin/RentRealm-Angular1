@@ -29,7 +29,7 @@ export class SidebarComponent {
   isBillingSectionActive(): boolean {
     return this.router.url.startsWith('/admin/billing') ||
            this.router.url.startsWith('/admin/payments-history') ||
-           this.router.url.startsWith('/admin/overdue-payments');
+           this.router.url.startsWith('/admin/overdue-billings');
   }
 
 }

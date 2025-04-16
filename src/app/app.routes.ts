@@ -26,6 +26,7 @@ import { RoomTenantComponent } from './views/room-page/room-tenant/room-tenant.c
 import { BillingPageComponent } from './views/billing-page/billing-page.component';
 import { PaymentsHistoryComponent } from './views/billing-page/payments-history/payments-history.component';
 import { OverduePaymentsComponent } from './views/billing-page/overdue-payments/overdue-payments.component';
+import { OverdueBillingsComponent } from './views/billing-page/overdue-billings/overdue-billings.component';
 
 export const routes: Routes = [
   {
@@ -87,6 +88,10 @@ export const routes: Routes = [
       {
         path: 'billing',
         component: BillingPageComponent,
+      },
+      {
+        path: 'overdue-billings',  
+        component: OverdueBillingsComponent,  
       },
       {
         path: 'payments-history',  

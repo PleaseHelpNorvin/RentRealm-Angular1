@@ -47,7 +47,7 @@
           <a class="nav-link" [class.active]="isBillingSectionActive()">
             <i class="nav-icon fas fa-money-bill"></i>
             <p>
-              Payment
+              Payments
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -61,6 +61,15 @@
                 <p>Billing List</p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a routerLink="/admin/overdue-billings" 
+                 routerLinkActive="active" 
+                 class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Overdue Billings</p>
+              </a>
+            </li>
         
             <li class="nav-item">
               <a routerLink="/admin/payments-history" 
@@ -70,15 +79,7 @@
                 <p>Payment History</p>
               </a>
             </li>
-        
-            <li class="nav-item">
-              <a routerLink="/admin/overdue-payments" 
-                 routerLinkActive="active" 
-                 class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Overdue Payments</p>
-              </a>
-            </li>
+      
         
             <!-- <li class="nav-item">
               <a routerLink="/admin/refunds" 
