@@ -1,1 +1,26 @@
-<p>overdue-billings works!</p>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Tenant Name</th>
+        <th>Property</th>
+        <th>Due Date</th>
+        <th>Amount Due</th>
+        <th>Days Overdue</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bill of overdueList">
+        <td>{{ bill.tenantName }}</td>
+        <td>{{ bill.property }}</td>
+        <td>{{ bill.dueDate }}</td>
+        <td>${{ bill.amount }}</td>
+        <td>{{ bill.daysOverdue }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm">Remind</button>
+          <button class="btn btn-danger btn-sm">Penalty</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
