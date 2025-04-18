@@ -25,7 +25,6 @@ import { MapPageComponent } from './views/map-page/map-page.component';
 import { RoomTenantComponent } from './views/room-page/room-tenant/room-tenant.component';
 import { BillingPageComponent } from './views/billing-page/billing-page.component';
 import { PaymentsHistoryComponent } from './views/billing-page/payments-history/payments-history.component';
-import { OverduePaymentsComponent } from './views/billing-page/overdue-payments/overdue-payments.component';
 import { OverdueBillingsComponent } from './views/billing-page/overdue-billings/overdue-billings.component';
 
 export const routes: Routes = [
@@ -97,11 +96,6 @@ export const routes: Routes = [
         path: 'payments-history',  
         component: PaymentsHistoryComponent,  
       },
-      {
-        path: 'overdue-payments',  
-        component: OverduePaymentsComponent, 
-      },
-
       {
         path: 'contract',
         component: ContractPageComponent,

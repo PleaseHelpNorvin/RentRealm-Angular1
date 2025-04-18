@@ -1,3 +1,6 @@
+import { Billing } from "./billing.interface";
+import { RentalAgreement } from "./rental_agreement.interface";
+
 export interface Payment {
     id: number;
     billing_id: number;
@@ -11,4 +14,14 @@ export interface Payment {
     status: String;
     created_at: string;
     updated_at: string; 
+    payable?: RentalAgreement; 
+    billing?: Billing;
+}
+
+export interface PaymentResponse {
+    success: boolean;
+    message: string;
+    data: {
+        payments: Payment[];
+    }
 }

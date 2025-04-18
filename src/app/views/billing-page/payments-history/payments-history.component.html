@@ -6,11 +6,28 @@
         <th>Payment Date</th>
         <th>Amount Paid</th>
         <th>Payment Method</th>
-        <th>Receipt</th>
+        <th>ref no</th>
       </tr>
     </thead>
     <tbody>
-     
+      <tr *ngFor="let payment of payments">
+        <td> {{payment.billing?.user_profile?.user?.name}}</td>
+        <td>{{payment.payable?.reservation?.room?.property?.name}} - {{payment.payable?.reservation?.room?.room_code}}</td>
+        <td>{{payment.created_at | date: 'longDate'}}</td>
+        <td>{{payment.amount_paid}}</td>
+        <td>{{payment.payment_method}}</td>
+        <td>
+          <i
+            class="fa"
+            [ngClass]="showPaymentReference ? 'fa-eye-slash' : 'fa-eye'"
+            (click)="toggleReferenceVisibility()"
+            style="cursor: pointer; margin-left: 8px; color: #007bff;"
+            title="Toggle visibility"
+          ></i>
+          <span *ngIf="showPaymentReference">{{ payment.paymongo_payment_reference }}</span>
+          <span *ngIf="!showPaymentReference">••••••••••••••••</span>
+        </td>
+      </tr>
     </tbody>
   </table>
   

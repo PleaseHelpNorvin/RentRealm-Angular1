@@ -157,7 +157,7 @@
                     <div class="timeline-item">
                       <h3 class="timeline-header"><a href="#">{{payments.billing_title}}</a></h3>
                       <div class="timeline-body">
-                        {{payments.billing_title}} for {{payments.rental_agreement?.[0]?.agreement_code}} on {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
+                        {{payments.billing_title}} for {{payments.rental_agreements?.[0]?.agreement_code}} on {{ payments.billing_month | date: 'MMMM yyyy' }} amounting to ₱{{payments.total_amount}} was successfully paid via {{ payments.payments?.[0]?.payment_method || 'N/A' }} on {{payments.payments?.[0]?.created_at | date: 'MMMM yyyy dd'}}
                         <!-- Paid $850 for Rent of Apartment 101. -->
                       </div>
                     </div>
@@ -343,10 +343,13 @@
       </ng-template>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-block btn-primary"
+        <button 
+        type="button" 
+        class="btn btn-block btn-primary"
+        [disabled]="!selectedRentNotice"
         (click)="sendWarningToTenant(selectedRentNotice?.user_id, selectedRentNotice?.id)">
         Send
-        </button>      
+      </button>
       </div>
 
     </div>
