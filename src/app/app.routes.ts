@@ -16,9 +16,9 @@ import { MaintenacerequestPageComponent } from './views/maintenacerequest-page/m
 import { ContractPageComponent } from './views/contract-page/contract-page.component';
 // import { BillingPageComponent } from './views/billingandpayment-page/billing-page/billing-page.component';
 // import { PaymentPageComponent } from './views/billingandpayment-page/payment-page/payment-page.component';
-import { ContractAcceptedComponent } from './views/contract-page/contract-accepted/contract-accepted.component';
-import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
-import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
+// import { ContractAcceptedComponent } from './views/contract-page/contract-accepted/contract-accepted.component';
+// import { ContractRejectedComponent } from './views/contract-page/contract-rejected/contract-rejected.component';
+// import { ContractPendingComponent } from './views/contract-page/contract-pending/contract-pending.component';
 import { TenantShowComponent } from './views/tenants-page/tenant-show/tenant-show.component';
 import { ReservationsComponent } from './views/reservations/reservations.component';
 import { MapPageComponent } from './views/map-page/map-page.component';
@@ -99,27 +99,11 @@ export const routes: Routes = [
       {
         path: 'contract',
         component: ContractPageComponent,
-        children: [
-          {
-            path: 'contract-pending',
-            component: ContractPendingComponent,
-          },
-          {
-            path: 'contract-accepted',
-            component: ContractAcceptedComponent,
-          },
-          {
-            path: 'contract-rejected',
-            component: ContractRejectedComponent,
-          },
-        ],
       },
-      
       {
         path: 'maintenacerequest',
         component: MaintenacerequestPageComponent
       },
-      
       {
         path: 'map',
         component: MapPageComponent
