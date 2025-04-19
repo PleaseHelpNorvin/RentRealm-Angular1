@@ -1,5 +1,7 @@
 import { LatestBilling } from './billing.interface';
 import { Reservation } from './reservation.interface';
+import { Tenant } from './tenant.interface';
+import { UserProfile } from './users.interface';
 export interface RentalAgreement {
     id: number;
     reservation_id: number;
@@ -18,6 +20,7 @@ export interface RentalAgreement {
     next_billing_month?: string;
     latest_billing?: LatestBilling;
     pivot?: Pivot;
+    pivot_tenants?: Tenant[];
   }
 
   export interface Pivot {
@@ -25,4 +28,14 @@ export interface RentalAgreement {
     rental_agreement_id: number,
   }
   
+ 
+
+  export interface RentalAgreementResponse {
+    success: boolean;
+    message: string;
+    data: {
+      rental_agreements?: RentalAgreement[];
+      pdf_url?: string;
+    }
+  }
   
