@@ -26,6 +26,7 @@ import { RoomTenantComponent } from './views/room-page/room-tenant/room-tenant.c
 import { BillingPageComponent } from './views/billing-page/billing-page.component';
 import { PaymentsHistoryComponent } from './views/billing-page/payments-history/payments-history.component';
 import { OverdueBillingsComponent } from './views/billing-page/overdue-billings/overdue-billings.component';
+import { HandymanPageComponent } from './views/handyman-page/handyman-page.component';
 
 export const routes: Routes = [
   {
@@ -105,51 +106,13 @@ export const routes: Routes = [
         component: MaintenacerequestPageComponent
       },
       {
+        path: 'handy-man',
+        component: HandymanPageComponent
+      },
+      {
         path: 'map',
         component: MapPageComponent
       }
-      
-      
-      
-      
-      
-    
-    //   {
-    //     path: 'tenants',
-    //     component: TenantsPageComponent,
-    //     data: { breadcrumb: 'Tenants' }
-    //   }, 
-    //   {
-    //     path: 'tenants/:id',  // This is the child route for tenant details
-    //     component: TenantsDetailsComponent,
-    //     data: { breadcrumb: 'Tenant Details' }
-    //   },
-    //   {
-    //     path: 'tenants-edit/:id',
-    //     component: TenantsEditComponent,
-    //     data: { breadcrumb: 'Tenant Edit'}
-    //   },
-    //   {
-    //     path: 'chat',
-    //     component: ChatPageComponent,
-    //     data: { breadcrumb: 'Messages' }
-    //   },
-    //   {
-    //     path: 'payment',
-    //     component: PaymentPageComponent,
-    //     data: { breadcrumb: 'Payment' }
-    //   },
-    //   {
-    //     path: 'maintenance',
-    //     component: MaintenancePageComponent,
-    //     data: { breadcrumb: 'Maintenance Requests'},
-    //   },
-    //   {
-    //     path: 'settings',
-    //     component: SettingsPageComponent,
-    //     data: { breadcrumb: 'Settings'},
-    //   }
-      
     ],
     canActivate: [AuthGuard],  // Protect admin routes
   }

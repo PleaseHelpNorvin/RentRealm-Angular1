@@ -110,45 +110,28 @@
           </a>
         </li> -->
         
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview">
+          <a class="nav-link">
             <i class="nav-icon fas fa-tools"></i>
             <p>
               Maintenance
-              <i class="fas fa-angle-left right"></i>
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a [routerLink]="'/admin/maintenacerequest'" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>All Requests</p>
+                <p>Maintenance Requests</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pending Requests</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>In Progress</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Completed Requests</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a [routerLink]="'/admin/handy-man'" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Handyman List</p>
               </a>
             </li>
+            <!-- Add more sub-items here -->
           </ul>
         </li>
         
