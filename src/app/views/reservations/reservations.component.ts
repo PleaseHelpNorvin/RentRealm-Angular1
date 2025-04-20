@@ -28,7 +28,6 @@ export class ReservationsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Check if modalTrigger exists after view initialization
     if (this.modalTrigger) {
       console.log('Modal Trigger is available:', this.modalTrigger);
     }
@@ -61,6 +60,7 @@ export class ReservationsComponent implements AfterViewInit {
       modal.show();  // Show the modal
     }
   }
+  
   approveReservation(id: number): void {
     const confirmed1 = confirm('Did you check the Receipt?');
     const confirmed2 = confirm('Are you sure you want to approve this reservation?');

@@ -8,9 +8,9 @@ export interface MaintenanceRequest {
  ticket_code: string;
  tenant_id: number;
  room_id: number;
- handyman_id: number | null;
- assigned_by: Users | null;
- approved_by: number | null;
+ handyman_id?: number | null;
+ assigned_by?: Users | null;
+ approved_by?: Users | null;
  title: string;
  description: number;
  images: string[] | null;
@@ -20,7 +20,7 @@ export interface MaintenanceRequest {
  assisted_at: string | null;
  completed_at: string | null;
  approved_at: string | null;
- create_at: string;
+ created_at: string;
  updated_at: string;
  tenant? : Tenant;
  room?: Room;
@@ -32,5 +32,6 @@ export interface MaintenanceRequestResponse {
     message: string;
     data: {
         maintenance_requests: MaintenanceRequest[];
+        handymens?: Handyman[];
     }
 }

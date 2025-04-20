@@ -1,4 +1,82 @@
-    table{
+.description-cell {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 400px; /* Adjust as needed */
+}
+
+/* //hover */
+#pending-tab:hover {
+    background-color: #fff3cd; /* light yellow */
+    color: #856404;
+  }
+  
+  #requested-tab:hover {
+    background-color: #e2e3e5;
+    color: #41464b;
+  }
+  
+  #assigned-tab:hover {
+    background-color: #cfe2ff;
+    color: #084298;
+  }
+  
+  #in_progress-tab:hover {
+    background-color: #cff4fc;
+    color: #055160;
+  }
+  
+  #for_approve-tab:hover {
+    background-color: #f8f9fa;
+    color: #6c757d;
+  }
+  
+  #completed-tab:hover {
+    background-color: #d1e7dd;
+    color: #0f5132;
+  }
+  
+  #cancelled-tab:hover {
+    background-color: #f8d7da;
+    color: #842029;
+  }
+  
+/* //active */
+  #pending-tab.active {
+    background-color: #fff3cd !important;
+    color: #856404 !important;
+  }
+  
+  #requested-tab.active {
+    background-color: #e2e3e5 !important;
+    color: #41464b !important;
+  }
+  
+  #assigned-tab.active {
+    background-color: #cfe2ff !important;
+    color: #084298 !important;
+  }
+  
+  #in_progress-tab.active {
+    background-color: #cff4fc !important;
+    color: #055160 !important;
+  }
+  
+  #for_approve-tab.active {
+    background-color: #f8f9fa !important;
+    color: #6c757d !important;
+  }
+  
+  #completed-tab.active {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+  }
+  
+  #cancelled-tab.active {
+    background-color: #f8d7da !important;
+    color: #842029 !important;
+  }
+
+/* table{
         text-align: center;
     }
    
@@ -54,4 +132,4 @@
         gap: 5px;
         align-items: center;
         justify-content: center;
-    }
+    } */

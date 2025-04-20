@@ -1,0 +1,45 @@
+#all-tab:hover {
+    background-color: #dbeafe;
+    /* light blue */
+    color: #1e3a8a;
+}
+
+#available-tab:hover {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+#busy-tab:hover {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+#terminated-tab:hover {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.nav-link {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* //active */
+#all-tab.active {
+    background-color: #dbeafe !important;
+    color: #1e3a8a !important;
+}
+
+#available-tab.active {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+}
+
+#busy-tab.active {
+    background-color: #fff3cd !important;
+    color: #856404 !important;
+}
+
+#terminated-tab.active {
+    background-color: #f8d7da !important;
+    color: #842029 !important;
+}

@@ -32,4 +32,9 @@ export class SidebarComponent {
            this.router.url.startsWith('/admin/overdue-billings');
   }
 
+  isMaintenanceSectionActive(): boolean {
+    return this.router.url.startsWith('/admin/maintenacerequest') ||
+           this.router.url.startsWith('/admin/handy-man');
+  }
+  
 }

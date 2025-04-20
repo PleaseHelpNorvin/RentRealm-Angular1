@@ -14,32 +14,40 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         
         <li class="nav-item">
-          <a [routerLink]="'/admin/dashboard'" class="nav-link">
+          <a [routerLink]="'/admin/dashboard'" routerLinkActive="active" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard <span class="right badge badge-danger">New</span></p>
           </a>
         </li>
           
         <li class="nav-item">
-          <a [routerLink]="'/admin/properties'" class="nav-link">
+          <a [routerLink]="'/admin/properties'" routerLinkActive="active" class="nav-link">
             <i class="nav-icon fas fa-building"></i>
             <p>Properties</p>
           </a>
         </li>
               
         <li class="nav-item">
-          <a [routerLink]="'/admin/tenant'" class="nav-link">
+          <a [routerLink]="'/admin/tenant'" routerLinkActive="active" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>Tenants & User</p>
           </a>
         </li>
         <!-- <a [routerLink]="'/admin/Reservations'" routerLinkActive="active" class="nav-link"> -->
         <li class="nav-item">
-          <a [routerLink]="'/admin/Reservations'" class="nav-link">
+          <a [routerLink]="'/admin/Reservations'" routerLinkActive="active" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>Reservations</p>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a [routerLink]="'/admin/contract'" routerLinkActive="active" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>Agreements</p>
+          </a>
+        </li> 
+        
         
               
         <li class="nav-item has-treeview" [class.menu-open]="isBillingSectionActive()">
@@ -78,40 +86,12 @@
                 <p>Payment History</p>
               </a>
             </li>
-      
-        
-            <!-- <li class="nav-item">
-              <a routerLink="/admin/refunds" 
-                 routerLinkActive="active" 
-                 class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Refund Requests</p>
-              </a>
-            </li> -->
           </ul>
         </li>
-              
-        <!-- <li class="nav-item">
-          <a [routerLink]="'/admin/contract'" class="nav-link">
-            <i class="nav-icon fas fa-file-contract"></i>
-            <p>Contract</p>
-          </a>
-        </li> -->
-        <li class="nav-item">
-          <a [routerLink]="'/admin/contract'" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
-            <p>Agreements</p>
-          </a>
-        </li> 
-        <!-- <li class="nav-item">
-          <a [routerLink]="'/admin/maintenacerequest'" class="nav-link">
-            <i class="nav-icon fas fa-tools"></i>
-            <p>Maintenance</p>
-          </a>
-        </li> -->
-        
-        <li class="nav-item has-treeview">
-          <a class="nav-link">
+
+
+        <li class="nav-item has-treeview" [class.menu-open]="isMaintenanceSectionActive()">
+          <a class="nav-link" [class.active]="isMaintenanceSectionActive()">
             <i class="nav-icon fas fa-tools"></i>
             <p>
               Maintenance
@@ -120,20 +100,20 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a [routerLink]="'/admin/maintenacerequest'" class="nav-link">
+              <a [routerLink]="'/admin/maintenacerequest'" routerLinkActive="active" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Maintenance Requests</p>
               </a>
             </li>
             <li class="nav-item">
-              <a [routerLink]="'/admin/handy-man'" class="nav-link">
+              <a [routerLink]="'/admin/handy-man'" routerLinkActive="active" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Handyman List</p>
               </a>
             </li>
-            <!-- Add more sub-items here -->
           </ul>
         </li>
+        
         
 
         <li class="nav-item">

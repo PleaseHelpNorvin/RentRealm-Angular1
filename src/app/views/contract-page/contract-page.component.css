@@ -7,3 +7,35 @@ table{
     color: white;
   }
 
+
+
+  #all-tab:hover {
+    background-color: #e2e3e5; /* light gray */
+    color: #41464b;
+  }
+  
+  #active-tab:hover {
+    background-color: #d1e7dd; /* light green */
+    color: #0f5132;
+  }
+  
+  #inactive-tab:hover {
+    background-color: #f8d7da; /* light red */
+    color: #842029;
+  }
+  
+  /* Active states */
+  #all-tab.nav-link.active {
+    background-color: #e2e3e5 !important;
+    color: #41464b !important;
+  }
+  
+  #active-tab.nav-link.active {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+  }
+  
+  #inactive-tab.nav-link.active {
+    background-color: #f8d7da !important;
+    color: #842029 !important;
+  }

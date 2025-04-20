@@ -1,23 +1,26 @@
-#pending-tab.active {
-    color: white !important;
-}
-
-#approved-tab.active {
-    color: white !important;
-}
-
-#rejected-tab.active {
-    color: white !important;
-}
-  
-
 #pending-tab:hover {
-    color: orange;
-}
-#approved-tab:hover {
-    color: green;
-}
-#rejected-tab:hover {
-    color: red;
-}
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  #approved-tab:hover {
+    background-color: #d1e7dd;
+    color: #0f5132;
+  }
+  #rejected-tab:hover {
+    background-color: #f8d7da;
+    color: #842029;
+  }
+  
+  #pending-tab.nav-link.active {
+    background-color: #fff3cd !important;
+    color: #856404 !important;
+  }
+  #approved-tab.active {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+  }
+  #rejected-tab.active {
+    background-color: #f8d7da !important;
+    color: #842029 !important;
+  }
   
