@@ -1,0 +1,156 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Apartment Management Settings</h3>
+            </div>
+  
+            <div class="card-body">
+              <!-- Settings Navigation Tabs -->
+              <ul class="nav nav-tabs mb-4" id="settingsTabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="account-tab" data-toggle="tab" href="#account" role="tab">
+                    <i class="fas fa-user-shield mr-2"></i>Account
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="property-tab" data-toggle="tab" href="#property" role="tab">
+                    <i class="fas fa-building mr-2"></i>Properties
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="tenant-tab" data-toggle="tab" href="#tenant" role="tab">
+                    <i class="fas fa-users mr-2"></i>Tenants
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="financial-tab" data-toggle="tab" href="#financial" role="tab">
+                    <i class="fas fa-money-bill-wave mr-2"></i>Financial
+                  </a>
+                </li>
+              </ul>
+  
+              <!-- Tab Content -->
+              <div class="tab-content" id="settingsTabContent">
+  
+                <!-- Account Settings -->
+                <div class="tab-pane fade show active" id="account" role="tabpanel">
+                  <h4><i class="fas fa-user-cog mr-2"></i>Landlord Account Settings</h4>
+                  <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" placeholder="e.g. John Kenneth Catarig">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="e.g. john@example.com">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control" placeholder="e.g. +63 912 345 6789">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Change Password</label>
+                        <input type="password" class="form-control" placeholder="Enter new password">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Account</button>
+                  </form>
+                </div>
+  
+                <!-- Property Settings -->
+                <div class="tab-pane fade" id="property" role="tabpanel">
+                  <h4><i class="fas fa-building mr-2"></i>Property Settings</h4>
+                  <form>
+                    <div class="form-group">
+                      <label>Property Name</label>
+                      <input type="text" class="form-control" placeholder="e.g. Sunrise Apartments">
+                    </div>
+                    <div class="form-group">
+                      <label>Property Address</label>
+                      <input type="text" class="form-control" placeholder="e.g. 123 Main Street, Cebu City">
+                    </div>
+                    <div class="form-group">
+                      <label>Total Available Units</label>
+                      <input type="number" class="form-control" placeholder="e.g. 10">
+                    </div>
+                    <div class="form-group">
+                      <label>Amenities</label>
+                      <input type="text" class="form-control" placeholder="e.g. Pool, Gym, Laundry Area">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Property Info</button>
+                  </form>
+                </div>
+  
+                <!-- Tenant Settings -->
+                <div class="tab-pane fade" id="tenant" role="tabpanel">
+                  <h4><i class="fas fa-users mr-2"></i>Tenant Settings</h4>
+                  <form>
+                    <div class="form-group">
+                      <label>Required Documents</label>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="creditCheck">
+                        <label class="custom-control-label" for="creditCheck">Require Credit Check</label>
+                      </div>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="idVerification">
+                        <label class="custom-control-label" for="idVerification">Require Valid ID</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Lease Duration Options</label>
+                      <select class="form-control">
+                        <option>6 Months</option>
+                        <option>12 Months</option>
+                        <option>24 Months</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Tenant Policies</button>
+                  </form>
+                </div>
+  
+                <!-- Financial Settings -->
+                <div class="tab-pane fade" id="financial" role="tabpanel">
+                  <h4><i class="fas fa-money-bill-wave mr-2"></i>Financial Settings</h4>
+                  <form>
+                    <div class="form-group">
+                      <label>Default Monthly Rent</label>
+                      <input type="number" class="form-control" placeholder="e.g. 12000">
+                    </div>
+                    <div class="form-group">
+                      <label>Security Deposit Amount</label>
+                      <input type="number" class="form-control" placeholder="e.g. 10000">
+                    </div>
+                    <div class="form-group">
+                      <label>Late Payment Fee</label>
+                      <input type="number" class="form-control" placeholder="e.g. 500">
+                    </div>
+                    <div class="form-group">
+                      <label>Payment Reminder Lead Time</label>
+                      <input type="number" class="form-control" placeholder="Days before due date (e.g. 3)">
+                    </div>
+                    <div class="form-group">
+                      <label>Enable Rent Payment Tracking</label>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="trackRentPayment">
+                        <label class="custom-control-label" for="trackRentPayment">Yes, track rent status</label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Financial Settings</button>
+                  </form>
+                </div>
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

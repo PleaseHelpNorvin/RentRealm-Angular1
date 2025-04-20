@@ -1,4 +1,12 @@
 <div class="container1">
+  <div class="signin-wrapper">
+    
+    <!-- Image Column -->
+    <div class="signin-image">
+      <img src="assets/rentrealm_logo_for_sure.png" alt="Sign In Image" />
+    </div>
+
+    <!-- Form Column -->
     <div class="signin-container">
       <h2 class="form-title">Sign In</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
@@ -16,7 +24,7 @@
             Please enter a valid email.
           </div>
         </div>
-  
+
         <div class="form-group">
           <label for="password">Password:</label>
           <input
@@ -31,8 +39,10 @@
             Password is required.
           </div>
         </div>
-  
+
         <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Sign In</button>
       </form>
     </div>
+
   </div>
+</div>

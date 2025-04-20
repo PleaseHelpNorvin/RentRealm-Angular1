@@ -81,3 +81,54 @@
     }
   }
   
+  /* Flex wrapper for image and form */
+.signin-wrapper {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 800px;
+  max-width: 100%;
+}
+
+/* Image section */
+.signin-image {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.signin-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Form section */
+.signin-container {
+  flex: 1;
+  padding: 30px;
+  background-color: #fff;
+}
+
+/* Responsive stacking on small screens */
+@media (max-width: 768px) {
+  .signin-wrapper {
+    flex-direction: column;
+  }
+
+  .signin-image,
+  .signin-container {
+    width: 100%;
+  }
+
+  .signin-image {
+    padding: 10px;
+  }
+}

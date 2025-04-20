@@ -27,7 +27,9 @@ import { BillingPageComponent } from './views/billing-page/billing-page.componen
 import { PaymentsHistoryComponent } from './views/billing-page/payments-history/payments-history.component';
 import { OverdueBillingsComponent } from './views/billing-page/overdue-billings/overdue-billings.component';
 import { HandymanPageComponent } from './views/handyman-page/handyman-page.component';
-
+import { ReportPageComponent } from './views/report-page/report-page.component';
+import { SettingPageComponent } from './views/setting-page/setting-page.component';
+ 
 export const routes: Routes = [
   {
     path: '', 
@@ -109,9 +111,19 @@ export const routes: Routes = [
         path: 'handy-man',
         component: HandymanPageComponent
       },
+
+      {
+        path: 'report',
+        component: ReportPageComponent,
+        // data: {x breadcrumb: 'Dashboard' }
+      },
       {
         path: 'map',
         component: MapPageComponent
+      },
+      {
+        path: 'setting',
+        component: SettingPageComponent
       }
     ],
     canActivate: [AuthGuard],  // Protect admin routes

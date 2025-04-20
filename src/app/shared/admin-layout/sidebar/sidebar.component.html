@@ -34,7 +34,7 @@
           </a>
         </li>
         <!-- <a [routerLink]="'/admin/Reservations'" routerLinkActive="active" class="nav-link"> -->
-        <li class="nav-item">
+       <li class="nav-item">
           <a [routerLink]="'/admin/Reservations'" routerLinkActive="active" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>Reservations</p>
@@ -43,7 +43,7 @@
 
         <li class="nav-item">
           <a [routerLink]="'/admin/contract'" routerLinkActive="active" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+            <i class="nav-icon fas fa-file-contract"></i>
             <p>Agreements</p>
           </a>
         </li> 
@@ -115,53 +115,13 @@
         </li>
         
         
-
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a [routerLink]="'/admin/report'" routerLinkActive="active" class="nav-link">
             <i class="nav-icon fas fa-list"></i>
-            <p>
-              Reports
-              <i class="fas fa-angle-left right"></i>
-            </p>
+            <p>Reports</p>
           </a>
-          <ul class="nav nav-treeview">
-           
-            <li class="nav-item">
-              <a href="pages/UI/ribbons.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tenant Reports
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/ribbons.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Rent Collection Reports</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/ribbons.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Occupancy Reports
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/ribbons.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Maintenance Reports</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/ribbons.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Audit Logs
-                </p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
+        </li> 
+        
 
         <li class="nav-item">
           <a [routerLink]="'/admin/map'" class="nav-link">
@@ -171,12 +131,14 @@
         </li>
 
         <li class="nav-item">
-          <a [routerLink]="'/admin/settings'" class="nav-link">
+          <a [routerLink]="'/admin/setting'" class="nav-link">
             <i class="nav-icon fas fa-cog"></i>
             <p>Settings</p>
           </a>
         </li>
 
+      
+        
 
        
       </ul>
