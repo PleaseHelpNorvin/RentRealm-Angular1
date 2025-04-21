@@ -1,222 +1,220 @@
 <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-  
-            <!-- Tab Navigation -->
-            <div class="card-header p-2">
-                <ul class="nav nav-pills overflow-auto d-flex flex-nowrap" style="gap: 5px;">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#tenant" data-toggle="tab">Tenant Reports</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#rent" data-toggle="tab">Rent Collection Reports</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#occupancy" data-toggle="tab">Unit Occupancy Reports</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#maintenance" data-toggle="tab">Maintenance Requests Report</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#audit" data-toggle="tab"> Audit Logs & Activity Reports</a>
-                  </li>
-                </ul>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+
+          <!-- Tab Navigation -->
+          <div class="card-header p-2">
+            <ul class="nav nav-pills overflow-auto d-flex flex-nowrap" style="gap: 5px;">
+              <li class="nav-item">
+                <a class="nav-link active" href="#tenant" data-toggle="tab">Tenant Reports</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#rent" data-toggle="tab">Rent Collection Reports</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#occupancy" data-toggle="tab">Unit Occupancy Reports</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#maintenance" data-toggle="tab">Maintenance Requests Report</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#audit" data-toggle="tab"> Audit Logs & Activity Reports</a>
+              </li>
+            </ul>
+          </div>
+
+
+
+          <!-- Tab Content -->
+          <div class="card-body">
+            <div class="tab-content">
+
+              <!-- Tenant Reports -->
+              <div class="tab-pane fade show active" id="tenant">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tenant Name</th>
+                        <th>Apartment</th>
+                        <th>Joined At</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let tenantReport of allTenantReports">
+                        <td>{{tenantReport.code}}</td>
+                        <td>{{tenantReport.name}}</td>
+                        <td>{{tenantReport.apartment}}</td>
+                        <td>{{tenantReport.joined_at}}</td>
+                        <td>
+                          <span class="badge" [ngClass]="{
+                            'bg-success': tenantReport.status === 'Active', 
+                            'bg-danger': tenantReport.status === 'Inactive'
+                          }">
+                            {{ tenantReport.status === 'Active' ? 'Active' : 'Inactive' }}
+                          </span>
+                        </td>
+                        <td>
+                          <button class="btn btn-info">View</button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="allTenantReports.length === 0">
+                        <td colspan="6" class="text-center">End of tenant records.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              
-              
-  
-            <!-- Tab Content -->
-            <div class="card-body">
-              <div class="tab-content">
-  
-                <!-- Tenant Reports -->
-  <div class="tab-pane fade show active" id="tenant">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tenant Name</th>
-            <th>Apartment</th>
-            <th>Joined At</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tenantReport of allTenantReports">
-            <td>{{tenantReport.code}}</td>
-            <td>{{tenantReport.name}}</td>
-            <td>{{tenantReport.apartment}}</td>
-            <td>{{tenantReport.joined_at}}</td>
-            <td>
-              <span class="badge" [ngClass]="{
-                'bg-success': tenantReport.status === 'Active', 
-                'bg-danger': tenantReport.status === 'Inactive'
-              }">
-                {{ tenantReport.status === 'active' ? 'Active' : 'Inactive' }}
-              </span>
-            </td>
-            <td>
-              <button class="btn btn-info">View</button>
-            </td>
-          </tr>
-          <tr *ngIf="allTenantReports.length === 0">
-            <td colspan="6" class="text-center">End of tenant records.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-  <!-- Rent Collection Reports -->
-  <div class="tab-pane fade" id="rent">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tenant</th>
-            <th>Payment Title</th>
-            <th>Month</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let rentCollectionReport of allRentCollectionReports">
-            <td>{{rentCollectionReport.code}}</td>
-            <td>{{rentCollectionReport.tenant}}</td>
-            <td>{{rentCollectionReport.title}}</td>
-            <td>{{rentCollectionReport.month}}</td>
-            <td>{{rentCollectionReport.amount}}</td>
-            <span class="badge" [ngClass]="{
+
+              <!-- Rent Collection Reports -->
+              <div class="tab-pane fade" id="rent">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tenant</th>
+                        <th>Payment Title</th>
+                        <th>Month</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let rentCollectionReport of allRentCollectionReports">
+                        <td>{{rentCollectionReport.code}}</td>
+                        <td>{{rentCollectionReport.tenant}}</td>
+                        <td>{{rentCollectionReport.title}}</td>
+                        <td>{{rentCollectionReport.month}}</td>
+                        <td>{{rentCollectionReport.amount}}</td>
+                        <span class="badge" [ngClass]="{
               'bg-success': rentCollectionReport.status === '', 
               'bg-danger': rentCollectionReport.status === 'Inactive'
             }">
-              {{ rentCollectionReport.status === 'active' ? 'Active' : 'Inactive' }}
-            </span>
-          </tr>
-          <tr *ngIf="allRentCollectionReports.length === 0">
-            <td colspan="6" class="text-center">No more rent records.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-  <!-- Occupancy Reports -->
-  <div class="tab-pane fade" id="occupancy">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>Apartment</th>
-            <th>Total Units</th>
-            <th>Occupied</th>
-            <th>Vacant</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let unitOccupanyReport of allUnitOccupancyReports">
-            <td>{{unitOccupanyReport.apartment}}</td>
-            <td>{{unitOccupanyReport.total_units}}</td>
-            <td>{{unitOccupanyReport.occupied}}</td>
-            <td>{{unitOccupanyReport.vacant}}</td>
-          </tr>
-          <tr *ngIf="allUnitOccupancyReports.length === 0">
-            <td colspan="4" class="text-center">No more occupancy data.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-  <!-- Maintenance Requests Report -->
-  <div class="tab-pane fade" id="maintenance">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tenant</th>
-            <th>Apartment</th>
-            <th>Issue</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let maintenanceRequestReport of allMaintenanceRequestReports">
-            <td>{{maintenanceRequestReport.ticket_code}}</td>
-            <td>{{maintenanceRequestReport.tenant}}</td>
-            <td>{{maintenanceRequestReport.apartment}}</td>
-            <td>{{maintenanceRequestReport.issue}}</td>
-            <td>
-              <span 
-                class="badge" 
-                [ngClass]="getStatusBadgeClass(maintenanceRequestReport.status)">
-                {{ maintenanceRequestReport.status }}
-              </span>
-            </td>          </tr>
-          <tr *ngIf="allMaintenanceRequestReports.length === 0">
-            <td colspan="5" class="text-center">No more maintenance requests.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-  <!-- Audit Logs & Activity Reports -->
-  <div class="tab-pane fade" id="audit">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>User</th>
-            <th>Action</th>
-            <th>Date & Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let auditLogsActivityReport of allAuditLogsActivityReports">
-            <td>{{auditLogsActivityReport.aud_code}}</td>
-            <td>{{auditLogsActivityReport.user}}</td>
-            <td>{{auditLogsActivityReport.action}}</td>
-            <td>{{auditLogsActivityReport.date_time}}</td>
-          </tr>
-          <tr *ngIf="allUnitOccupancyReports.length === 0">
-            <td colspan="5" class="text-center">No more activity logs.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-  
+                          {{ rentCollectionReport.status === 'active' ? 'Active' : 'Inactive' }}
+                        </span>
+                      </tr>
+                      <tr *ngIf="allRentCollectionReports.length === 0">
+                        <td colspan="6" class="text-center">No more rent records.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
+
+              <!-- Occupancy Reports -->
+              <div class="tab-pane fade" id="occupancy">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Apartment</th>
+                        <th>Total Units</th>
+                        <th>Occupied</th>
+                        <th>Vacant</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let unitOccupanyReport of allUnitOccupancyReports">
+                        <td>{{unitOccupanyReport.apartment}}</td>
+                        <td>{{unitOccupanyReport.total_units}}</td>
+                        <td>{{unitOccupanyReport.occupied}}</td>
+                        <td>{{unitOccupanyReport.vacant}}</td>
+                      </tr>
+                      <tr *ngIf="allUnitOccupancyReports.length === 0">
+                        <td colspan="4" class="text-center">No more occupancy data.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Maintenance Requests Report -->
+              <div class="tab-pane fade" id="maintenance">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tenant</th>
+                        <th>Apartment</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let maintenanceRequestReport of allMaintenanceRequestReports">
+                        <td>{{maintenanceRequestReport.ticket_code}}</td>
+                        <td>{{maintenanceRequestReport.tenant}}</td>
+                        <td>{{maintenanceRequestReport.apartment}}</td>
+                        <td>{{maintenanceRequestReport.issue}}</td>
+                        <td>
+                          <span class="badge" [ngClass]="getStatusBadgeClass(maintenanceRequestReport.status)">
+                            {{ maintenanceRequestReport.status }}
+                          </span>
+                        </td>
+                      </tr>
+                      <tr *ngIf="allMaintenanceRequestReports.length === 0">
+                        <td colspan="5" class="text-center">No more maintenance requests.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Audit Logs & Activity Reports -->
+              <div class="tab-pane fade" id="audit">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Date & Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let auditLogsActivityReport of allAuditLogsActivityReports">
+                        <td>{{auditLogsActivityReport.aud_code}}</td>
+                        <td>{{auditLogsActivityReport.user}}</td>
+                        <td>{{auditLogsActivityReport.action}}</td>
+                        <td>{{auditLogsActivityReport.date_time}}</td>
+                      </tr>
+                      <tr *ngIf="allUnitOccupancyReports.length === 0">
+                        <td colspan="5" class="text-center">No more activity logs.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
             </div>
-  
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Modal for Viewing Payment Proof -->
-  <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Reservation Payment Receipt Proof</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img src="https://via.placeholder.com/500x300.png?text=Payment+Proof" alt="Payment Proof" class="img-fluid">
+
         </div>
       </div>
     </div>
   </div>
-  
+</section>
+
+<!-- Modal for Viewing Payment Proof -->
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reservation Payment Receipt Proof</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="https://via.placeholder.com/500x300.png?text=Payment+Proof" alt="Payment Proof" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
