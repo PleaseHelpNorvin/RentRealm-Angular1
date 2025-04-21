@@ -44,7 +44,9 @@
                                             <i class="fas fa-eye" (click)="openModal(rentalAgreement.id, rentalAgreement.agreement_code)"></i>
                                           </button>
                                         </td>
-
+                                      </tr>
+                                      <tr *ngIf="allRentalAgreements.length === 0">
+                                        <td colspan="4" class="text-center">No Agreements yet.</td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -75,7 +77,9 @@
                                             <i class="fas fa-eye"></i>
                                           </button>
                                         </td>
-
+                                      </tr>
+                                      <tr *ngIf="activeRentalAgreements.length === 0">
+                                        <td colspan="4" class="text-center">No Active Agreements yet.</td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -106,6 +110,9 @@
                                             <i class="fas fa-eye"></i>
                                           </button>
                                         </td>
+                                      </tr>
+                                      <tr *ngIf="activeRentalAgreements.length === 0">
+                                        <td colspan="4" class="text-center">No Inactive Agreements yet.</td>
                                       </tr>
                                     </tbody>
                                   </table>

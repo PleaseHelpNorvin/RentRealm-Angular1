@@ -46,31 +46,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>TNT-001</td>
-            <td>John Doe</td>
-            <td>Maple Apartments - RM101</td>
-            <td>Jan 10, 2025</td>
-            <td><span class="badge bg-success">Active</span></td>
-            <td><button class="btn btn-sm btn-info">View</button></td>
+          <tr *ngFor="let tenantReport of allTenantReports">
+            <td>{{tenantReport.code}}</td>
+            <td>{{tenantReport.name}}</td>
+            <td>{{tenantReport.apartment}}</td>
+            <td>{{tenantReport.joined_at}}</td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'bg-success': tenantReport.status === 'Active', 
+                'bg-danger': tenantReport.status === 'Inactive'
+              }">
+                {{ tenantReport.status === 'active' ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-info">View</button>
+            </td>
           </tr>
-          <tr>
-            <td>TNT-002</td>
-            <td>Jane Smith</td>
-            <td>Pine Residences - RM202</td>
-            <td>Feb 15, 2025</td>
-            <td><span class="badge bg-danger">Inactive</span></td>
-            <td><button class="btn btn-sm btn-info">View</button></td>
-          </tr>
-          <tr>
-            <td>TNT-003</td>
-            <td>Michael Cruz</td>
-            <td>Oak Villas - RM303</td>
-            <td>Mar 5, 2025</td>
-            <td><span class="badge bg-success">Active</span></td>
-            <td><button class="btn btn-sm btn-info">View</button></td>
-          </tr>
-          <tr>
+          <tr *ngIf="allTenantReports.length === 0">
             <td colspan="6" class="text-center">End of tenant records.</td>
           </tr>
         </tbody>
@@ -86,38 +79,27 @@
           <tr>
             <th>#</th>
             <th>Tenant</th>
-            <th>Apartment</th>
+            <th>Payment Title</th>
             <th>Month</th>
             <th>Amount</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>RC-001</td>
-            <td>Jane Smith</td>
-            <td>Pine Residences - RM202</td>
-            <td>April</td>
-            <td>₱8,500</td>
-            <td><span class="badge bg-success">Paid</span></td>
+          <tr *ngFor="let rentCollectionReport of allRentCollectionReports">
+            <td>{{rentCollectionReport.code}}</td>
+            <td>{{rentCollectionReport.tenant}}</td>
+            <td>{{rentCollectionReport.title}}</td>
+            <td>{{rentCollectionReport.month}}</td>
+            <td>{{rentCollectionReport.amount}}</td>
+            <span class="badge" [ngClass]="{
+              'bg-success': rentCollectionReport.status === '', 
+              'bg-danger': rentCollectionReport.status === 'Inactive'
+            }">
+              {{ rentCollectionReport.status === 'active' ? 'Active' : 'Inactive' }}
+            </span>
           </tr>
-          <tr>
-            <td>RC-002</td>
-            <td>John Doe</td>
-            <td>Maple Apartments - RM101</td>
-            <td>April</td>
-            <td>₱7,200</td>
-            <td><span class="badge bg-warning text-dark">Pending</span></td>
-          </tr>
-          <tr>
-            <td>RC-003</td>
-            <td>Erika Tan</td>
-            <td>Elm Towers - RM105</td>
-            <td>April</td>
-            <td>₱6,900</td>
-            <td><span class="badge bg-danger">Overdue</span></td>
-          </tr>
-          <tr>
+          <tr *ngIf="allRentCollectionReports.length === 0">
             <td colspan="6" class="text-center">No more rent records.</td>
           </tr>
         </tbody>
@@ -138,25 +120,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Maple Apartments</td>
-            <td>10</td>
-            <td>8</td>
-            <td>2</td>
+          <tr *ngFor="let unitOccupanyReport of allUnitOccupancyReports">
+            <td>{{unitOccupanyReport.apartment}}</td>
+            <td>{{unitOccupanyReport.total_units}}</td>
+            <td>{{unitOccupanyReport.occupied}}</td>
+            <td>{{unitOccupanyReport.vacant}}</td>
           </tr>
-          <tr>
-            <td>Pine Residences</td>
-            <td>15</td>
-            <td>15</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td>Oak Villas</td>
-            <td>20</td>
-            <td>18</td>
-            <td>2</td>
-          </tr>
-          <tr>
+          <tr *ngIf="allUnitOccupancyReports.length === 0">
             <td colspan="4" class="text-center">No more occupancy data.</td>
           </tr>
         </tbody>
@@ -178,28 +148,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>MR-001</td>
-            <td>Michael Cruz</td>
-            <td>Oak Villas - RM303</td>
-            <td>Leaking faucet</td>
-            <td><span class="badge bg-warning text-dark">In Progress</span></td>
-          </tr>
-          <tr>
-            <td>MR-002</td>
-            <td>John Doe</td>
-            <td>Maple Apartments - RM101</td>
-            <td>Aircon not working</td>
-            <td><span class="badge bg-success">Completed</span></td>
-          </tr>
-          <tr>
-            <td>MR-003</td>
-            <td>Erika Tan</td>
-            <td>Elm Towers - RM105</td>
-            <td>Broken door lock</td>
-            <td><span class="badge bg-danger">Pending</span></td>
-          </tr>
-          <tr>
+          <tr *ngFor="let maintenanceRequestReport of allMaintenanceRequestReports">
+            <td>{{maintenanceRequestReport.ticket_code}}</td>
+            <td>{{maintenanceRequestReport.tenant}}</td>
+            <td>{{maintenanceRequestReport.apartment}}</td>
+            <td>{{maintenanceRequestReport.issue}}</td>
+            <td>
+              <span 
+                class="badge" 
+                [ngClass]="getStatusBadgeClass(maintenanceRequestReport.status)">
+                {{ maintenanceRequestReport.status }}
+              </span>
+            </td>          </tr>
+          <tr *ngIf="allMaintenanceRequestReports.length === 0">
             <td colspan="5" class="text-center">No more maintenance requests.</td>
           </tr>
         </tbody>
@@ -220,26 +181,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>LOG-001</td>
-            <td>Admin</td>
-            <td>Approved reservation RR-002</td>
-            <td>April 15, 2025 - 10:20 AM</td>
+          <tr *ngFor="let auditLogsActivityReport of allAuditLogsActivityReports">
+            <td>{{auditLogsActivityReport.aud_code}}</td>
+            <td>{{auditLogsActivityReport.user}}</td>
+            <td>{{auditLogsActivityReport.action}}</td>
+            <td>{{auditLogsActivityReport.date_time}}</td>
           </tr>
-          <tr>
-            <td>LOG-002</td>
-            <td>Admin</td>
-            <td>Updated tenant record TNT-002</td>
-            <td>April 16, 2025 - 3:45 PM</td>
-          </tr>
-          <tr>
-            <td>LOG-003</td>
-            <td>Staff001</td>
-            <td>Processed payment RC-003</td>
-            <td>April 17, 2025 - 9:05 AM</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="text-center">No more activity logs.</td>
+          <tr *ngIf="allUnitOccupancyReports.length === 0">
+            <td colspan="5" class="text-center">No more activity logs.</td>
           </tr>
         </tbody>
       </table>
