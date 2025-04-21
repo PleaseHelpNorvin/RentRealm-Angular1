@@ -22,3 +22,8 @@ export interface HandymanResponse {
 
 }
 
+//for adding
+export interface NewHandyman {
+    user: Users;  // Here we expect 'user' to be of type 'Users'
+    status: string;
+  }

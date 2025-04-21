@@ -187,6 +187,87 @@
         </div>
         <div class="modal-body">
           <!-- Add Form goes here -->
+          <form #handymanForm="ngForm" (ngSubmit)="addHandyman()" novalidate>
+            <!-- Name Input -->
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                [(ngModel)]="newHandymanData.user.name"
+                required
+                minlength="3"
+              />
+              <div class="text-danger" *ngIf="handymanForm.submitted && handymanForm.controls['name']?.invalid">
+                Name is required (min 3 characters).
+              </div>
+            </div>
+  
+            <!-- Email Input -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="newHandymanData.user.email"
+                required
+                email
+                #email="ngModel"
+              />
+              <!-- Email Required Error -->
+              <div class="text-danger" *ngIf="email?.touched && email?.invalid && email?.errors?.['required']">
+                Email is required.
+              </div>
+            
+              <!-- Invalid Email Error -->
+              <div class="text-danger" *ngIf="email?.touched && email?.invalid && email?.errors?.['email']">
+                Please enter a valid email address.
+              </div>
+            </div>
+  
+            <!-- Password Input -->
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="newHandymanData.user.password"
+                required
+                minlength="6"
+              />
+              <div class="text-danger" *ngIf="handymanForm.submitted && handymanForm.controls['password']?.invalid">
+                Password must be at least 6 characters.
+              </div>
+            </div>
+  
+            <!-- Status Dropdown -->
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select
+                class="form-select"
+                name="status"
+                [(ngModel)]="newHandymanData.status"
+                required
+              >
+                <option value="available">Available</option>
+                <option value="busy">Busy</option>
+                <option value="terminated">Terminated</option>
+              </select>
+            </div>
+  
+            <!-- Modal Footer with Buttons -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="handymanForm.invalid">
+                Add Handyman
+              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </form>
+  
+          
         </div>
       </div>
     </div>
@@ -197,12 +278,79 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Update Handyman Status</h5>
+          <h5 class="modal-title">Update Handyman</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <!-- Update logic for status (e.g. busy/available/etc.) -->
-        </div>
+          <form #handymanForm="ngForm" (ngSubmit)="updateHandyman()" novalidate>
+            <!-- Name Input -->
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                [(ngModel)]="selectedHandyman?.user!.name"
+                required
+                minlength="3"
+              />
+              <div class="text-danger" *ngIf="handymanForm.submitted && handymanForm.controls['name']?.invalid">
+                Name is required (min 3 characters).
+              </div>
+            </div>
+  
+            <!-- Email Input -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="selectedHandyman?.user!.email"
+                required
+                email
+              />
+              <div class="text-danger" *ngIf="handymanForm.submitted && handymanForm.controls['email']?.invalid">
+                Please enter a valid email address.
+              </div>
+            </div>
+  
+            <!-- Password Input -->
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="selectedHandyman?.user!.password"
+                [minlength]="selectedHandyman?.user!.password ? 6 : null"
+              />
+            
+              <div class="text-danger" *ngIf="handymanForm.submitted && handymanForm.controls['password']?.errors?.['minlength']">
+              Password must be at least 6 characters.
+            </div>
+            
+            </div>
+  
+            <!-- Status Dropdown -->
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select class="form-select" name="status"   [(ngModel)]="selectedHandyman!.status"  required>
+                <option value="available">Available</option>
+                <option value="busy">Busy</option>
+                <option value="terminated">Terminated</option>
+              </select>
+            </div>
+  
+            <!-- Modal Footer with Buttons -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="!isUpdateFormValid()">
+                Update Handyman
+              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </form>
+          </div>
       </div>
     </div>
   </div>

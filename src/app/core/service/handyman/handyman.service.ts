@@ -25,6 +25,49 @@ export class HandymanService {
     )
   }
 
+
+  postHandymanCreation(newHandymanData: FormData): Observable<HandymanResponse> {
+    console.log('from postHandymanCreation', newHandymanData);
+    const token = this.authService.getToken();
+    
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json'  
+    };
+  
+    return this.http.post<HandymanResponse>(`${this.apiUrl}/create-handyman`,newHandymanData,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  postUpdateHandyman(updateHandymanData: FormData): Observable<HandymanResponse> {
+    const token = this.authService.getToken();
+    
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json'  
+    };
+  
+    return this.http.post<HandymanResponse>(`${this.apiUrl}/post-update-handyman`,updateHandymanData,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  patchTerminateHandyman(handyman_id: number): Observable<HandymanResponse> {
+    const token = this.authService.getToken();
+    console.log('patch Terminate Handyman',token)
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'  
+    }
+
+
+    return this.http.patch<HandymanResponse>(`${this.apiUrl}/terminate-handyman/${handyman_id}`, {}, {headers}).pipe(
+      catchError(this.handleError)
+    )
+  }
+  
   private handleError(error: any): Observable<never> {
         let errorMessage = 'An unknown error occurred!';
         if (error.error instanceof ErrorEvent) {

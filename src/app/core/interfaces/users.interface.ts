@@ -5,12 +5,13 @@ export interface Users {
   id: number;
   name: string;
   email: string;
-  email_verified_at?: string | null;
+  password?: string | null;
+  email_verified_at?: string | null | undefined;
   role: string;
   steps: string;
   created_at: string;
   updated_at: string;
-  user_profile?: UserProfile[]; // <-- ARRAY not single object
+  user_profile?: UserProfile[]; 
 }
 
 
