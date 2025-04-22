@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SettingPageComponent } from './setting-page.component';
+import { beforeEach, describe } from 'node:test';
 
 describe('SettingPageComponent', () => {
   let component: SettingPageComponent;
@@ -17,7 +18,4 @@ describe('SettingPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

@@ -35,11 +35,13 @@
                     <div class="mb-3">
                       <label for="propertyImage" class="form-label">Add Image</label>
                       <input 
-                        type="file"
-                        class="form-control"
-                        (change)="onImageSelected($event)"
-                        accept="image/*"
-                      >
+                      type="file"
+                      class="form-control"
+                      (change)="onImageSelected($event)"
+                      accept="image/*"
+                      multiple
+                    >
+                    
                     </div>
                   </div>
                   <!-- Image preview on the left -->
@@ -98,9 +100,15 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="status" class="form-label">Status</label>
-                  <select class="form-select" name="status" [(ngModel)]="property.status" id="status">
-                    <option value="available">Available</option>
-                    <option value="rented">Rented</option>
+                  <!-- <p>Debug status: {{ property.status }}</p> -->
+
+                  <select 
+                    class="form-select" 
+                    id="status" 
+                    name="status" 
+                    [(ngModel)]="property.status"
+                  >
+                    <option value="vacant">Vacant</option>
                     <option value="full">Full</option>
                   </select>
                 </div>
@@ -109,10 +117,15 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="type" class="form-label">Type</label>
-                  <select class="form-select" name="type" [(ngModel)]="property.type" id="type">
+                  <select 
+                    id="type"
+                    name="type"
+                    class="form-select"
+                    [(ngModel)]="property.type"
+                  >
                     <option value="apartment">Apartment</option>
                     <option value="house">House</option>
-                    <option value="boarding-house">Boarding-House</option>
+                    <option value="boarding-house">Boarding House</option>
                   </select>
                 </div>
               </div>

@@ -43,14 +43,14 @@ export class PropertyService {
       // catchError(this.handleError)
   }
 
-  getPropertyById(id: number): Observable<Property> {
+  getPropertyById(id: number): Observable<PropertyResponse> {
     const token = this.authService.getToken();
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',  // Specify the content type
       'Accept': 'application/json'  
     };
-    return this.http.get<Property>(`${this.apiUrl}/show/${id}`, { headers }).pipe(
+    return this.http.get<PropertyResponse>(`${this.apiUrl}/show/${id}`, { headers }).pipe(
       // /landlord/property/show/1
       catchError(this.handleError)
     ); 

@@ -20,16 +20,6 @@
                     <i class="fas fa-building mr-2"></i>Properties
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="tenant-tab" data-toggle="tab" href="#tenant" role="tab">
-                    <i class="fas fa-users mr-2"></i>Tenants
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="financial-tab" data-toggle="tab" href="#financial" role="tab">
-                    <i class="fas fa-money-bill-wave mr-2"></i>Financial
-                  </a>
-                </li>
               </ul>
   
               <!-- Tab Content -->
@@ -38,113 +28,64 @@
                 <!-- Account Settings -->
                 <div class="tab-pane fade show active" id="account" role="tabpanel">
                   <h4><i class="fas fa-user-cog mr-2"></i>Landlord Account Settings</h4>
-                  <form>
+                  <form (ngSubmit)="updateUser()" #accountForm="ngForm">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label>Full Name</label>
-                        <input type="text" class="form-control" placeholder="e.g. John Kenneth Catarig">
+                        <input type="text" class="form-control" [(ngModel)]="userForm.name" name="name" placeholder="e.g. John Kenneth Catarig">
                       </div>
                       <div class="form-group col-md-6">
                         <label>Email Address</label>
-                        <input type="email" class="form-control" placeholder="e.g. john@example.com">
+                        <input type="email" class="form-control" [(ngModel)]="userForm.email" name="email" placeholder="e.g. john@example.com">
                       </div>
                     </div>
+                  
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label>Phone Number</label>
-                        <input type="text" class="form-control" placeholder="e.g. +63 912 345 6789">
+                        <input type="text" class="form-control" [(ngModel)]="userForm.admin_phone" name="admin_phone" placeholder="e.g. +63 912 345 6789">
                       </div>
                       <div class="form-group col-md-6">
                         <label>Change Password</label>
-                        <input type="password" class="form-control" placeholder="Enter new password">
+                        <input type="password" class="form-control" [(ngModel)]="userForm.password" name="password" placeholder="Enter new password">
                       </div>
                     </div>
+                  
                     <button type="submit" class="btn btn-primary">Update Account</button>
                   </form>
+                  
                 </div>
   
                 <!-- Property Settings -->
                 <div class="tab-pane fade" id="property" role="tabpanel">
                   <h4><i class="fas fa-building mr-2"></i>Property Settings</h4>
-                  <form>
+                  <form (submit)="updateSetting()">
                     <div class="form-group">
-                      <label>Property Name</label>
-                      <input type="text" class="form-control" placeholder="e.g. Sunrise Apartments">
-                    </div>
-                    <div class="form-group">
-                      <label>Property Address</label>
-                      <input type="text" class="form-control" placeholder="e.g. 123 Main Street, Cebu City">
-                    </div>
-                    <div class="form-group">
-                      <label>Total Available Units</label>
-                      <input type="number" class="form-control" placeholder="e.g. 10">
-                    </div>
-                    <div class="form-group">
-                      <label>Amenities</label>
-                      <input type="text" class="form-control" placeholder="e.g. Pool, Gym, Laundry Area">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Property Info</button>
-                  </form>
-                </div>
-  
-                <!-- Tenant Settings -->
-                <div class="tab-pane fade" id="tenant" role="tabpanel">
-                  <h4><i class="fas fa-users mr-2"></i>Tenant Settings</h4>
-                  <form>
-                    <div class="form-group">
-                      <label>Required Documents</label>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="creditCheck">
-                        <label class="custom-control-label" for="creditCheck">Require Credit Check</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="idVerification">
-                        <label class="custom-control-label" for="idVerification">Require Valid ID</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Lease Duration Options</label>
-                      <select class="form-control">
-                        <option>6 Months</option>
-                        <option>12 Months</option>
-                        <option>24 Months</option>
+                      <label>Min Lease Duration Options</label>
+                      <select class="form-control" [(ngModel)]="settingForm.default_min_lease" name="default_min_lease">
+                        <option [value]="6">6 Months / Half Year</option>
+                        <option [value]="12">12 Months / 1 Year</option>
+                        <option [value]="18">18 Months / 1.5 Years</option>
+                        <option [value]="24">24 Months / 2 Years</option>
+                        <option [value]="30">30 Months / 2.5 Years</option>
+                        <option [value]="36">36 Months / 3 Years</option>
                       </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Tenant Policies</button>
+                  
+                    <div class="form-group">
+                      <label>Default Reservation Fee</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="settingForm.default_reservation_fee"
+                        name="default_reservation_fee"
+                        placeholder="Days before due date (e.g. 3)"
+                      />
+                    </div>
+                  
+                    <button type="submit" class="btn btn-primary" >Save Property Info</button>
                   </form>
                 </div>
-  
-                <!-- Financial Settings -->
-                <div class="tab-pane fade" id="financial" role="tabpanel">
-                  <h4><i class="fas fa-money-bill-wave mr-2"></i>Financial Settings</h4>
-                  <form>
-                    <div class="form-group">
-                      <label>Default Monthly Rent</label>
-                      <input type="number" class="form-control" placeholder="e.g. 12000">
-                    </div>
-                    <div class="form-group">
-                      <label>Security Deposit Amount</label>
-                      <input type="number" class="form-control" placeholder="e.g. 10000">
-                    </div>
-                    <div class="form-group">
-                      <label>Late Payment Fee</label>
-                      <input type="number" class="form-control" placeholder="e.g. 500">
-                    </div>
-                    <div class="form-group">
-                      <label>Payment Reminder Lead Time</label>
-                      <input type="number" class="form-control" placeholder="Days before due date (e.g. 3)">
-                    </div>
-                    <div class="form-group">
-                      <label>Enable Rent Payment Tracking</label>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="trackRentPayment">
-                        <label class="custom-control-label" for="trackRentPayment">Yes, track rent status</label>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update Financial Settings</button>
-                  </form>
-                </div>
-  
               </div>
             </div>
   

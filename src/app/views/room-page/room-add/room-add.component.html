@@ -145,6 +145,7 @@
                 </div>
               </div>
               <div class="col-md-6">
+
                 <div class="mb-3">
                   <label class="form-label" for="minLease">Min Lease (Months)</label>
                   <input
@@ -154,9 +155,25 @@
                     [(ngModel)]="room.min_lease"
                     name="minLease"
                     required
+                    readonly
                   />
+                  <small class="text-muted">To update this value, go to <strong>Settings</strong>.</small>
+
                 </div>
               </div>
+              <!-- <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label" for="minLease">Min Lease (Months)</label>
+                  <input
+                    type="number" 
+                    class="form-control"
+                    id="minLease"
+                    [(ngModel)]="room.min_lease"
+                    name="minLease"
+                    required
+                  />
+                </div>
+              </div> -->
             </div>
             
             <div class="row">
@@ -168,7 +185,8 @@
                     id="unit_type"
                     [(ngModel)]="room.unit_type"
                     name="unit_type"
-                    required 
+                    required
+                     
                   >
                     <option value="studio_unit">Studio Unit</option>
                     <option value="triplex_unit">Triplex Unit</option>
@@ -182,7 +200,16 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="reservation_pay">Reservation Payment</label>
-                  <input type="number" class="form-control" id="reservationFee" name="reservationFee" [(ngModel)]="room.reservation_fee" required>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="reservationFee"
+                    name="reservationFee"
+                    [(ngModel)]="room.reservation_fee"
+                    required
+                    readonly
+                  />
+                  <small class="text-muted">To update this value, go to <strong>Settings</strong>.</small>
                 </div>
               </div>
             </div>

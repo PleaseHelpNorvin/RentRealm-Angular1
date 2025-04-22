@@ -4,6 +4,8 @@ import { RoomService } from '../../../core/service/room/room.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';  // <-- Import this
 import { Room, RoomResponse } from '../../../core/interfaces/room.interface';
+import { SettingService } from '../../../core/service/setting/setting.service';
+import { UserSettingResponse } from '../../../core/interfaces/users.interface';
 
 @Component({
   selector: 'app-room-add',
@@ -34,20 +36,37 @@ export class RoomAddComponent {
     id: 0,
   };
 
-  // room = {
-  //   rentPrice: '',
-  //   capacity: '',
-  //   status: 'available',
-  //   minLease: '',
-  //   // images: [] as (File | string | any)[],
-  //   images: [] as string[] // To store image files
-  // };
+  settingForm = {
+    default_min_lease: 6,
+    default_reservation_fee: 0
+  };
 
-  constructor(private router: Router, private route: ActivatedRoute, private roomService: RoomService) {
+  constructor(private router: Router, private route: ActivatedRoute, private roomService: RoomService, private settingService: SettingService) {
     this.route.params.subscribe(params => {
       this.property_id = params['property_id'];
       console.log('Property ID:', this.property_id);
     });
+  }
+  
+  ngOnInit(): void {
+    this.loadSettings()
+  }
+
+  loadSettings(): void {
+    this.settingService.showUserSetting().subscribe({
+      next: (res: UserSettingResponse) => {
+        this.settingForm = {
+          default_min_lease: res.data.user.setting?.default_min_lease ??  6,
+          default_reservation_fee: res.data.user.setting?.default_reservation_fee ?? 0
+        };
+        this.room.min_lease = this.settingForm.default_min_lease;
+        this.room.reservation_fee = this.settingForm.default_reservation_fee;
+
+      }, 
+      error: (err) => {
+        console.log('Error Loading Settings:', err)
+      }
+    })
   }
 
   // Handle image selection

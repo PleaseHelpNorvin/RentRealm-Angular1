@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../../core/service/property/property.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Property } from '../../../core/interfaces/property.interface';
+import { Property, PropertyResponse } from '../../../core/interfaces/property.interface';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class PropertyUpdateComponent implements OnInit {
     }
   };
 
-  selectedImages: string[] = [];
+  selectedImages: string[] = []; // This will hold image URLs for display
 
   constructor(
     private route: ActivatedRoute,
@@ -63,28 +63,43 @@ export class PropertyUpdateComponent implements OnInit {
   }
 
   fetchProperty(property_id: number): void {
-    this.propertyService.getPropertyById(property_id).subscribe((response: any) => {
-      if (response && response.data) {
-        // Assign the property from response.data.properties
+    console.log('Fetching property with ID:', property_id); // Check if this line runs
+    this.propertyService.getPropertyById(property_id).subscribe({
+      next: (res: PropertyResponse) => {
+        console.log('API Response:', res);  // Log full response
+        // 1. Grab the single property object:
+        console.log('raw image from response: ', res.data.properties[0].property_picture_url)
+        const raw = res.data.properties[0];
+        
+        // 2. Parse the JSON-stringified URL array:
+        const urlString = raw.property_picture_url as unknown as string;
+        let pics: string[] = [];
+        
+        try {
+          pics = JSON.parse(urlString);
+          console.log('pics:', pics);
+        } catch (e) {
+          console.error('Invalid JSON in property_picture_url', e);
+        }
+        
+  
+        // 3. Merge into your initialized `property` and `selectedImages`:
         this.property = {
-          ...response.data.properties,
-          pets_allowed: response.data.properties.pets_allowed === 1, // Convert to boolean if needed
+          ...this.property,
+          ...raw,
+          property_picture_url: pics
         };
   
-        console.log('fetchProperty():', this.property);
+        this.selectedImages = pics;
   
-        const imageUrls: string = response.data.properties.property_picture_url;
-        if (imageUrls) {
-          try {
-            this.selectedImages = JSON.parse(imageUrls);
-          } catch (error) {
-            console.error('Error parsing property_picture_url:', error);
-          }
-        }
+        console.log('Loaded property:', this.property);
+        console.log('Loaded images:', this.selectedImages);
+      },
+      error: (err) => {
+        console.error('Error fetchProperty:', err);
       }
     });
   }
-  
 
   onImageSelected(event: any): void {
     const files = event.target.files;

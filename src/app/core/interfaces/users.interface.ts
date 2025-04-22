@@ -1,18 +1,24 @@
 import { Address } from './address.interface';
+import { Setting } from './setting.interface';
 import { Tenant } from './tenant.interface';
 
 export interface Users {
+  data: any;
   id: number;
   name: string;
   email: string;
+  admin_phone?: string;
   password?: string | null;
   email_verified_at?: string | null | undefined;
   role: string;
   steps: string;
   created_at: string;
   updated_at: string;
-  user_profile?: UserProfile[]; 
+  user_profile?: UserProfile[];
+  setting?: Setting;
 }
+
+
 
 
 export interface UserProfile {
@@ -46,5 +52,13 @@ export interface UserProfile {
     message: string;
     data: {
       userProfile: UserProfile[];
+    };
+  }
+
+  export interface UserSettingResponse {
+    success: boolean;  // should be boolean not number
+    message: string;
+    data: {
+      user: Users;
     };
   }

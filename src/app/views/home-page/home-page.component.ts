@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { CustomCardComponent } from "../../shared/components/custom-card/custom-card.component";
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
+import { Observable } from 'rxjs';
+import { DashboardService } from '../../core/service/dashboard/dashboard.service';
+import { DashboardData, DashboardResponse } from '../../core/interfaces/dashboard.interface';
+import { tick } from '@angular/core/testing';
 
 
 @Component({
@@ -13,12 +17,37 @@ import { ChartConfiguration, ChartType } from 'chart.js';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  public paymentChartLabels: string[] = ['Paid', 'Overdue', 'Pending'];
+  // dashboardData: DashboardData;
+
+  private intervalId: any;
+
+  dashboardData: DashboardData = {
+    property_count: 0,
+    room_count: 0,
+    total_paid_count: '0.00',
+    overdue_payments_sum: 0,
+    handyman_count: 0,
+    available_handyman_count: 0,
+    tenant_count: 0,
+    pending_reservation_count: 0,
+    total_agreements_count: 0,
+    total_users_count: 0,
+    total_payment_count: 0,
+    paid_payment_count: 0,
+    partial_payment_count: 0,
+    pending_payment_count: 0,
+    occupied_room_count: 0,
+    vacant_room_count: 0,
+    new_tenant_count: 0,
+  };
+  constructor(private dasboardService: DashboardService) {}
+
+  public paymentChartLabels: string[] = ['Paid', 'Partial', 'Pending'];
   public paymentChartData: ChartConfiguration<'pie'>['data'] = {
     labels: this.paymentChartLabels,
     datasets: [
       {
-        data: [1200, 500, 800],
+        data: [0,0,0],
         backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'], // Colors for pie chart
       },
     ],
@@ -32,17 +61,69 @@ export class HomePageComponent {
     datasets: [
       {
         label: 'Tenants',
-        data: [50, 10, 5],
+        data: [0, 0, 0],
         backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'], // Colors for bar chart
       },
     ],
   };
-  public tenantChartType: ChartType = 'bar';
 
-  // Chart Options
+  public tenantChartType: ChartType = 'bar';
   public chartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
   };
+  ngOnInit(): void {
+    this.loadDashboardData();
+    this.intervalId = setInterval(() => {
+      this.loadDashboardData();
+    }, 5000);
+  }
+  
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+  loadDashboardData(): void {
+    this.dasboardService.getDashboardData().subscribe({
+      next: (res: DashboardResponse) => {
+        if (res.success) {
+          this.dashboardData = res.data; // Assign the fetched data to dashboardData
+          console.log(this.dashboardData); 
 
+          this.paymentChartData = {
+            labels: this.paymentChartLabels,
+            datasets: [
+              {
+                data: [
+                  this.dashboardData.paid_payment_count,
+                  this.dashboardData.partial_payment_count,
+                  this.dashboardData.pending_payment_count
+                ],
+                backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'],
+              },
+            ],
+          };
+
+          this.tenantChartData = {
+            labels: this.tenantChartLabels, // use the correct labels here!
+            datasets: [
+              {
+                label: 'Tenants',
+                data: [
+                  this.dashboardData.occupied_room_count,
+                  this.dashboardData.vacant_room_count,
+                  this.dashboardData.new_tenant_count,
+                ],
+                backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'],
+              }
+            ]
+          };
+        }
+      },
+      error: (err) => {
+        console.log('Error loading Dashboard Data', err)
+      }
+    })
+  }
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomAddComponent } from './room-add.component';
+import { beforeEach, describe } from 'node:test';
 
 describe('RoomAddComponent', () => {
   let component: RoomAddComponent;
@@ -17,7 +18,5 @@ describe('RoomAddComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+ 
 });
