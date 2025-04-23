@@ -19,6 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './tenant-show.component.css'
 })
 export class TenantShowComponent {
+
   profile_id: number | null = null;
   sendWarningModalInstance!: Modal;
   @ViewChild('sendModalChild') sendWarningModalElement!: ElementRef;
@@ -54,6 +55,7 @@ export class TenantShowComponent {
   selectedRentNotice?: Notification;
 
   
+  private intervalId: any;
 
   constructor(private router: Router,private route: ActivatedRoute,  private snackBar: MatSnackBar,
     private authService: AuthService, private tenantService: TenantService, private userService: UserService) {
@@ -65,6 +67,15 @@ export class TenantShowComponent {
   ngOnInit(): void {
     console.log(`profile_id received ${this.profile_id}`);
     this.LoadTenantByProfileId();
+    this.intervalId = setInterval(() => {
+      this.LoadTenantByProfileId();
+    }, 5000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   ngAfterViewInit() {

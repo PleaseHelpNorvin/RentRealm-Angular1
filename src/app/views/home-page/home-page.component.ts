@@ -117,7 +117,7 @@ export class HomePageComponent {
           };
 
           this.tenantChartData = {
-            labels: ['Metrics'],
+            labels: ['Tenants Overview'],
             datasets: [
               {
                 label: 'Occupied Room',

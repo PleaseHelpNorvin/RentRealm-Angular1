@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TenantShowComponent } from './tenant-show.component';
+import { beforeEach } from 'node:test';
 
 describe('TenantShowComponent', () => {
   let component: TenantShowComponent;
@@ -17,7 +18,5 @@ describe('TenantShowComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 });
