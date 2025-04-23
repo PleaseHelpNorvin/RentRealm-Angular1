@@ -1,137 +1,128 @@
-    <div class="row">
+<div class="row">
 
-        <!-- Total Apartments -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#87CEFA'"
-                           [cardBodyText]="'Total Properties - Total Rooms'"
-                           [cardBodyValue]="dashboardData.property_count + ' - ' + dashboardData.room_count">
-            <div card-header>
-              <span class="material-icons">apartment</span>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Total Rent Collected -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#B0C4DE'"
-                           [cardBodyText]="'Total Rent Collected'"
-                           [cardBodyValue]="'₱' + dashboardData.total_paid_count">
-            <div card-header>
-              <span class="material-icons">payments</span>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Overdue Payments -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#87CEEB'"
-                           [cardBodyText]="'Overdue Payments'"
-                           [cardBodyValue]="'₱' +dashboardData.overdue_payments_sum">
-            <div card-header>
-              <span class="material-icons">report_problem</span>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Available Handymen -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#4682B4'"
-                           [cardBodyText]="'Available Handymen'"
-                           [cardBodyValue]="dashboardData.available_handyman_count + ' out of ' + dashboardData.handyman_count">
-            <div card-header>
-              <span class="material-icons">engineering</span>
-            </div>
-            <div card-footer>
-              <a href="#">View Handymen</a>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Total Tenants -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#5F9EA0'"
-                           [cardBodyText]="'Total Tenants'"
-                           [cardBodyValue]="dashboardData.tenant_count.toString()">
-            <div card-header>
-              <span class="material-icons">groups</span>
-            </div>
-            <div card-footer>
-              <a href="#">View Tenants</a>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Pending Reservations -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#FFD700'"
-                           [cardBodyText]="'Pending Reservations'"
-                           [cardBodyValue]="dashboardData.pending_reservation_count.toString()">
-            <div card-header>
-              <span class="material-icons">event_note</span>
-            </div>
-            <div card-footer>
-              <a href="#">Manage Reservations</a>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Total Agreements -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#8FBC8F'"
-                           [cardBodyText]="'Total Agreements'"
-                           [cardBodyValue]="dashboardData.total_agreements_count.toString()">
-            <div card-header>
-              <span class="material-icons">assignment</span>
-            </div>
-            <div card-footer>
-              <a href="#">View Agreements</a>
-            </div>
-          </app-custom-card>
-        </div>
-      
-        <!-- Total Users -->
-        <div class="appcard-box">
-          <app-custom-card [cardHeaderBgColor]="'#6A5ACD'"
-                           [cardBodyText]="'Total Users'"
-                           [cardBodyValue]="dashboardData.total_users_count.toString()">
-            <div card-header>
-              <span class="material-icons">person</span>
-            </div>
-            <div card-footer>
-              <a href="#">Manage Users</a>
-            </div>
-          </app-custom-card>
-        </div>
-      
+  <!-- Total Apartments -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#87CEFA'"
+                     [cardBodyText]="'Total Properties'"
+                     [cardBodyValue]="dashboardData.property_count + ' - ' + dashboardData.room_count"
+                     [moreInfoLink]="'/admin/properties'">
+      <div card-header>
+        <span class="material-icons">apartment</span>
       </div>
-      
-  
-  <!-- Charts Section -->
-  <div class="row mt-4">
-    <div class="col">
-      <div class="box">
-        <h3>Rent Payment Overview</h3>
-        <div class="chart-container">
-          <canvas
-            baseChart
-            [data]="paymentChartData"
-            [type]="paymentChartType"
-            [options]="chartOptions">
-          </canvas>
-        </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Total Rent Collected -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#B0C4DE'"
+                     [cardBodyText]="'Total Rent Collected'"
+                     [cardBodyValue]="'₱' + dashboardData.total_paid_count"
+                     [moreInfoLink]="'/admin/payments-history'">
+      <div card-header>
+        <span class="material-icons">payments</span>
       </div>
-  
-      <div class="box mt-4">
-        <h3>Tenant Distribution</h3>
-        <div class="chart-container">
-          <canvas
-            baseChart
-            [data]="tenantChartData"
-            [type]="tenantChartType"
-            [options]="chartOptions">
-          </canvas>
-        </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Overdue Payments -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#87CEEB'"
+                     [cardBodyText]="'Overdue Payments'"
+                     [cardBodyValue]="'₱' + dashboardData.overdue_payments_sum"
+                     [moreInfoLink]="'/admin/overdue-billings'">
+      <div card-header>
+        <span class="material-icons">report_problem</span>
+      </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Available Handymen -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#4682B4'"
+                     [cardBodyText]="'Available Handymen'"
+                     [cardBodyValue]="dashboardData.available_handyman_count + ' out of ' + dashboardData.handyman_count"
+                     [moreInfoLink]="'/admin/handy-man'">
+      <div card-header>
+        <span class="material-icons">engineering</span>
+      </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Total Tenants -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#5F9EA0'"
+                     [cardBodyText]="'Total Tenants'"
+                     [cardBodyValue]="dashboardData.tenant_count.toString()"
+                     [moreInfoLink]="'/admin/tenant'">
+      <div card-header>
+        <span class="material-icons">groups</span>
+      </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Pending Reservations -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#FFD700'"
+                     [cardBodyText]="'Pending Reservations'"
+                     [cardBodyValue]="dashboardData.pending_reservation_count.toString()"
+                     [moreInfoLink]="'/admin/Reservations'">
+      <div card-header>
+        <span class="material-icons">event_note</span>
+      </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Total Agreements -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#8FBC8F'"
+                     [cardBodyText]="'Total Agreements'"
+                     [cardBodyValue]="dashboardData.total_agreements_count.toString()"
+                     [moreInfoLink]="'/admin/contract'">
+      <div card-header>
+        <span class="material-icons">assignment</span>
+      </div>
+    </app-custom-card>
+  </div>
+
+  <!-- Total Users -->
+  <div class="appcard-box">
+    <app-custom-card [cardHeaderBgColor]="'#6A5ACD'"
+                     [cardBodyText]="'Total Users'"
+                     [cardBodyValue]="dashboardData.total_users_count.toString()"
+                     [moreInfoLink]="'/admin/tenant'">
+      <div card-header>
+        <span class="material-icons">person</span>
+      </div>
+    </app-custom-card>
+  </div>
+
+</div>
+
+<!-- Charts Section -->
+<div class="row mt-4">
+  <div class="col">
+    <div class="box">
+      <h3>Rent Payment Overview</h3>
+      <div class="chart-container">
+        <canvas baseChart
+                [data]="paymentChartData"
+                [type]="paymentChartType"
+                [options]="chartOptions">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="box mt-4">
+      <h3>Tenant Distribution</h3>
+      <div class="chart-container">
+        <canvas baseChart
+                [data]="tenantChartData"
+                [type]="tenantChartType"
+                [options]="chartOptions">
+        </canvas>
       </div>
     </div>
   </div>
-  
+</div>
+
+ 

@@ -3,12 +3,12 @@ p{
     margin: 0;
 }
 .custom-card{
-    /* border: 1px solid navy; */
+    border: 1px solid rgb(0, 0, 0);
     /* display: flex; */
-    background-color: white;
+    background-color: rgb(197, 238, 245);
     padding: 0;
     margin: 0;
-    border-radius: 5%;
+    border-radius: 2%;
 }
 .row{
     --bs-gutter-x: 0;
@@ -33,19 +33,39 @@ p{
     justify-content: center;
     align-items: center;
     /* background-color: red; */
+    border-radius: 10%;
+    
 
 }
 .divider{
     border: 1px solid gray;
+    
 }
 .card-body{
     /* border: 1px solid blue; */
     height: 100%;
+    
 }
 .card-footer{
     height: 100%;
     /* border: 1px solid green; */
     padding: 0;
     margin: 0;
+    padding-left: 225px;
+    
 }
 
+.more-info-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #534c4c;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.more-info-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}

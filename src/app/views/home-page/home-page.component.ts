@@ -1,25 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomCardComponent } from "../../shared/components/custom-card/custom-card.component";
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartType } from 'chart.js';
-import { Observable } from 'rxjs';
 import { DashboardService } from '../../core/service/dashboard/dashboard.service';
 import { DashboardData, DashboardResponse } from '../../core/interfaces/dashboard.interface';
-import { tick } from '@angular/core/testing';
 
+
+
+declare const $: any; // jQuery for calendar
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, CustomCardComponent, BaseChartDirective],  // Import shared module and charts directive
+  imports: [CommonModule, CustomCardComponent, BaseChartDirective],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
-export class HomePageComponent {
-  // dashboardData: DashboardData;
-
-  private intervalId: any;
+export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   dashboardData: DashboardData = {
     property_count: 0,
@@ -40,28 +38,30 @@ export class HomePageComponent {
     vacant_room_count: 0,
     new_tenant_count: 0,
   };
+
   constructor(private dasboardService: DashboardService) {}
+
+  private intervalId: any;
 
   public paymentChartLabels: string[] = ['Paid', 'Partial', 'Pending'];
   public paymentChartData: ChartConfiguration<'pie'>['data'] = {
     labels: this.paymentChartLabels,
     datasets: [
       {
-        data: [0,0,0],
-        backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'], // Colors for pie chart
+        data: [0, 0, 0],
+        backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'],
       },
     ],
   };
   public paymentChartType: ChartType = 'pie';
 
-  // Tenants Overview Chart Data
   public tenantChartLabels: string[] = ['Occupied Rooms', 'Vacant Rooms', 'New Tenants'];
   public tenantChartData: ChartConfiguration<'bar'>['data'] = {
     labels: this.tenantChartLabels,
     datasets: [
       {
         label: 'Occupied Room',
-        data: [0], // only one value for the "Status" label
+        data: [0],
         backgroundColor: '#ADD8E6',
       },
       {
@@ -76,31 +76,39 @@ export class HomePageComponent {
       },
     ],
   };
-  
 
   public tenantChartType: ChartType = 'bar';
   public chartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
   };
+
   ngOnInit(): void {
     this.loadDashboardData();
     this.intervalId = setInterval(() => {
       this.loadDashboardData();
     }, 5000);
   }
-  
+
+  ngAfterViewInit(): void {
+    // jQuery UI datepicker initialization
+    $('#miniCalendar').datepicker({
+      showOtherMonths: true,
+      selectOtherMonths: true
+    });
+  }
+
   ngOnDestroy(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
   }
+
   loadDashboardData(): void {
     this.dasboardService.getDashboardData().subscribe({
       next: (res: DashboardResponse) => {
         if (res.success) {
-          this.dashboardData = res.data; // Assign the fetched data to dashboardData
-          console.log(this.dashboardData); 
+          this.dashboardData = res.data;
 
           this.paymentChartData = {
             labels: this.paymentChartLabels,
@@ -136,12 +144,11 @@ export class HomePageComponent {
               },
             ],
           };
-          
         }
       },
       error: (err) => {
-        console.log('Error loading Dashboard Data', err)
+        console.error('Error loading Dashboard Data', err);
       }
-    })
+    });
   }
 }

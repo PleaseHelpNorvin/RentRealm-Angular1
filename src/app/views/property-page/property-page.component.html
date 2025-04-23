@@ -1,87 +1,119 @@
-<button class="btn btn-sm btn-primary mb-3" (click)="goToAddPropertyPage()">
-  <span class="material-icons">add</span> Add New Property
-</button>
-<div class="row">
-  
-  <div *ngFor="let property of properties" class="col-lg-4 col-md-6 col-sm-12 mb-4">
-    <div class="card property-card shadow-lg border-0">
-      
-      <!-- Image with Overlay & Status Label -->
-      <div class="position-relative">
-        <img *ngIf="property.property_picture_url.length > 0; else noImage"
-             [src]="property.property_picture_url[0]"
-             class="card-img-top rounded-top"
-             alt="Property Image"
-             style="height: 220px; object-fit: cover;">
-        
-        <ng-template #noImage>
-          <div class="d-flex align-items-center justify-content-center bg-light" style="height: 220px;">
-            <span class="text-muted">No Image Available</span>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4 class="card-title">Properties</h4>
           </div>
-        </ng-template>
+          <div class="card-body">
+            <!-- Loading Indicator -->
+            <div *ngIf="isLoading" class="alert alert-info">
+              <i class="fas fa-spinner fa-spin"></i> Loading properties...
+            </div>
 
-        <!-- Status Label -->
-        <!-- <div *ngIf="property.status" class="status-label" [ngClass]="{
-          'bg-danger': property.status === 'fully booked',
-          'bg-warning': property.status === 'only one left',
-          'bg-success': property.status === 'available'
-        }">
-          {{ property.status }}
-        </div> -->
-      </div>
+            <!-- Main Content -->
+            <div *ngIf="!isLoading">
+              <!-- Filter Buttons -->
+              <div class="btn-group w-100 mb-2">
+                <a class="btn btn-info" [class.active]="currentFilter === 'all'" 
+                   (click)="applyFilter('all')"> All Properties </a>
+                <a class="btn btn-info" [class.active]="currentFilter === 'vacant'" 
+                   (click)="applyFilter('vacant')"> Vacant ({{ getTotalVacant() }}) </a>
+                <a class="btn btn-info" [class.active]="currentFilter === 'full'" 
+                   (click)="applyFilter('full')"> Occupied ({{ getTotalFull() }}) </a>
+                <a class="btn btn-info" [class.active]="currentFilter === 'maintenance'" 
+                   (click)="applyFilter('maintenance')"> Maintenance </a>
+              </div>
+              
+              <!-- Action Buttons -->
+              <div class="mb-2">
+                <a class="btn btn-secondary" (click)="shuffleItems()">
+                  <i class="fas fa-random"></i> Shuffle
+                </a>
+                <button class="btn btn-success ml-3" (click)="goToAddPropertyPage()">
+                  <i class="fas fa-plus"></i> Add New Property
+                </button>
+                
+                <!-- Sorting Controls -->
+                <div class="float-right">
+                  <select class="custom-select" style="width: auto;" [(ngModel)]="sortOrder">
+                    <option value="index"> Sort by Position </option>
+                    <option value="name"> Sort by Name </option>
+                  </select>
+                  <div class="btn-group ml-2">
+                    <a class="btn btn-default" (click)="sortItems(sortOrder, 'asc')">
+                      <i class="fas fa-sort-amount-up"></i> Asc
+                    </a>
+                    <a class="btn btn-default" (click)="sortItems(sortOrder, 'desc')">
+                      <i class="fas fa-sort-amount-down"></i> Desc
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-      <!-- Card Body -->
-      <div class="card-body">
-        <h5 class="card-title fw-bold">Aparment Name: {{ property.name }}</h5>
-        <br>
-        <p class="text-muted mb-2">
-          Address:
-          <i class="fas fa-map-marker-alt text-danger me-1"></i>
-          {{ property.address.line_1 }}, {{ property.address.province }} - {{ property.address.postal_code }}
-        </p>
-        <p class="mb-2">
-          <strong>Total Units:</strong> {{property.roomCount}} | Vacant: {{property.vacantRoomCount}} | Full: {{property.fullRoomCount}} <br>
-   
-        </p>
-        
-        <p class="mb-2">
-          <strong>Gender Allowed:</strong> 
-          <span [style.color]="property.gender_allowed === 'boys-only' ? 'blue' : 'pink'">
-            {{ property.gender_allowed }}
-          </span>
-        </p>
-        <p class="mb-2">
-          <strong>Created At:</strong> 
-          <span class="fw-bold text-primary"> {{ property.created_at }}</span>
-        </p>
-      </div>
+              <!-- Error Message -->
+              <div *ngIf="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
+              </div>
 
-      <!-- Card Footer with Buttons -->
-      <div class="card-footer d-flex justify-content-between">
-        <button class="btn btn-sm btn-info" (click)="goToViewRoomsPage(property.id)">
-          <i class="fas fa-door-open"></i> Manage
-        </button>
-        <button class="btn btn-sm btn-primary" (click)="goToUpdatePage(property.id)">
-          <i class="fas fa-edit"></i> Edit
-        </button>
-        <button class="btn btn-sm btn-primary" (click)="goToUpdatePage(property.id)">
-          <i class="fas fa-edit"></i> Delete
-        </button>
+              <!-- Property Grid -->
+              <div class="filter-container p-0 row">
+                <div class="filtr-item col-sm-3 mb-4" *ngFor="let property of filteredProperties">
+                  <div class="card h-100">
+                    <div class="card-header">
+                      <h3 class="card-title">{{ property.name }}</h3>
+                      <span class="badge float-right" 
+                            [ngClass]="{
+                              'badge-success': property.status === 'vacant',
+                              'badge-primary': property.status === 'full',
+                              'badge-warning': property.status === 'maintenance'
+                            }">
+                        {{ property.status }}
+                      </span>
+                    </div>
+                    <div class="card-body">
+                      <div *ngIf="property.property_picture_url?.length">
+                        <img [src]="property.property_picture_url[0]" class="img-fluid mb-2" 
+                             [alt]="property.name" style="height: 200px; width: 100%; object-fit: cover;">
+                      </div>
+                      <div *ngIf="!property.property_picture_url?.length">
+                        <img src="https://via.placeholder.com/300" class="img-fluid mb-2" 
+                             alt="No image" style="height: 200px; width: 100%; object-fit: cover;">
+                      </div>
+                      
+                      <p><strong>Type:</strong> {{ property.type }}</p>
+                      <p><strong>Gender Allowed:</strong> {{ property.gender_allowed }}</p>
+                      <div class="room-counts">
+                        <span class="badge bg-success mr-1">{{ property.vacantRoomCount || 0 }} Vacant</span>
+                        <span class="badge bg-primary">{{ property.fullRoomCount || 0 }} Occupied</span>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <div class="btn-group w-100">
+                        <button class="btn btn-primary" (click)="goToViewRoomsPage(property.id)">
+                          <i class="fas fa-door-open"></i> Rooms
+                        </button>
+                        <button class="btn btn-info" (click)="goToUpdatePage(property.id)">
+                          <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger" (click)="deleteProperty(property.id)">
+                          <i class="fas fa-trash"></i> Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Empty State -->
+              <div *ngIf="filteredProperties.length === 0 && !errorMessage" class="alert alert-info">
+                No properties found matching the current filter.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<!-- 
- <div class="card-footer d-flex justify-content-between">
-          <button class="btn btn-sm btn-info" (click)="goToViewRoomsPage(property.id)">
-            <i class="fas fa-door-open"></i> Rooms
-          </button>
-          <button class="btn btn-sm btn-success" (click)="goToUpdatePage(property.id)">
-            <i class="fas fa-edit"></i> Update
-          </button>
-          <button class="btn btn-sm btn-danger" (click)="deleteProperty(property.id)">
-            <i class="fas fa-trash-alt"></i> Delete
-          </button>
-        </div> -->
-  
+</section>

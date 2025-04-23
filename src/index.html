@@ -17,6 +17,7 @@
   <!-- <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script> -->
+
   <script src="assets/AdminLTE/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -25,10 +26,23 @@
 <!-- Bootstrap (from CDN, fallback to local if not found) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- AdminLTE App -->
-  <!-- <script src="assets/AdminLTE/dist/js/adminlte.min.js"></script> -->
-  <!-- AdminLTE for demo purposes -->
-  <!-- <script src="assets/AdminLTE/dist/js/demo.js"></script> -->
+
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
   <script>
     $(document).ready(function() {
       $('.product-image-thumb').on('click', function () {

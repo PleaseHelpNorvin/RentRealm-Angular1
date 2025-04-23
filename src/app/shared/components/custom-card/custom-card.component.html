@@ -1,21 +1,22 @@
 <div class="custom-card">
     <div class="row">
-        <div class="card-header" [ngStyle]="{'background-color': cardHeaderBgColor}">
-            <ng-content select="[card-header]"></ng-content>
+      <div class="card-header" [ngStyle]="{'background-color': cardHeaderBgColor}">
+        <ng-content select="[card-header]"></ng-content>
+      </div>
+      <div class="col">
+        <div class="card-body">
+          <ng-content select="[card-body]">
+            {{ cardBodyText }}
+            <h3>{{ cardBodyValue }}</h3>
+          </ng-content>
         </div>
-        <div class="col" >
-            <div class="card-body">
-                <ng-content select="[card-body]">
-                    <!-- <ng-content select="[card-sub-body]"> -->
-                        {{ cardBodyText }}
-                        <h3>{{ cardBodyValue }}</h3>
-                    <!-- </ng-content> -->
-                </ng-content>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="divider"></div>
     <div class="card-footer">
-        <p>Click here</p>
+      <a [routerLink]="moreInfoLink" class="more-info-link">
+        More Info <i class="fas fa-arrow-right"></i>
+      </a>
     </div>
-</div>
+  </div>
+  

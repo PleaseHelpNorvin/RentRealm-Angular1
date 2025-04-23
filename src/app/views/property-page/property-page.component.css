@@ -1,5 +1,43 @@
+.filter-container {
+  transition: all 0.3s ease;
+}
+
+.filtr-item {
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.property-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .property-card:hover {
-  transform: scale(1.05);
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-group .btn {
+  margin-right: 5px;
+}
+
+.btn-group .btn:last-child {
+  margin-right: 0;
+}
+
+.btn-info.active {
+  background-color: #117a8b;
+  border-color: #10707f;
+}
+
+.custom-select {
+  margin-right: 10px;
+}
+
+.room-counts {
+  margin-top: 10px;
+}
+
+.badge {
+  font-size: 0.85em;
+  padding: 0.35em 0.65em;
 }

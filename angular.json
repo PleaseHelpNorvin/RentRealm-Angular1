@@ -42,6 +42,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/slick-carousel/slick/slick.min.js",
+               "src/assets/AdminLTE/plugins/filterizr/jquery.filterizr.min.js",
               "src/assets/AdminLTE/plugins/jquery-ui/jquery-ui.min.js",
               "src/assets/AdminLTE/plugins/chart.js/Chart.min.js",
               "src/assets/AdminLTE/plugins/sparklines/sparkline.js",
@@ -54,6 +55,7 @@
               "src/assets/AdminLTE/plugins/summernote/summernote-bs4.min.js",
               "src/assets/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
               "src/assets/AdminLTE/dist/js/adminlte.js"
+             
             ]
           },
           "configurations": {
