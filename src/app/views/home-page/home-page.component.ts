@@ -55,17 +55,28 @@ export class HomePageComponent {
   public paymentChartType: ChartType = 'pie';
 
   // Tenants Overview Chart Data
-  public tenantChartLabels: string[] = ['Occupied', 'Vacant', 'New Tenants'];
+  public tenantChartLabels: string[] = ['Occupied Rooms', 'Vacant Rooms', 'New Tenants'];
   public tenantChartData: ChartConfiguration<'bar'>['data'] = {
     labels: this.tenantChartLabels,
     datasets: [
       {
-        label: 'Tenants',
-        data: [0, 0, 0],
-        backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'], // Colors for bar chart
+        label: 'Occupied Room',
+        data: [0], // only one value for the "Status" label
+        backgroundColor: '#ADD8E6',
+      },
+      {
+        label: 'Vacant Room',
+        data: [0],
+        backgroundColor: '#87CEEB',
+      },
+      {
+        label: 'New Tenants',
+        data: [0],
+        backgroundColor: '#4682B4',
       },
     ],
   };
+  
 
   public tenantChartType: ChartType = 'bar';
   public chartOptions: ChartConfiguration['options'] = {
@@ -106,19 +117,26 @@ export class HomePageComponent {
           };
 
           this.tenantChartData = {
-            labels: this.tenantChartLabels, // use the correct labels here!
+            labels: ['Metrics'],
             datasets: [
               {
-                label: 'Tenants',
-                data: [
-                  this.dashboardData.occupied_room_count,
-                  this.dashboardData.vacant_room_count,
-                  this.dashboardData.new_tenant_count,
-                ],
-                backgroundColor: ['#ADD8E6', '#87CEEB', '#4682B4'],
-              }
-            ]
+                label: 'Occupied Room',
+                data: [this.dashboardData.occupied_room_count],
+                backgroundColor: '#ADD8E6',
+              },
+              {
+                label: 'Vacant Room',
+                data: [this.dashboardData.vacant_room_count],
+                backgroundColor: '#87CEEB',
+              },
+              {
+                label: 'New Tenants',
+                data: [this.dashboardData.new_tenant_count],
+                backgroundColor: '#4682B4',
+              },
+            ],
           };
+          
         }
       },
       error: (err) => {
