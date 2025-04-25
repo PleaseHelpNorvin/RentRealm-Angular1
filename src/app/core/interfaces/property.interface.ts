@@ -5,6 +5,8 @@ export interface PropertyResponse {
   message: string;
   data: {
     properties: Property[]; // Array of Property objects
+    total_vacant_properties: number;
+    total_full_properties: number;
   };
 }
 
@@ -22,7 +24,7 @@ export interface Property {
 
     //for counting not included in api response
     roomCount?: number;  
-    vacantRoomCount?: number;     // Vacant Rooms
-    fullRoomCount?: number;
+    total_occupied_rooms?: number;     // Vacant Rooms
+    total_vacant_rooms?: number;
 }
   

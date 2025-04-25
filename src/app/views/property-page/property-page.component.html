@@ -19,23 +19,23 @@
                 <a class="btn btn-info" [class.active]="currentFilter === 'all'" 
                    (click)="applyFilter('all')"> All Properties </a>
                 <a class="btn btn-info" [class.active]="currentFilter === 'vacant'" 
-                   (click)="applyFilter('vacant')"> Vacant ({{ getTotalVacant() }}) </a>
+                   (click)="applyFilter('vacant')"> Vacant ({{totalVacantProperties}}) </a>
                 <a class="btn btn-info" [class.active]="currentFilter === 'full'" 
-                   (click)="applyFilter('full')"> Occupied ({{ getTotalFull() }}) </a>
-                <a class="btn btn-info" [class.active]="currentFilter === 'maintenance'" 
-                   (click)="applyFilter('maintenance')"> Maintenance </a>
+                   (click)="applyFilter('full')"> Occupied ({{ totalFullProperties }}) </a>
+                <!-- <a class="btn btn-info" [class.active]="currentFilter === 'maintenance'" 
+                   (click)="applyFilter('maintenance')"> Maintenance </a> -->
               </div>
               
               <!-- Action Buttons -->
               <div class="mb-2">
-                <a class="btn btn-secondary" (click)="shuffleItems()">
+                <!-- <a class="btn btn-secondary" (click)="shuffleItems()">
                   <i class="fas fa-random"></i> Shuffle
-                </a>
-                <button class="btn btn-success ml-3" (click)="goToAddPropertyPage()">
+                </a> -->
+                <button class="btn btn-success" (click)="goToAddPropertyPage()">
                   <i class="fas fa-plus"></i> Add New Property
                 </button>
                 
-                <!-- Sorting Controls -->
+                <!-- Sorting Controls
                 <div class="float-right">
                   <select class="custom-select" style="width: auto;" [(ngModel)]="sortOrder">
                     <option value="index"> Sort by Position </option>
@@ -49,7 +49,7 @@
                       <i class="fas fa-sort-amount-down"></i> Desc
                     </a>
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <!-- Error Message -->
@@ -82,11 +82,12 @@
                              alt="No image" style="height: 200px; width: 100%; object-fit: cover;">
                       </div>
                       
+
                       <p><strong>Type:</strong> {{ property.type }}</p>
                       <p><strong>Gender Allowed:</strong> {{ property.gender_allowed }}</p>
                       <div class="room-counts">
-                        <span class="badge bg-success mr-1">{{ property.vacantRoomCount || 0 }} Vacant</span>
-                        <span class="badge bg-primary">{{ property.fullRoomCount || 0 }} Occupied</span>
+                        <span class="badge bg-success mr-1">{{ property.total_occupied_rooms }} Vacant</span>
+                        <span class="badge bg-primary">{{ property.total_vacant_rooms  }} Occupied</span>
                       </div>
                     </div>
                     <div class="card-footer">

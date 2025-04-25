@@ -24,6 +24,11 @@ export class PropertyPageComponent implements OnInit {
   sortDirection: string = 'asc';
   isLoading: boolean = true;
 
+  // New total counts
+  totalVacantProperties: number = 0;
+  totalFullProperties: number = 0;
+  totalOccupiedRoomsPerProeprty: number = 0;
+  totalVacantRoomsPerProeprty: number = 0; 
   constructor(
     private router: Router,
     private propertyService: PropertyService,
@@ -36,12 +41,14 @@ export class PropertyPageComponent implements OnInit {
   }
 
   // Add these two methods to calculate totals for the filter buttons
+
+  //thats bullshit
   getTotalVacant(): number {
-    return this.properties.reduce((total, property) => total + (property.vacantRoomCount || 0), 0);
+    return this.properties.reduce((total, property) => total + (property.total_vacant_rooms || 0), 0);
   }
 
   getTotalFull(): number {
-    return this.properties.reduce((total, property) => total + (property.fullRoomCount || 0), 0);
+    return this.properties.reduce((total, property) => total + (property.total_occupied_rooms || 0), 0);
   }
 
   loadProperties(): void {
@@ -49,9 +56,12 @@ export class PropertyPageComponent implements OnInit {
     this.propertyService.getProperties().subscribe({
       next: (response: PropertyResponse) => {
         if (response?.data?.properties) {
+          this.totalVacantProperties = response.data.total_vacant_properties;
+          this.totalFullProperties = response.data.total_full_properties;
+
           this.properties = response.data.properties.map(property => {
             property.created_at = this.datePipe.transform(property.created_at, 'medium') || property.created_at;
-            
+
             if (typeof property.property_picture_url === 'string') {
               try {
                 property.property_picture_url = JSON.parse(property.property_picture_url);
@@ -59,14 +69,12 @@ export class PropertyPageComponent implements OnInit {
                 property.property_picture_url = [];
               }
             }
-            
+
             return property;
           });
 
-          this.countRoomsPerProperty(() => {
-            this.filteredProperties = [...this.properties];
-            this.isLoading = false;
-          });
+          this.filteredProperties = [...this.properties];
+          this.isLoading = false;
         } else {
           this.errorMessage = 'Invalid data structure received';
           this.isLoading = false;
@@ -80,86 +88,23 @@ export class PropertyPageComponent implements OnInit {
     });
   }
 
-  countRoomsPerProperty(callback?: () => void): void {
-    let propertiesProcessed = 0;
-    const totalProperties = this.properties.length;
-    
-    if (totalProperties === 0) {
-      if (callback) callback();
-      return;
-    }
-
-    this.properties.forEach(property => {
-      this.roomService.getRooms(property.id).subscribe({
-        next: (response) => {
-          property.roomCount = response.data.rooms.length;
-          property.vacantRoomCount = response.data.rooms.filter(room => room.status.toLowerCase() === 'vacant').length;
-          property.fullRoomCount = response.data.rooms.filter(room => room.status.toLowerCase() === 'full').length;
-          
-          propertiesProcessed++;
-          if (propertiesProcessed === totalProperties && callback) {
-            callback();
-          }
-        },
-        error: (error) => {
-          console.error('Failed to load rooms for property:', property.id, error);
-          property.roomCount = 0;
-          property.vacantRoomCount = 0;
-          property.fullRoomCount = 0;
-          propertiesProcessed++;
-          if (propertiesProcessed === totalProperties && callback) {
-            callback();
-          }
-        }
-      });
-    });
-  }
 
   applyFilter(filter: string): void {
     this.currentFilter = filter;
-    
-    if (filter === 'all') {
-      this.filteredProperties = [...this.properties];
-      return;
+  
+    if (filter === 'vacant') {
+      this.filteredProperties = this.properties.filter(
+        property => property.status === 'vacant'
+      );
+    } else if (filter === 'full') {
+      this.filteredProperties = this.properties.filter(
+        property => property.status === 'full'
+      );
+    } else {
+      this.filteredProperties = [...this.properties]; // show all
     }
-
-    this.filteredProperties = this.properties.filter(property => {
-      const vacant = Number(property.vacantRoomCount) || 0;
-      const full = Number(property.fullRoomCount) || 0;
-      
-      switch(filter) {
-        case 'vacant': 
-          return vacant > 0;
-        case 'full':
-          return full > 0;
-        case 'maintenance':
-          return property.status?.toLowerCase() === 'maintenance';
-        default:
-          return true;
-      }
-    });
   }
-
-  shuffleItems(): void {
-    this.filteredProperties = [...this.filteredProperties.sort(() => Math.random() - 0.5)];
-  }
-
-  sortItems(order: string, direction: string): void {
-    this.sortOrder = order;
-    this.sortDirection = direction;
-    
-    this.filteredProperties.sort((a, b) => {
-      let comparison = 0;
-      
-      if (order === 'index') {
-        comparison = a.id - b.id;
-      } else if (order === 'name') {
-        comparison = a.name.localeCompare(b.name);
-      }
-      
-      return direction === 'asc' ? comparison : -comparison;
-    });
-  }
+  
 
   deleteProperty(id: number): void {
     if (confirm('Are you sure you want to delete this property?')) {
