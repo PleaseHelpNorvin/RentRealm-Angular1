@@ -82,7 +82,7 @@ export class ReservationsComponent implements AfterViewInit {
     const confirmed = confirm('Are you sure you want to approve this reservation?');
     if (confirmed) {
       console.log(`from rejectReservation() id: ${id}`);
-      this.reservationService.patchReject(id).subscribe({
+      this.reservationService.postReject(id).subscribe({
         next: (response) => {
           console.log(`success ${response}`);
           this.loadReservationsIndex()

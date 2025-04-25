@@ -9,7 +9,7 @@ import { TenantResponse } from '../../interfaces/tenant.interface';
   providedIn: 'root'
 })
 export class RoomService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/room';
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/room';
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getRooms(property_id: number): Observable<RoomResponse> {

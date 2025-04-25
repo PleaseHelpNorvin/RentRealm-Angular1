@@ -8,7 +8,7 @@ import { PaymentResponse } from '../../interfaces/payment.interface';
   providedIn: 'root'
 })
 export class PaymentService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/payment'
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/payment'
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
