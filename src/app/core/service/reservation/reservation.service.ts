@@ -25,12 +25,23 @@ export class ReservationService {
 
   postApprove(id: number | null): Observable<any> {
     const token = this.authService.getToken();
-    let admin_id = this.authService.getAdminId();
+    const admin_id = this.authService.getAdminId();
     console.log(`from postApprove admin ${admin_id}`);
     console.log(`from postApprove token: ${token}`);
-    
+  
     const headers = {
       Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+  
+    // Instead of sending query params, send the data in the body
+    const body = {
+      status: 'approved',
+      approved_by: admin_id
+    };
+  
+    return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
       'Content-Type': 'application/json',  // Specify the content type
       'Accept': 'application/json'
     }
