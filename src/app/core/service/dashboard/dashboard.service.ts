@@ -8,7 +8,7 @@ import { catchError, Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/dashboard';
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/dashboard';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getDashboardData(): Observable<DashboardResponse> {

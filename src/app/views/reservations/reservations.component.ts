@@ -66,7 +66,7 @@ export class ReservationsComponent implements AfterViewInit {
     const confirmed2 = confirm('Are you sure you want to approve this reservation?');
     if (confirmed1 && confirmed2) {
       console.log(`from approveReservation() id: ${id}`);
-      this.reservationService.patchApprove(id).subscribe({
+      this.reservationService.postApprove(id).subscribe({
         next: (response) => {
             console.log(`success ${response}`);
             this.loadReservationsIndex()
@@ -82,7 +82,7 @@ export class ReservationsComponent implements AfterViewInit {
     const confirmed = confirm('Are you sure you want to approve this reservation?');
     if (confirmed) {
       console.log(`from rejectReservation() id: ${id}`);
-      this.reservationService.patchReject(id).subscribe({
+      this.reservationService.postReject(id).subscribe({
         next: (response) => {
           console.log(`success ${response}`);
           this.loadReservationsIndex()

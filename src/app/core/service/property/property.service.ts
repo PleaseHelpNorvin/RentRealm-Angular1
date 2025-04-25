@@ -9,7 +9,7 @@ import { Property, PropertyResponse } from '../../interfaces/property.interface'
   providedIn: 'root', // This makes the service available globally in the app
 })
 export class PropertyService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/property'; // Replace with your Laravel API endpoint
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/property'; // Replace with your Laravel API endpoint
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

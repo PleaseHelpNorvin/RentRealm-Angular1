@@ -49,6 +49,7 @@ export class PropertyPageComponent implements OnInit {
     this.propertyService.getProperties().subscribe({
       next: (response: PropertyResponse) => {
         if (response?.data?.properties) {
+          console.log('properties: ', response.data.properties)
           this.properties = response.data.properties.map(property => {
             property.created_at = this.datePipe.transform(property.created_at, 'medium') || property.created_at;
             
@@ -56,6 +57,7 @@ export class PropertyPageComponent implements OnInit {
               try {
                 property.property_picture_url = JSON.parse(property.property_picture_url);
               } catch {
+                console.log("images", property.property_picture_url);
                 property.property_picture_url = [];
               }
             }

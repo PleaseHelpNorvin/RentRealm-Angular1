@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ReservationService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/reservation'
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/reservation'
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getReservations(): Observable<ReservationResponse>{
@@ -23,37 +23,50 @@ export class ReservationService {
     );
   }
 
-  patchApprove(id: number | null): Observable<any> {
+  postApprove(id: number | null): Observable<any> {
     const token = this.authService.getToken();
     let admin_id = this.authService.getAdminId();
-    console.log(`from postApprove admin ${admin_id}`)
-    console.log(`from postApprove token: ${token} `)
+    console.log(`from postApprove admin ${admin_id}`);
+    console.log(`from postApprove token: ${token}`);
+    
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',  // Specify the content type
-      'Accept': 'application/json'  
+      'Accept': 'application/json'
     }
-
-    return this.http.patch<any>(`${this.apiUrl}/updateStatus/${id}?status=approved&approved_by=${admin_id}`, {}, {headers}).pipe(
+  
+    const body = {
+      status: 'approved',
+      approved_by: admin_id
+    };
+  
+    return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  patchReject(id: number | null): Observable<any> {
+  postReject(id: number | null): Observable<any> {
     const token = this.authService.getToken();
     let admin_id = this.authService.getAdminId();
-    console.log(`from postApprove admin ${admin_id}`)
-    console.log(`from postApprove token: ${token} `)
+    console.log(`from postReject admin ${admin_id}`);
+    console.log(`from postReject token: ${token}`);
+    
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',  // Specify the content type
-      'Accept': 'application/json'  
+      'Accept': 'application/json'
     }
-    return this.http.patch<any>(`${this.apiUrl}/updateStatus/${id}?status=rejected&approved_by=${admin_id}`, {}, {headers}).pipe(
+  
+    const body = {
+      status: 'rejected',
+      approved_by: admin_id
+    };
+  
+    return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
       catchError(this.handleError)
     );
   }
-
+  
   private handleError(error: any): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {

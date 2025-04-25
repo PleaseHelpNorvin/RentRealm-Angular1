@@ -8,7 +8,7 @@ import { HandymanResponse } from '../../interfaces/handyman.interface';
   providedIn: 'root'
 })
 export class HandymanService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/handy_man';
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/handy_man';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
