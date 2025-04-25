@@ -53,19 +53,19 @@ export class HandymanService {
     );
   }
 
-  patchTerminateHandyman(handyman_id: number): Observable<HandymanResponse> {
+  postTerminateHandyman(handyman_id: number): Observable<HandymanResponse> {
     const token = this.authService.getToken();
-    console.log('patch Terminate Handyman',token)
+    console.log('post Terminate Handyman', token);
+  
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/json'  
-    }
-
-
-    return this.http.patch<HandymanResponse>(`${this.apiUrl}/terminate-handyman/${handyman_id}`, {}, {headers}).pipe(
+      'Accept': 'application/json'
+    };
+  
+    return this.http.post<HandymanResponse>(`${this.apiUrl}/terminate-handyman/${handyman_id}`, {}, { headers }).pipe(
       catchError(this.handleError)
-    )
+    );
   }
   
   private handleError(error: any): Observable<never> {
