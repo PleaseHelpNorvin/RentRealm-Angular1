@@ -42,41 +42,33 @@ export class ReservationService {
     };
   
     return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
-      'Content-Type': 'application/json',  // Specify the content type
-      'Accept': 'application/json'
-    }
-  
-    const body = {
-      status: 'approved',
-      approved_by: admin_id
-    };
-  
-    return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
       catchError(this.handleError)
     );
   }
+  
+  
 
-  postReject(id: number | null): Observable<any> {
-    const token = this.authService.getToken();
-    let admin_id = this.authService.getAdminId();
-    console.log(`from postReject admin ${admin_id}`);
-    console.log(`from postReject token: ${token}`);
+    postReject(id: number | null): Observable<any> {
+      const token = this.authService.getToken();
+      let admin_id = this.authService.getAdminId();
+      console.log(`from postReject admin ${admin_id}`);
+      console.log(`from postReject token: ${token}`);
+      
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',  // Specify the content type
+        'Accept': 'application/json'
+      }
     
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',  // Specify the content type
-      'Accept': 'application/json'
+      const body = {
+        status: 'rejected',
+        approved_by: admin_id
+      };
+    
+      return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
+        catchError(this.handleError)
+      );
     }
-  
-    const body = {
-      status: 'rejected',
-      approved_by: admin_id
-    };
-  
-    return this.http.post<any>(`${this.apiUrl}/updateStatus/${id}`, body, { headers }).pipe(
-      catchError(this.handleError)
-    );
-  }
   
   private handleError(error: any): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
@@ -90,4 +82,7 @@ export class ReservationService {
     console.error(errorMessage);
     return throwError(errorMessage); // Return an observable with the error message
   }
+
+
+
 }
