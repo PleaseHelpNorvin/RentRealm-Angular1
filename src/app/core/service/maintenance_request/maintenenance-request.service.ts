@@ -26,25 +26,22 @@ export class MaintenenanceRequestService {
     );
   }
 
-  patchAssignMaintenanceRequestToTenant(request_id: number, handyman_id: number): Observable<MaintenanceRequestResponse>{
+  patchAssignMaintenanceRequestToTenant(request_id: number, handyman_id: number): Observable<MaintenanceRequestResponse> {
     const admin_id = this.authService.getAdminId();
     const token = this.authService.getToken();
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/json'  
-    }
-
-    console.log('from patchAssignedMaintenanceRequestToTenant', request_id)
-    console.log('from patchAssignedMaintenanceRequestToTenant', handyman_id)
-    console.log('from patchAssignedMaintenanceRequestToTenant', admin_id)
-    console.log('from patchAssignedMaintenanceRequestToTenant', token)
-
-
-    return this.http.patch<MaintenanceRequestResponse>(`${this.apiUrl}/patch-maintenance-request-to-assigned/${request_id}/${handyman_id}/${admin_id}`, {}, {headers}).pipe(
-
-      catchError(this.handleError)
-    )
+      'Accept': 'application/json'
+    };
+  
+    const body = {
+      request_id,
+      handyman_id,
+      admin_id
+    };
+    
+    return this.http.post<MaintenanceRequestResponse>(`${this.apiUrl}/assign-maintenance-request`, body, { headers });
   }
 
   patchApproveMaintenanceRequest(request_id: number): Observable<MaintenanceRequestResponse> {
@@ -53,22 +50,24 @@ export class MaintenenanceRequestService {
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/json'  
+      'Accept': 'application/json'
     }
-
-    console.log('from patchApproveMaintenanceRequest', request_id)
-    console.log('from patchApproveMaintenanceRequest', admin_id)
-    console.log('from patchApproveMaintenanceRequest', token)
-    return this.http.patch<MaintenanceRequestResponse>(`${this.apiUrl}/patch-maintenance-request-to-complete/${request_id}/${admin_id}`, {}, {headers}).pipe(
-      catchError(this.handleError)
-    )
-  }
   
-  // patchRejectMaintenanceRequest(): Objservable<MaintenanceRequestResponse> {
-
-  // }
-
-
+    const body = {
+      request_id,
+      admin_id
+    };
+  
+    console.log('from patchApproveMaintenanceRequest', body);
+  
+    return this.http.post<MaintenanceRequestResponse>(
+      `${this.apiUrl}/approve-maintenance-request`,
+      body,
+      { headers }
+    ).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: any): Observable<never> {
       let errorMessage = 'An unknown error occurred!';
