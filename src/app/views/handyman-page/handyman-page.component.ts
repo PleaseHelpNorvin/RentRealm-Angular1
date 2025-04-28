@@ -206,7 +206,7 @@ export class HandymanPageComponent {
     const confirmed = confirm('Are you sure you want to terminate this handyman?');
     if (confirmed) {
       console.log(`Terminating handyman with ID: ${handyman_id}`);
-      this.handymanService.patchTerminateHandyman(handyman_id).subscribe({
+      this.handymanService.postTerminateHandyman(handyman_id).subscribe({
         next: (res) => {
           console.log('Handyman terminated successfully:', res);
           this.fetchHandymen()

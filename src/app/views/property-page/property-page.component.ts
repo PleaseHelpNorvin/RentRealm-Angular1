@@ -66,6 +66,7 @@ export class PropertyPageComponent implements OnInit {
               try {
                 property.property_picture_url = JSON.parse(property.property_picture_url);
               } catch {
+                console.log("images", property.property_picture_url);
                 property.property_picture_url = [];
               }
             }

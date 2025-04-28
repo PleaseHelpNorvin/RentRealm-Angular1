@@ -11,8 +11,8 @@ import { Tenant, TenantResponse } from '../../interfaces/tenant.interface'; // I
   providedIn: 'root'
 })
 export class TenantService {
-    private apiUrl = 'http://127.0.0.1:8000/api/tenant/tenant';
-    private adminApiUrl = 'http://127.0.0.1:8000/api/landlord/user';
+    private apiUrl = 'http://192.168.1.99:8000/api/tenant/tenant';
+    private adminApiUrl = 'http://192.168.1.99:8000/api/landlord/user';
 
 
 

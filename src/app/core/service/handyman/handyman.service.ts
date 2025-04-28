@@ -8,7 +8,7 @@ import { HandymanResponse } from '../../interfaces/handyman.interface';
   providedIn: 'root'
 })
 export class HandymanService {
-  private apiUrl = 'http://127.0.0.1:8000/api/landlord/handy_man';
+  private apiUrl = 'http://192.168.1.99:8000/api/landlord/handy_man';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -53,19 +53,19 @@ export class HandymanService {
     );
   }
 
-  patchTerminateHandyman(handyman_id: number): Observable<HandymanResponse> {
+  postTerminateHandyman(handyman_id: number): Observable<HandymanResponse> {
     const token = this.authService.getToken();
-    console.log('patch Terminate Handyman',token)
+    console.log('post Terminate Handyman', token);
+  
     const headers = {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/json'  
-    }
-
-
-    return this.http.patch<HandymanResponse>(`${this.apiUrl}/terminate-handyman/${handyman_id}`, {}, {headers}).pipe(
+      'Accept': 'application/json'
+    };
+  
+    return this.http.post<HandymanResponse>(`${this.apiUrl}/terminate-handyman/${handyman_id}`, {}, { headers }).pipe(
       catchError(this.handleError)
-    )
+    );
   }
   
   private handleError(error: any): Observable<never> {
