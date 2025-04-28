@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://192.168.1.99:8000/api'; // Your API base URL
+  // private apiUrl = 'http://192.168.1.99:8000/api'; // Your API base URL
+  private apiUrl = 'http://192.168.60.216:8000/api'; // Your API base URL
+
   private tokenKey = 'token';  // Key for storing the token in sessionStorage
   private adminIdKey = 'admin_id';
   constructor(private http: HttpClient, private router: Router) {}

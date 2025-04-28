@@ -9,7 +9,9 @@ import { SettingResponse } from '../../interfaces/setting.interface';
   providedIn: 'root'
 })
 export class SettingService {
-  private apiUrl = 'http://192.168.1.99:8000/api/landlord/setting';
+  // private apiUrl = 'http://192.168.1.99:8000/api/landlord/setting';
+  private apiUrl = 'http://192.168.60.216:8000/api/landlord/setting';
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   showUserSetting(): Observable<UserSettingResponse>{

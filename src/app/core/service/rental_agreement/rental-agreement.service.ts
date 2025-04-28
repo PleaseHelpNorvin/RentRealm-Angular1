@@ -8,7 +8,8 @@ import { RentalAgreementResponse } from '../../interfaces/rental_agreement.inter
   providedIn: 'root'
 })
 export class RentalAgreementService {
-  private apiUrl = 'http://192.168.1.99:8000/api/landlord/rental_agreement'
+  // private apiUrl = 'http://192.168.1.99:8000/api/landlord/rental_agreement'
+  private apiUrl = 'http://192.168.60.216:8000/api/landlord/rental_agreement'
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

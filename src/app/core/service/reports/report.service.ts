@@ -8,7 +8,8 @@ import { ReportsResponse } from '../../interfaces/reports.interface';
   providedIn: 'root'
 })
 export class ReportService {
-  private apiUrl = 'http://192.168.1.99:8000/api/landlord/reports';
+  // private apiUrl = 'http://192.168.1.99:8000/api/landlord/reports';
+  private apiUrl = 'http://192.168.60.216:8000/api/landlord/reports';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

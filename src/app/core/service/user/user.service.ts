@@ -9,8 +9,8 @@ import { UserProfileResponse, UserResponse } from '../../interfaces/users.interf
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://192.168.1.99:8000/api/landlord/user';  // API URL for user management
-
+  // private apiUrl = 'http://192.168.1.99:8000/api/landlord/user';  // API URL for user management
+  private apiUrl = 'http://192.168.60.216:8000/api/landlord/user';
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   sendOverdueWarningToTenant(admin_id: number | null | undefined ,user_id: number | null | undefined, notification_id: number | null | undefined): Observable<any> {

@@ -8,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ReservationService {
-  private apiUrl = 'http://192.168.1.99:8000/api/landlord/reservation'
+  // private apiUrl = 'http://192.168.1.99:8000/api/landlord/reservation'
+  private apiUrl = 'http://192.168.60.216:8000/api/landlord/reservation'
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getReservations(): Observable<ReservationResponse>{
